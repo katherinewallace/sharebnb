@@ -8,11 +8,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      self.current_user = @user
       login(@user)
       redirect_to root_url
     else
-      flash[:errors] = @user.errors.full_messages
+      flash[:errors] = @user.errors.messages.values
+      render :new
     end
   end
   

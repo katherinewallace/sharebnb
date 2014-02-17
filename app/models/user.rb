@@ -17,7 +17,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :fname, :lname, :gender, :bday, :email, :phone, :description
+  attr_accessible :fname, :lname, :gender, :bday, :email, :phone, :description, :password, :password_confirmation
   attr_reader :password, :password_confirmation
   
   before_validation :ensure_session_token
@@ -52,13 +52,15 @@ class User < ActiveRecord::Base
     "#{self.fname} #{self.lname}"
   end
   
-  private
-  
   def password=(password)
     @password = password
     if(@password) && !@password.empty?
       self.password_digest = BCrypt::Password.create(password)
     end
+  end
+  
+  def password_confirmation=(password)
+    @password_confirmation = password
   end
   
   def matching_passwords
