@@ -17,7 +17,7 @@ development:
   encoding: unicode
   database: sharebnb_development
   pool: 5
-  username: sharebnb
+  username: katiewallace
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -43,7 +43,7 @@ test:
   encoding: unicode
   database: sharebnb_test
   pool: 5
-  username: sharebnb
+  username: katiewallace
   password:
 
 production:
@@ -51,5 +51,5 @@ production:
   encoding: unicode
   database: sharebnb_production
   pool: 5
-  username: sharebnb
+  username: katiewallace
   password:

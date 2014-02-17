@@ -18,5 +18,11 @@ group :development do
   gem 'binding_of_caller'
   gem 'debugger'
   gem 'pry-rails'
+  gem 'annotate'
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'guard-rspec'
 end
 
