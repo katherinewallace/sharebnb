@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
   validates :email, presence: {message: "Email can't be blank"}
   validates :email, uniqueness: {message: "That email has already been taken"}
   
+  has_one :listing
+  
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end

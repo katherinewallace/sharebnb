@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140217160442) do
+ActiveRecord::Schema.define(:version => 20140217204220) do
+
+  create_table "listings", :force => true do |t|
+    t.integer  "room_type"
+    t.integer  "guests"
+    t.integer  "bedrooms"
+    t.integer  "bathrooms"
+    t.string   "city"
+    t.string   "neighborhood"
+    t.string   "address"
+    t.integer  "price"
+    t.text     "description"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "user_id",      :null => false
+    t.string   "zip"
+  end
+
+  add_index "listings", ["user_id"], :name => "index_listings_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "fname",           :null => false
