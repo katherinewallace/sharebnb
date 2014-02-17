@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   validates :fname, presence: {message: "First name can't be blank"}
   validates :lname, presence: {message: "Last name can't be blank"}
   validates :password_digest, presence: {message: "Password can't be blank"}
-  validates :password, length: {minimum: 6, message: "Password must be at least 6 characters long"}
+  validates :password, length: {minimum: 6, message: "Password must be at least 6 characters long", allow_nil: true}
   validate :matching_passwords
   validates :email, presence: {message: "Email can't be blank"}
   validates :email, uniqueness: {message: "That email has already been taken"}

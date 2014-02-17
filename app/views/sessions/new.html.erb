@@ -1,0 +1,16 @@
+<%= render "shared/errors" %>
+<h1>Sign in</h1>
+<form action="<%= session_url %>" method="POST" class="signin-form">
+  <%= auth_token %>
+  
+  <label for="email">Email</label>
+  <input type="text" name="user[email]" value="<%= @user.email %>" id="user_email">
+  <br>
+  
+  <label for="user_password">Password</label>
+  <input type="password" name="user[password]" value="" id="user_password">
+  <br>
+  
+  <input type="submit" value="Sign in" id="sign-in-btn">
+  
+</form>

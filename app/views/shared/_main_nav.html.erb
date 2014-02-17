@@ -2,9 +2,14 @@
   <nav>
     <ul>
       <% if current_user %>
-      <li><a><%= current_user.full_name %></a></li>
+      <li><a><%= current_user.full_name %></a>
+        <ul class="drop-down">
+          <li><%= button_to "Logout", session_url, method: "delete" %></li>
+        </ul>
+      </li>
       <% else %>
       <li><a href="<%= new_user_url %>">Sign up</a></li>
+      <li><a href="<%= new_session_url %>">Sign in</a></li>
       <% end %>
     </ul>
   </nav>
