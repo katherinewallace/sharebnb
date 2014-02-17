@@ -1,6 +1,7 @@
 <%= render "shared/errors" %>
 <h1>Sign in</h1>
-<form action="<%= session_url %>" method="POST" class="signin-form">
+<section>
+<form action="<%= session_url %>" method="POST" class="user-form">
   <%= auth_token %>
   
   <label for="email">Email</label>
@@ -14,3 +15,8 @@
   <input type="submit" value="Sign in" id="sign-in-btn">
   
 </form>
+</section>
+<section>
+  <p>Don't have an account yet?</p>
+  <a href="<%= new_user_url %>">Sign up</a>
+</section>

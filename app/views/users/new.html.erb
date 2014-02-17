@@ -1,6 +1,7 @@
 <%= render "shared/errors" %>
 <h1>Sign up</h1>
-<form action="<%= users_url %>" method="POST" class="signup-form">
+<section>
+<form action="<%= users_url %>" method="POST" class="user-form">
   <%= auth_token %>
   
   <label for="user_fname">First name</label>
@@ -26,3 +27,9 @@
   <input type="submit" value="Sign up" id="sign-up-btn">
   
 </form>
+</section>
+
+<section>
+  <p>Already a member?</p>
+  <a href="<%= new_session_url %>">Sign in</a>
+</section>
