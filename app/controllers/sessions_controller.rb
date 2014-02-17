@@ -1,0 +1,4 @@
+class SessionsController
+  
+  
+end

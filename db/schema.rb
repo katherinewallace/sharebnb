@@ -11,19 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140217150450) do
+ActiveRecord::Schema.define(:version => 20140217160442) do
 
   create_table "users", :force => true do |t|
     t.string   "fname",           :null => false
     t.string   "lname",           :null => false
-    t.string   "email",           :null => false
-    t.string   "password_digest", :null => false
     t.string   "gender"
     t.date     "bday"
+    t.string   "session_token"
+    t.string   "email",           :null => false
+    t.string   "phone"
+    t.string   "password_digest", :null => false
     t.text     "description"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.string   "session_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
