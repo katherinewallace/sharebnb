@@ -1,0 +1,25 @@
+<%= render "listing_nav" %>
+<section class="listing-info">
+  <div class="listing-details">
+    <article>
+      <h3>Description:</h3>
+      <p><%= @listing.description %></p>
+    </article>
+    <article>
+      <ul>
+        <li>Room type: <%= Listing::ROOM_TYPES[@listing.room_type] %></li>
+        <li>Accomodates: <%= @listing.guests %> guests</li>
+        <li>Bedrooms: <%= @listing.bedrooms %></li>
+        <li>Bathrooms: <%= @listing.bathrooms %></li>
+        <li>City: <%= @listing.city %></li>
+        <li>Neighborhood: <%= @listing.neighborhood %></li>
+      </ul>
+    </article>
+  </article>
+</section>
+
+<section class="side-bar">
+  <article class="host">
+    <p>Host: <%= @listing.user.full_name %></p>
+  </article>
+</section>

@@ -1,0 +1,12 @@
+<h1><%= @listing.title %></h1>
+<header class="listing-nav-bar">
+  <nav>
+    <ul>
+      <li><a href="<%= listing_url(@listing) %>">View Details</a></li>
+      <li><a href="<%= listing_calendar_url(@listing) %>">Calendar</a></li>
+      <% if listing_owner?(@listing) %>
+        <li><a href="<%= edit_listing_url(@listing) %>">Edit</a></li>
+      <% end %>
+    </ul>
+  </nav>
+</header>

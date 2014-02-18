@@ -6,4 +6,8 @@ module ApplicationHelper
     value=\"<%= form_authenticity_token %>\"
     >".html_safe
   end
+  
+  def listing_owner?(listing)
+    listing.user_id == current_user.id
+  end
 end

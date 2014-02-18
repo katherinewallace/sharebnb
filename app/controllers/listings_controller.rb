@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
   before_filter :require_signed_in
+  before_filter :require_listing_owner, only: [:edit, :update, :destroy]
   
   def new
     @listing = Listing.new
@@ -38,7 +39,6 @@ class ListingsController < ApplicationController
   end
   
   def edit
-    
   end
   
   def update
@@ -50,6 +50,6 @@ class ListingsController < ApplicationController
   end
   
   def calendar
-    
+    @listing = Listing.find(params[:id])
   end
 end
