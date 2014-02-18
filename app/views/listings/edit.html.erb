@@ -3,7 +3,7 @@
 <h1>Edit Your Listing</h1>
 <%= render "shared/errors" %>
 <section class="edit-form">
-<form action="<%= listings_url %>" method="POST">
+<form action="<%= listing_url(@listing) %>" method="POST">
   <%= auth_token %>
   <input type="hidden" name="_method" value="PUT">
   
@@ -21,6 +21,7 @@
     <input type="date" name="date_range_attributes[<%= range.object_id %>][end_date]" 
     value="<%= range.end_date %>">
   </label>
+  <input type="hidden" name="date_range_attributes[<%= range.object_id %>][id]" value="<%= range.id %>">
   <br>
   <% end %>
   <br>

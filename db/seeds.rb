@@ -26,18 +26,3 @@ end
     user_id: num
   })
 end
-
-#  room_type    :integer
-#  guests       :integer
-#  bedrooms     :integer
-#  bathrooms    :integer
-#  city         :string(255)
-#  neighborhood :string(255)
-#  address      :string(255)
-#  price        :integer
-#  description  :text
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  user_id      :integer          not null
-#  zip          :string(255)
-#  title        :string(255)      not null

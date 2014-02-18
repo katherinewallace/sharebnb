@@ -41,22 +41,8 @@ class Listing < ActiveRecord::Base
   validates :zip, format: { with: /^\d{5}(?:[-\s]\d{4})?$/, message: "You must enter a valid zipcode" }
   validates :price, numericality: { greater_than_or_equal_to: 0, 
     less_than_or_equal_to: 5000, message: "You must enter a price between $0 and $5000 a night" }
-  validate :non_overlap_date_ranges 
   
   belongs_to :user
   has_many :date_ranges, inverse_of: :listing
-  
-  def non_overlap_date_ranges
-    ranges = self.date_ranges
-    if ranges
-      ranges.each_with_index do |range, i|
-        (i+1...ranges.length).each do |j|
-          if range.overlaps_with?(ranges[j])
-            errors[:base] << "Available date ranges cannot overlap"
-          end
-        end
-      end
-    end
-  end
 
 end
