@@ -39,6 +39,10 @@ class ListingsController < ApplicationController
   end
   
   def edit
+    @listing = Listing.includes(:date_ranges).find(params[:id])
+    until @listing.date_ranges.length === 3
+      @listing.date_ranges.build
+    end
   end
   
   def update

@@ -1,2 +1,30 @@
 <%= render "listing_nav" %>
-Edit
+
+<h1>Edit Your Listing</h1>
+<%= render "shared/errors" %>
+<section class="edit-form">
+<form action="<%= listings_url %>" method="POST">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="PUT">
+  
+  <%= render "form" %>
+  
+  <label>Available Dates</label>
+  <br>
+  <% @listing.date_ranges.each do |range| %>
+  
+  <label>Start date
+    <input type="date" name="date_range_attributes[<%= range.object_id %>][start_date]" 
+    value="<%= range.start_date %>">
+  </label>
+  <label>End date
+    <input type="date" name="date_range_attributes[<%= range.object_id %>][end_date]" 
+    value="<%= range.end_date %>">
+  </label>
+  <br>
+  <% end %>
+  <br>
+  
+  <input type="submit" value="Submit" id="listing-create-btn">
+</form>
+</section>
