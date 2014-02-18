@@ -41,7 +41,7 @@ class ListingsController < ApplicationController
 
   def edit
     @listing = Listing.includes(:date_ranges).find(params[:id])
-    until @listing.date_ranges.length == 3
+    until @listing.date_ranges.length >= 3
       @listing.date_ranges.build
     end
     render :edit
@@ -75,11 +75,13 @@ class ListingsController < ApplicationController
       redirect_to @listing
       
     else
+      @listing.errors.delete(:date_ranges)
       flash.now[:errors] = @listing.errors.messages.values
       new_drs.concat(@date_ranges).each do |range|
         flash.now[:errors].concat(range.errors.messages.values)
       end
-      until @listing.date_ranges.length == 3
+      flash.now[:errors].uniq!
+      until @listing.date_ranges.length >= 3
         @listing.date_ranges.build
       end
       render :edit      
