@@ -53,68 +53,42 @@ class ListingsController < ApplicationController
     date_range_attributes = params[:date_range_attributes].values.reject do |range| 
         range["start_date"].empty? || range["end_date"].empty?
     end
+
+    ActiveRecord::Base.transaction do
+      @listing.assign_attributes(params[:listing])
+      date_ranges = []
     
-    begin
-      ActiveRecord::Base.transaction do
-        @listing.assign_attributes(params[:listing])
-        date_ranges = []
-      
-      
-        date_range_attributes.each do |dr_attribute|
-          if dr_attribute[:id]
-            date_range = DateRange.find(dr_attribute[:id])
-            date_range.assign_attributes(dr_attribute)
-          
-            date_ranges << date_range
-          else
-            date_ranges << @listing.date_ranges.new(dr_attribute)
-          end
-        end
+    
+      date_range_attributes.each do |dr_attribute|
+        if dr_attribute[:id]
+          date_range = DateRange.find(dr_attribute[:id])
+          date_range.assign_attributes(dr_attribute)
         
-        if @listing.valid? && date_ranges.all? { |dr| dr.valid? }
-          @listing.save
-          date_ranges.each { |dr| dr.save }
+          date_ranges << date_range
         else
-          flash.now[:errors] = @listing.errors.messages.values
-          date_ranges.each do |range|
-            flash.now[:errors].concat(range.errors.messages.values)
-          end
-          render :edit
-          return
+          date_ranges << @listing.date_ranges.new(dr_attribute)
         end
       end
-      
-    rescue ActiveRecord::Rollback
-      # render :edit
-      # raise "Rescued"
-      # return
+
+      date_ranges.each { |dr| dr.save }
+      if @listing.valid? && date_ranges.all? { |dr| dr.valid? }
+        @listing.save
+      else
+        flash.now[:errors] = @listing.errors.messages.values
+        date_ranges.each do |range|
+          unless range.valid?
+            flash.now[:errors].concat(range.errors.messages.values)
+            break
+          end
+        end
+        render :edit
+        return
+      end
+
     end
     
     redirect_to @listing
-    
-    # date_range_attributes.each do |dr_attribute|
-    #   if dr_attribute[:id]
-    #     fail
-    #     @listing.date_ranges.find(dr_attribute[:id]).assign_attributes(dr_attribute)
-    #   else
-    #     @listing.date_ranges.new(dr_attribute)
-    #   end
-    # end
-    
-    # date_ranges = []
-    # 
-    # date_range_attributes.each do |range_attrs| 
-    #   date_ranges << (!range_attrs[:id].empty? ? DateRange.find(range_attrs[:id]).assign_attributes(range_attrs) : DateRange.new(range_attrs))
-    #   # @listing.date_ranges.find_or_initialize_by(range_attrs[:id], range_attrs)
-    # end
-    # 
-    # @listing.date_ranges = date_ranges
-    # if @listing.save
-    #   redirect_to listing_url(@listing)
-    # else  
-     
-    #   render :edit
-    # end
+  
   end
   
   def destroy
