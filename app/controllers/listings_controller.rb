@@ -81,6 +81,9 @@ class ListingsController < ApplicationController
             break
           end
         end
+        until @listing.date_ranges.length == 3
+          @listing.date_ranges.build
+        end
         render :edit
         return
       end
