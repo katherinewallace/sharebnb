@@ -7,6 +7,7 @@
           <li><%= button_to "Logout", session_url, method: "delete" %></li>
         </ul>
       </li>
+      <li><a href="<%= new_listing_url %>">List Your Space</a></li>
       <% else %>
       <li><a href="<%= new_user_url %>">Sign up</a></li>
       <li><a href="<%= new_session_url %>">Sign in</a></li>

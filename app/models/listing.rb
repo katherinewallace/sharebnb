@@ -26,8 +26,10 @@ class Listing < ActiveRecord::Base
     2 => "shared room"
   }
   
-  attr_accessible :room_type, :guests, :bedrooms, :bathrooms, :city, :neighborhood, :address, :zip, :price, :description, :user_id
+  attr_accessible :room_type, :guests, :bedrooms, :bathrooms, :city, :neighborhood, 
+    :address, :zip, :price, :description, :user_id, :title
   validates :user_id, presence: true
+  validates :title, presence: {message: "Title cannot be blank"}
   validates :room_type, presence: { message: "You must choose a room type" }
   validates :guests, presence: { message: "You must indicate how many guests your space accomodates" }
   validates :bedrooms, presence: { message: "You must choose the number of bedrooms" }

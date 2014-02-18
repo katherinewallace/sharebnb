@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     @user = User.find_by_credentials(params[:user][:email], params[:user][:password])
     if @user
       login(@user)
-      redirect_to root_url
+      redirect_back_or_home
     else
       flash.now[:errors] = [["Invalid email/password combination"]]
       @user = User.new

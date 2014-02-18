@@ -1,0 +1,15 @@
+<section id="search-results">
+  <ul>
+    <% @listings.each do |listing| %>
+    <li>
+      <a href="<%= listing_url(listing)%>" data-id="<%= listing.id %>">
+        <h3><%= listing.title %></h3>
+        <ul>
+          <li><%= listing.neighborhood %></li>
+          <li>$<%= listing.price %> per night</li>
+        </ul>
+      </a>
+    </li>
+    <% end %>
+  </ul>
+</section>
