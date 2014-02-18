@@ -3,16 +3,25 @@ class ListingsController < ApplicationController
   
   def new
     @listing = Listing.new
+    3.times { @listing.date_ranges.build }
     render :new
   end
   
   def create
     @listing = Listing.new(params[:listing])
     @listing.user_id = current_user.id
+    date_range_attributes = params[:date_range_attributes].values.reject {
+      |range| range["start_date"].empty? || range["end_date"].empty?
+    }
+    @listing.date_ranges.new(date_range_attributes)
+    
     if @listing.save
       redirect_to listings_url # change this to listing show page
     else
       flash.now[:errors] = @listing.errors.messages.values
+      until @listing.date_ranges.length === 3
+        @listing.date_ranges.build
+      end
       render :new
     end
     
@@ -24,7 +33,8 @@ class ListingsController < ApplicationController
   end
   
   def show
-    
+    @listing = Listing.find(params[:id])
+    render :show
   end
   
   def edit
@@ -36,6 +46,10 @@ class ListingsController < ApplicationController
   end
   
   def destroy
+    
+  end
+  
+  def calendar
     
   end
 end

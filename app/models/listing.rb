@@ -50,8 +50,8 @@ class Listing < ActiveRecord::Base
     ranges = self.date_ranges
     if ranges
       ranges.each_with_index do |range, i|
-        (i...ranges.length).each do |j|
-          if range.overlaps_with?(range[j])
+        (i+1...ranges.length).each do |j|
+          if range.overlaps_with?(ranges[j])
             errors[:base] << "Available date ranges cannot overlap"
           end
         end
