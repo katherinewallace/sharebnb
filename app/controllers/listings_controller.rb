@@ -63,7 +63,7 @@ class ListingsController < ApplicationController
         date_range = @date_ranges.find { |dr| dr.id == dr_attribute[:id].to_i }
         date_range.assign_attributes(dr_attribute)
       else
-        new_drs << DateRange.new(dr_attribute)
+        new_drs << @listing.date_ranges.new(dr_attribute)
       end
     end
     
@@ -76,11 +76,8 @@ class ListingsController < ApplicationController
       
     else
       flash.now[:errors] = @listing.errors.messages.values
-      date_ranges.each do |range|
-         unless range.valid?
-           flash.now[:errors].concat(range.errors.messages.values)
-           break
-         end
+      new_drs.concat(@date_ranges).each do |range|
+        flash.now[:errors].concat(range.errors.messages.values)
       end
       until @listing.date_ranges.length == 3
         @listing.date_ranges.build
