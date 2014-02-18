@@ -17,7 +17,8 @@ class ListingsController < ApplicationController
     @listing.date_ranges.new(date_range_attributes)
     
     if @listing.save
-      redirect_to listings_url # change this to listing show page
+      flash[:success] = "Please add some more information about your listing"
+      redirect_to edit_listing_url(@listing)
     else
       flash.now[:errors] = @listing.errors.messages.values
       until @listing.date_ranges.length === 3
@@ -95,7 +96,8 @@ class ListingsController < ApplicationController
   end
   
   def destroy
-    
+    @listing.destroy!
+    redirect_to root_url # change to dashboard
   end
   
   def calendar

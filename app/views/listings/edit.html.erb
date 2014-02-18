@@ -1,11 +1,23 @@
 <%= render "listing_nav" %>
+<%= flash[:success] %>
 
 <h1>Edit Your Listing</h1>
 <%= render "shared/errors" %>
+
+<section><%= button_to "delete listing", listing_url, method: :delete %>
+  <a href="<%= listing_url(@listing) %>">Cancel</a>
+</section>
+
 <section class="edit-form">
 <form action="<%= listing_url(@listing) %>" method="POST">
   <%= auth_token %>
   <input type="hidden" name="_method" value="PUT">
+  
+  <label>Description:
+    <br>
+    <textarea name="listing[description]" rows="8" cols="40"><%= @listing.description %></textarea>
+  </label>
+  <br>
   
   <%= render "form" %>
   
