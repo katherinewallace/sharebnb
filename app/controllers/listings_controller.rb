@@ -1,13 +1,13 @@
 class ListingsController < ApplicationController
   before_filter :require_signed_in
   before_filter :require_listing_owner, only: [:edit, :update, :destroy]
-  
+
   def new
     @listing = Listing.new
     3.times { @listing.date_ranges.build }
     render :new
   end
-  
+
   def create
     @listing = Listing.new(params[:listing])
     @listing.user_id = current_user.id
@@ -15,7 +15,7 @@ class ListingsController < ApplicationController
       |range| range["start_date"].empty? || range["end_date"].empty?
     }
     @listing.date_ranges.new(date_range_attributes)
-    
+
     if @listing.save
       flash[:success] = "Please add some more information about your listing"
       redirect_to edit_listing_url(@listing)
@@ -26,19 +26,19 @@ class ListingsController < ApplicationController
       end
       render :new
     end
-    
+
   end
-  
+
   def index
     @listings = Listing.all # change to filtered listings
     render :index
   end
-  
+
   def show
     @listing = Listing.find(params[:id])
     render :show
   end
-  
+
   def edit
     @listing = Listing.includes(:date_ranges).find(params[:id])
     until @listing.date_ranges.length == 3
@@ -46,60 +46,55 @@ class ListingsController < ApplicationController
     end
     render :edit
   end
-  
+
   def update
     @listing = Listing.includes(:date_ranges).find(params[:id])
-    
-    
-    date_range_attributes = params[:date_range_attributes].values.reject do |range| 
-        range["start_date"].empty? || range["end_date"].empty?
+    @date_ranges = @listing.date_ranges.to_a
+    @listing.assign_attributes(params[:listing])
+
+    dr_attributes = params[:date_range_attributes].values.reject do |range|
+      range["start_date"].empty? || range["end_date"].empty?
     end
 
-    ActiveRecord::Base.transaction do
-      @listing.assign_attributes(params[:listing])
-      date_ranges = []
-    
-    
-      date_range_attributes.each do |dr_attribute|
-        if dr_attribute[:id]
-          date_range = DateRange.find(dr_attribute[:id])
-          date_range.assign_attributes(dr_attribute)
-        
-          date_ranges << date_range
-        else
-          date_ranges << @listing.date_ranges.new(dr_attribute)
-        end
-      end
+    new_drs = []
 
-      date_ranges.each { |dr| dr.save }
-      if @listing.valid? && date_ranges.all? { |dr| dr.valid? }
-        @listing.save
+    dr_attributes.each do |dr_attribute|
+      unless dr_attribute[:id].blank?
+        date_range = @date_ranges.find { |dr| dr.id == dr_attribute[:id].to_i }
+        date_range.assign_attributes(dr_attribute)
       else
-        flash.now[:errors] = @listing.errors.messages.values
-        date_ranges.each do |range|
-          unless range.valid?
-            flash.now[:errors].concat(range.errors.messages.values)
-            break
-          end
-        end
-        until @listing.date_ranges.length == 3
-          @listing.date_ranges.build
-        end
-        render :edit
-        return
+        new_drs << DateRange.new(dr_attribute)
       end
-
     end
     
-    redirect_to @listing
-  
+    new_drs.each { |dr| dr.save }
+    @date_ranges.each { |dr| dr.save }
+
+    if @listing.valid? && new_drs.all? { |dr| dr.valid? } && @date_ranges.all? { |dr| dr.valid? }
+      @listing.save
+      redirect_to @listing
+      
+    else
+      flash.now[:errors] = @listing.errors.messages.values
+      date_ranges.each do |range|
+         unless range.valid?
+           flash.now[:errors].concat(range.errors.messages.values)
+           break
+         end
+      end
+      until @listing.date_ranges.length == 3
+        @listing.date_ranges.build
+      end
+      render :edit      
+    end
+    
   end
-  
+
   def destroy
     @listing.destroy!
     redirect_to root_url # change to dashboard
   end
-  
+
   def calendar
     @listing = Listing.includes(:date_ranges).find(params[:id])
   end
