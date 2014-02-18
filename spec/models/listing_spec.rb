@@ -16,6 +16,7 @@
 #  updated_at   :datetime         not null
 #  user_id      :integer          not null
 #  zip          :string(255)
+#  title        :string(255)      not null
 #
 
 require 'spec_helper'

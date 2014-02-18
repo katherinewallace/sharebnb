@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140218011546) do
+ActiveRecord::Schema.define(:version => 20140218021502) do
+
+  create_table "date_ranges", :force => true do |t|
+    t.date     "start_date", :null => false
+    t.date     "end_date",   :null => false
+    t.integer  "listing_id", :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "date_ranges", ["listing_id"], :name => "index_date_ranges_on_listing_id"
 
   create_table "listings", :force => true do |t|
     t.integer  "room_type"
