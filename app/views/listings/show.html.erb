@@ -28,7 +28,9 @@
       <input type="date" name="booking[start_date]" value="<%= @booking.start_date %>" id="booking_start_date">
       <label for="booking_end_date">Check out</label>
       <input type="date" name="booking[end_date]" value="<%= @booking.end_date %>" id="booking_end_date">
-      <label>Guests</label>
+      <label for="booking_guest_num">Guests</label>
+      <input type="number" min="1" max="20" name="booking[guest_num]" value="<%= @booking.guest_num %>" id="booking_guest_num">
+      
     </div>
     <h3>Subtotal</h3>
     <p>$<%= @booking.subtotal ||= 0 %></p>

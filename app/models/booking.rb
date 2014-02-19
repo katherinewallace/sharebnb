@@ -22,14 +22,16 @@ class Booking < ActiveRecord::Base
     2 => :declined
   }
   
-  attr_accessible :start_date, :end_date
+  attr_accessible :start_date, :end_date, :guest_num
   
   validates :guest_id, :listing_id, presence: true
-  validates :start_date, presence: {message: "Please select a check-in date"}
-  validates :end_date, presence: {message: "Please select a check-out date"}
+  validates :start_date, presence: { message: "Please select a check-in date" }
+  validates :end_date, presence: { message: "Please select a check-out date" }
+  validates :guest_num, presence: { message: "Please select the number of guests" }
   validate :valid_range
   validate :availability, on: :create
   validate :valid_start_date
+  validate :accomodates_guests
   
   before_validation :assign_price, on: :create
   
@@ -60,6 +62,12 @@ class Booking < ActiveRecord::Base
     Integer(self.end_date - self.start_date) * price 
   end
   
+  def accomodates_guests
+    if self.guest_num > self.listing.guests
+      errors[:guest_num] << "This space cannot accomodate that many guests"
+    end
+  end
+  
   def valid_start_date
     if self.start_date < Date.today
       errors[:start_date] << "A booking cannot be for a date in the past"
@@ -74,7 +82,7 @@ class Booking < ActiveRecord::Base
   
   def availability
     unless self.within_date_range? && !self.overlapping_approved_bookings?
-      errors[:base] << "The apartment is not available for that set of dates"
+      errors[:base] << "This space is not available for that set of dates"
     end
   end
   

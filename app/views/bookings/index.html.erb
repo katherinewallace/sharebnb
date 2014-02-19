@@ -20,7 +20,7 @@
         </ul>
         <ul class="details">
           <li><%= "#{booking.start_date.month}/#{booking.start_date.day}/#{booking.start_date.year}  -  #{booking.end_date.month}/#{booking.end_date.day}/#{booking.end_date.year}" %></li>
-          <li> Guests: Total: $<%= booking.subtotal %></li>
+          <li> Guests: <%= booking.guest_num %>  Total Paid: $<%= booking.subtotal %></li>
           <% if booking.overlapping_bookings.any? %>
             <li>This booking overlaps with another pending booking for your listing. Please note that you may only approve one of any overlapping bookings</li>
           <% end %>
@@ -45,7 +45,7 @@
         </ul>
         <ul class="details">
           <li><%= "#{booking.start_date.month}/#{booking.start_date.day}/#{booking.start_date.year}  -  #{booking.end_date.month}/#{booking.end_date.day}/#{booking.end_date.year}" %></li>
-          <li> Guests: Total Paid: $<%= booking.subtotal %></li>
+          <li> Guests: <%= booking.guest_num %>  Total Paid: $<%= booking.subtotal %></li>
         </ul>
         <ul class="buttons">
          <li><a href="<%= cancel_booking_url(booking) %>">Cancel booking</a></li>
