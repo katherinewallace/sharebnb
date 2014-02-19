@@ -30,8 +30,8 @@ class User < ActiveRecord::Base
   validates :email, presence: {message: "Email can't be blank"}
   validates :email, uniqueness: {message: "That email has already been taken"}
   
-  has_one :listing
-  has_many :bookings, foreign_key: :guest_id
+  has_one :listing, dependent: :destroy
+  has_many :bookings, foreign_key: :guest_id, dependent: :destroy
   
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)

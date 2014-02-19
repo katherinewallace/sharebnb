@@ -43,7 +43,7 @@ class Listing < ActiveRecord::Base
     less_than_or_equal_to: 5000, message: "You must enter a price between $0 and $5000 a night" }
   
   belongs_to :user
-  has_many :date_ranges, inverse_of: :listing
-  has_many :bookings
+  has_many :date_ranges, inverse_of: :listing, dependent: :destroy
+  has_many :bookings, dependent: :destroy
 
 end

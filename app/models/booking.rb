@@ -74,7 +74,13 @@ class Booking < ActiveRecord::Base
   end
   
   def within_date_range?
-    self.listing.date_ranges.any?{ |range| range.contains?(self) }
+    where_condition = <<-SQL
+     listing_id = ? 
+     AND (? BETWEEN start_date AND end_date) 
+     AND (? BETWEEN start_date AND end_date)
+    SQL
+    ranges = DateRange.where(where_condition, self.listing_id, self.start_date, self.end_date)
+    ranges.any?
   end
   
   def overlapping_approved_bookings?
