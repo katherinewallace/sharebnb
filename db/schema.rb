@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140219133047) do
+ActiveRecord::Schema.define(:version => 20140219200344) do
 
   create_table "bookings", :force => true do |t|
     t.integer  "listing_id",                    :null => false
@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(:version => 20140219133047) do
     t.date     "end_date",                      :null => false
     t.integer  "status",     :default => 0
     t.boolean  "cancelled",  :default => false
-    t.integer  "subtotal"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.integer  "price"
   end
 
   add_index "bookings", ["guest_id"], :name => "index_bookings_on_guest_id"

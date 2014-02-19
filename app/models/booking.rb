@@ -31,7 +31,7 @@ class Booking < ActiveRecord::Base
   validate :availability, on: :create
   validate :valid_start_date
   
-  after_initialize :calculate_subtotal
+  before_validation :assign_price, on: :create
   
   belongs_to :listing
   belongs_to :guest, class_name: "User"
@@ -46,13 +46,18 @@ class Booking < ActiveRecord::Base
     end
   end
   
+  def assign_price
+    self.price = self.listing.price
+  end
+  
   def cancel!
     self.cancelled = true
     self.save!
   end
   
-  def calculate_subtotal
-    self.subtotal = (self.end_date - self.start_date) * self.listing.price
+  def subtotal
+    price = self.price ? self.price : self.listing.price
+    Integer(self.end_date - self.start_date) * price 
   end
   
   def valid_start_date
