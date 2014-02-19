@@ -47,7 +47,7 @@
           <li> Guests: Total Paid: $<%= booking.subtotal %></li>
         </ul>
         <ul class="buttons">
-          #cancel
+         <li><a href="<%= cancel_booking_url(booking) %>">Cancel booking</a></li>
         </ul>
       </div>
       <% end %>

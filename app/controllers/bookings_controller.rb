@@ -22,9 +22,9 @@ class BookingsController < ApplicationController
   
   def index
     @listing = Listing.find(params[:listing_id])
-    @pending_bookings = Booking.where("listing_id = ? AND status = 0", @listing.id).includes(:guest).to_a
+    @pending_bookings = Booking.where("listing_id = ? AND status = 0 AND cancelled = false", @listing.id).includes(:guest).to_a
     sort_by_date!(@pending_bookings)
-    @confirmed_bookings = Booking.where("listing_id = ? AND status = 1", @listing.id).includes(:guest).to_a
+    @confirmed_bookings = Booking.where("listing_id = ? AND status = 1 AND cancelled = false", @listing.id).includes(:guest).to_a
     sort_by_date!(@confirmed_bookings)
   end
   
@@ -43,6 +43,14 @@ class BookingsController < ApplicationController
     @booking.change_status_to(2)
     flash[:success] = "Booking has been declined!"
     redirect_to listing_bookings_url(@listing)
+  end
+  
+  def cancel
+    @booking = Booking.find(params[:id])
+    @listing = @booking.listing
+    @booking.cancel!
+    flash[:success] = "Booking has been cancelled!"
+    redirect_to :back
   end
   
   private
