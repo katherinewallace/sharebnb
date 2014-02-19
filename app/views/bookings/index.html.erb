@@ -5,6 +5,7 @@
     <li><a href="<%= edit_listing_url(@listing) %>">Edit Listing</a></li>
     <li><%= button_to "delete listing", listing_url(@listing), method: :delete %></li>
   </ul>
+  <%= flash[:success] %>
 </header>
 <section class="bookings">
   <article class="pending">

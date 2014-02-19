@@ -11,16 +11,20 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new(params[:listing])
     @listing.user_id = current_user.id
-    date_range_attributes = params[:date_range_attributes].values.reject {
-      |range| range["start_date"].empty? || range["end_date"].empty?
-    }
+    date_range_attributes = params[:date_range_attributes].values.reject do |range| 
+      range["start_date"].empty? || range["end_date"].empty?
+    end
     @listing.date_ranges.new(date_range_attributes)
 
     if @listing.save
       flash[:success] = "Please add some more information about your listing"
       redirect_to edit_listing_url(@listing)
     else
+      @listing.errors.delete(:date_ranges)
       flash.now[:errors] = @listing.errors.messages.values
+      @listing.date_ranges.each do |range|
+        flash.now[:errors].concat(range.errors.messages.values)
+      end
       until @listing.date_ranges.length === 3
         @listing.date_ranges.build
       end
@@ -68,10 +72,10 @@ class ListingsController < ApplicationController
       end
     end
     
-    new_drs.each { |dr| dr.save }
-    @date_ranges.each { |dr| dr.save }
+    new_drs.each(&:save)
+    @date_ranges.each(&:save)
 
-    if @listing.valid? && new_drs.all? { |dr| dr.valid? } && @date_ranges.all? { |dr| dr.valid? }
+    if [@listing, new_drs, @date_ranges].flatten.all?(&:valid?)
       @listing.save
       redirect_to @listing
       
