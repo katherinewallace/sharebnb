@@ -14,7 +14,7 @@
       <li><a href="<%= new_session_url %>">Sign in</a></li>
       <% end %>
       <% if current_user && current_user.listing %>
-        <li><a href="<%= listing_url(current_user.listing) %>">Your Listing</a></li>
+        <li><a href="<%= listing_bookings_url(current_user.listing) %>">Your Listing</a></li>
       <% else %>
         <li><a href="<%= new_listing_url %>">List Your Space</a></li>       
       <% end %>

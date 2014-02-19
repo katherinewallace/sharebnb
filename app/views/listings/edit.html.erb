@@ -4,7 +4,7 @@
 <h1>Edit Your Listing</h1>
 <%= render "shared/errors" %>
 
-<section><%= button_to "delete listing", listing_url, method: :delete %>
+<section><%= button_to "delete listing", listing_url(@listing), method: :delete %>
   <a href="<%= listing_url(@listing) %>">Cancel</a>
 </section>
 

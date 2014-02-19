@@ -36,7 +36,8 @@ class ApplicationController < ActionController::Base
   end
   
   def require_listing_owner
-    @listing = Listing.find(params[:id])
+    
+    @listing = params[:listing_id] ? Listing.find(params[:listing_id]) : Listing.find(params[:id])
     unless current_user && @listing.user_id == current_user.id
       begin
         redirect_to :back

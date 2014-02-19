@@ -5,8 +5,10 @@ Sharebnb::Application.routes.draw do
   get "users/:id/bookings", { as: :user_trips, controller: :bookings, action: :trips }
   
   resources :listings do
-    resource :bookings, only: [:create]
+    resources :bookings, only: [:create, :index]
   end
+  get "bookings/:id/accept", {as: :accept_booking, controller: :bookings, action: :accept}
+  get "bookings/:id/decline", {as: :decline_booking, controller: :bookings, action: :decline}
   get "listings/:id/calendar", { as: :listing_calendar, controller: :listings, action: :calendar }
   root to: "static_pages#home"
 end

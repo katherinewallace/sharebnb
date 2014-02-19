@@ -28,13 +28,28 @@ class Booking < ActiveRecord::Base
   validates :start_date, presence: {message: "Please select a check-in date"}
   validates :end_date, presence: {message: "Please select a check-out date"}
   validate :valid_range
-  validate :availability
+  validate :availability, on: :create
   validate :valid_start_date
   
   after_initialize :calculate_subtotal
   
   belongs_to :listing
   belongs_to :guest, class_name: "User"
+  
+  def change_status_to(new_status)
+    if self.status == 0 && !self.cancelled
+      self.status = new_status;
+      self.save!
+      return true
+    else
+      return false
+    end
+  end
+  
+  def cancel!
+    self.cancelled = true
+    self.save!
+  end
   
   def calculate_subtotal
     self.subtotal = (self.end_date - self.start_date) * self.listing.price

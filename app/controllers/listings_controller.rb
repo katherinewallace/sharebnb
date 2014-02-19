@@ -91,7 +91,7 @@ class ListingsController < ApplicationController
   end
 
   def destroy
-    @listing.destroy!
+    @listing.destroy
     redirect_to root_url # change to dashboard
   end
 

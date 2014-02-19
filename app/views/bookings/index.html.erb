@@ -1,0 +1,56 @@
+<h1>Manage Your Listing</h1>
+<header class="manage-header">
+  <h2><a href="<%= listing_url(@listing) %>"><%= @listing.title %></a></h2>
+  <ul class="buttons">
+    <li><a href="<%= edit_listing_url(@listing) %>">Edit Listing</a></li>
+    <li><%= button_to "delete listing", listing_url(@listing), method: :delete %></li>
+  </ul>
+</header>
+<section class="bookings">
+  <article class="pending">
+    <h3>Pending Bookings</h3>
+    <% unless @pending_bookings.any? %>
+      <p>You have no pending bookings</p>
+    <% else %>
+      <% @pending_bookings.each do |booking| %>
+      <div class = "booking">
+        <ul class="guest">
+          <li><%= booking.guest.full_name %></li>
+        </ul>
+        <ul class="details">
+          <li><%= "#{booking.start_date.month}/#{booking.start_date.day}/#{booking.start_date.year}  -  #{booking.end_date.month}/#{booking.end_date.day}/#{booking.end_date.year}" %></li>
+          <li> Guests: Total: $<%= booking.subtotal %></li>
+          <% if booking.overlapping_bookings.any? %>
+            <li>This booking overlaps with another pending booking for your listing. Please note that you may only approve one of any overlapping bookings</li>
+          <% end %>
+        </ul>
+        <ul class="buttons">
+          <li><a href="<%= accept_booking_url(booking) %>">Accept</a></li>
+          <li><a href="<%= decline_booking_url(booking) %>">Decline</a></li>
+        </ul>
+      </div>
+      <% end %>
+    <% end %>
+  </article>
+  <article class="confirmed">
+    <h3>Confirmed Bookings</h3>
+    <% unless @confirmed_bookings.any? %>
+      <p>You have no confirmed bookings</p>
+    <% else %>
+      <% @confirmed_bookings.each do |booking| %>
+      <div class = "booking">
+        <ul class="guest">
+          <li><%= booking.guest.full_name %></li>
+        </ul>
+        <ul class="details">
+          <li><%= "#{booking.start_date.month}/#{booking.start_date.day}/#{booking.start_date.year}  -  #{booking.end_date.month}/#{booking.end_date.day}/#{booking.end_date.year}" %></li>
+          <li> Guests: Total Paid: $<%= booking.subtotal %></li>
+        </ul>
+        <ul class="buttons">
+          #cancel
+        </ul>
+      </div>
+      <% end %>
+    <% end %>
+  </article>
+</section>
