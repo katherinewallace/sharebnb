@@ -1,0 +1,20 @@
+<form action="<%= listings_url %>" method="GET">
+  <label for="search_city">City</label>
+  <select name="search[city]" id="search_city">
+    <option value="New York">New York</option>
+    <option value="Rome">Rome</option>     
+  </select>
+  
+  <label for="search_start_date">Check in</label>
+  <input type="date" name="search[start_date]" value="" id="search_start_date">
+  
+  <label for="search_end_date">Check out</label>
+  <input type="date" name="search[end_date]" value="" id="search_end_date">
+  
+  <label for="search_guests">Guests</label>
+  <input type="number" name="search[guests]" value="1" id="search_guests" min=1 max=20>
+  
+  
+  <input type="submit" value="Search" id="search-btn">
+  
+</form>

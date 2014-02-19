@@ -45,5 +45,41 @@ class Listing < ActiveRecord::Base
   belongs_to :user
   has_many :date_ranges, inverse_of: :listing, dependent: :destroy
   has_many :bookings, dependent: :destroy
-
+  
+  def self.filter(params)
+    results = Listing
+    
+    if(params[:start_date] || params[:end_date])
+      results = results.joins(:date_ranges)
+    end
+    
+    where_condition = <<-SQL
+      (? BETWEEN date_ranges.start_date AND date_ranges.end_date) AND
+      listings.id NOT IN (
+        SELECT listing_id
+        FROM bookings
+        WHERE ? BETWEEN bookings.start_date AND bookings.end_date
+      )
+    SQL
+    
+    if(params[:start_date])
+      results = results.where(where_condition, params[:start_date], params[:start_date])
+    end
+    
+    if(params[:end_date])
+      results = results.where(where_condition, params[:end_date], params[:end_date])
+    end
+    
+    if(params[:guest_num])
+      results = results.where("guests >= ?", params[:guest_num])
+    end
+    
+    if(params[:city])
+      results = results.where(city: params[:city])
+    end
+    
+    results.to_a
+    
+  end
+  
 end
