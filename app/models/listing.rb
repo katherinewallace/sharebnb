@@ -49,7 +49,7 @@ class Listing < ActiveRecord::Base
   def self.filter(params)
     results = Listing
     
-    if(params[:start_date] || params[:end_date])
+    if(params[:start_date].present? || params[:end_date].present?)
       results = results.joins(:date_ranges)
     end
     
@@ -62,23 +62,23 @@ class Listing < ActiveRecord::Base
       )
     SQL
     
-    if(params[:start_date])
+    if(params[:start_date].present?)
       results = results.where(where_condition, params[:start_date], params[:start_date])
     end
     
-    if(params[:end_date])
+    if(params[:end_date].present?)
       results = results.where(where_condition, params[:end_date], params[:end_date])
     end
     
-    if(params[:guest_num])
+    if(params[:guest_num].present?)
       results = results.where("guests >= ?", params[:guest_num])
     end
     
-    if(params[:city])
+    if(params[:city].present?)
       results = results.where(city: params[:city])
     end
     
-    results.to_a
+    results.all
     
   end
   

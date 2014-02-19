@@ -34,7 +34,7 @@ class ListingsController < ApplicationController
   end
 
   def index
-    @listings = Listing.all # change to filtered listings
+    @listings = Listing.filter(params[:search])
     render :index
   end
 

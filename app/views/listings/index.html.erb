@@ -1,4 +1,7 @@
 <section id="search-results">
+  <% if @listings.empty? %>
+    <p>Your search returned no results, please try different search parameters</p>
+  <% else %>
   <ul>
     <% @listings.each do |listing| %>
     <li>
@@ -12,4 +15,5 @@
     </li>
     <% end %>
   </ul>
+  <% end %>
 </section>
