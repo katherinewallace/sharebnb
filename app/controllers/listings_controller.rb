@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-  before_filter :require_signed_in
+  before_filter :require_signed_in, only: [:new, :create]
   before_filter :require_listing_owner, only: [:edit, :update, :destroy]
 
   def new
@@ -36,6 +36,7 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.find(params[:id])
+    @booking = @listing.bookings.new({start_date: Date.today, end_date: (Date.today + 1.week)}) # add search params
     render :show
   end
 

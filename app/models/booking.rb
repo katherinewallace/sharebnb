@@ -31,7 +31,7 @@ class Booking < ActiveRecord::Base
   validate :availability
   validate :valid_start_date
   
-  before_validation :calculate_subtotal, on: :create
+  after_initialize :calculate_subtotal
   
   belongs_to :listing
   belongs_to :guest, class_name: "User"
@@ -53,7 +53,7 @@ class Booking < ActiveRecord::Base
   end
   
   def availability
-    unless self.within_date_range? && !self.overlapping_approved_bookings
+    unless self.within_date_range? && !self.overlapping_approved_bookings?
       errors[:base] << "The apartment is not available for that set of dates"
     end
   end

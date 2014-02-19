@@ -8,6 +8,6 @@ module ApplicationHelper
   end
   
   def listing_owner?(listing)
-    listing.user_id == current_user.id
+    current_user && listing.user_id == current_user.id
   end
 end

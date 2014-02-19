@@ -1,0 +1,9 @@
+<%= flash[:success] %>
+<% @bookings.each do |booking| %>
+  <ul>
+    <li><a href="<%= listing_url(booking.listing) %>"><%= booking.listing.title %></a></li>
+    <li><%= booking.listing.city %></li>
+    <li><%= "#{booking.start_date.month}/#{booking.start_date.day}  -  #{booking.end_date.month}/#{booking.end_date.day} " %></li>
+    <li><%= Booking::STATUS[booking.status] %></li>
+  </ul>
+<% end %>

@@ -1,4 +1,4 @@
-<%= render "listing_nav" %>
+<%= render "listings/listing_nav" %>
 <section class="listing-info">
   <div class="listing-details">
     <article>
@@ -19,6 +19,22 @@
 </section>
 
 <section class="side-bar">
+  <%= render "shared/errors" %>
+  <form class="new-booking-form" action="<%= listing_bookings_url(@listing) %>" method="POST">
+    <%= auth_token %>
+    <div>
+      <h3>$<%= @listing.price %> per night</h3>
+      <label for="booking_start_date">Check in</label>
+      <input type="date" name="booking[start_date]" value="<%= @booking.start_date %>" id="booking_start_date">
+      <label for="booking_end_date">Check out</label>
+      <input type="date" name="booking[end_date]" value="<%= @booking.end_date %>" id="booking_end_date">
+      <label>Guests</label>
+    </div>
+    <h3>Subtotal</h3>
+    <p>$<%= @booking.subtotal ||= 0 %></p>
+    
+    <input type="submit" value="Book it!">
+  </form>
   <article class="host">
     <p>Host: <%= @listing.user.full_name %></p>
   </article>

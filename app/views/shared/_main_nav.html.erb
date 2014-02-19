@@ -5,6 +5,7 @@
       <% if current_user %>
       <li><a><%= current_user.full_name %></a>
         <ul class="drop-down">
+          <li><a href="<%= user_trips_url(current_user) %>">Your Trips</a></li>
           <li><%= button_to "Logout", session_url, method: "delete" %></li>
         </ul>
       </li>

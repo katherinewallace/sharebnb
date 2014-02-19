@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
   
   def remember_location
-    session[:return_to] = request.url if request.get?
+    session[:return_to] =  request.url.gsub(/\/bookings/, "")
   end
   
   def redirect_back_or_home
@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   
   def require_listing_owner
     @listing = Listing.find(params[:id])
-    unless @listing.user_id == current_user.id
+    unless current_user && @listing.user_id == current_user.id
       begin
         redirect_to :back
       rescue ActionController::RedirectBackError
