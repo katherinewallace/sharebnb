@@ -13,5 +13,6 @@
 require 'spec_helper'
 
 describe DateRange do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should not overlap with another date range for the same listing"
+  it "should be a valid range"
 end

@@ -44,5 +44,6 @@ class Listing < ActiveRecord::Base
   
   belongs_to :user
   has_many :date_ranges, inverse_of: :listing
+  has_many :bookings
 
 end

@@ -23,6 +23,11 @@ class DateRange < ActiveRecord::Base
     other_range.end_date.between?(self.start_date, self.end_date)
   end
   
+  def contains?(other_range)
+    other_range.start_date.between?(self.start_date, self.end_date) && 
+    other_range.end_date.between?(self.start_date, self.end_date)
+  end
+  
   def valid_range
     unless self.end_date > self.start_date
       errors[:base] << "Invalid date range"

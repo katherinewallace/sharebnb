@@ -19,7 +19,11 @@ group :development do
   gem 'debugger'
   gem 'pry-rails'
   gem 'annotate'
+end
+
+group :development, :test do
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :test do

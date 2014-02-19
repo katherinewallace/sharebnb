@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: {message: "That email has already been taken"}
   
   has_one :listing
+  has_many :bookings, foreign_key: :guest_id
   
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
