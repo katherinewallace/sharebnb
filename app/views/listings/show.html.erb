@@ -1,7 +1,7 @@
 <%= render "listings/listing_nav" %>
 <section class="listing-info">
   <div class="med-photo">
-    <%= image_tag @listing.primary_photo_file.url %>
+    <%= image_tag @listing.primary_photo_file.try(:url) %>
   </div>
   <div class="listing-details">
     <article>

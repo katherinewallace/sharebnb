@@ -84,8 +84,11 @@ class Listing < ActiveRecord::Base
   end
   
   def primary_photo_file
-    primary = self.photos.where(primary: true).first
-    primary ? primary.photo_file : self.photos.first.photo_file
+    photos = self.photos
+    if photos.any?
+      primary = photos.find { |photo| photo.primary }
+      primary ? primary.photo_file : photos.first.photo_file
+    end
   end
   
 end

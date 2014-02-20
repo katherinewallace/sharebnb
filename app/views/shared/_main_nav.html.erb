@@ -1,24 +1,26 @@
-<header class="main-nav-bar">
-  <nav>
+<header class="header main-nav group">
+  <div class ="header-wrap group">
     <h3><a href="<%= root_url %>">Sharebnb</a></h3>
-    <ul>
-      <% if current_user %>
-      <li><a><%= current_user.full_name %></a>
-        <ul class="drop-down">
-          <li><a href="<%= user_trips_url(current_user) %>">Your Trips</a></li>
-          <li><a href="<%= edit_user_url(current_user) %>">Edit Profile</a></li>
-          <li><%= button_to "Logout", session_url, method: "delete" %></li>
-        </ul>
-      </li>
-      <% else %>
-      <li><a href="<%= new_user_url %>">Sign up</a></li>
-      <li><a href="<%= new_session_url %>">Sign in</a></li>
-      <% end %>
-      <% if current_user && current_user.listing %>
-        <li><a href="<%= listing_bookings_url(current_user.listing) %>">Your Listing</a></li>
-      <% else %>
-        <li><a href="<%= new_listing_url %>">List Your Space</a></li>       
-      <% end %>
-    </ul>
-  </nav>
+    
+    <nav>      
+      <ul class="group">
+        <% if current_user %>
+        <li><a><%= current_user.full_name %></a>
+          <ul class="drop-down">
+            <li><a href="<%= user_trips_url(current_user) %>">Your Trips</a></li>
+            <li><a href="<%= edit_user_url(current_user) %>">Edit Profile</a></li>
+            <li class="list"><%= button_to "Logout", session_url, method: "delete" %></li>
+          </ul>
+        </li>
+        <% else %>
+        <li><a href="<%= new_user_url %>">Sign up</a></li>
+        <li><a href="<%= new_session_url %>">Sign in</a></li>
+        <% end %>
+        <% if current_user && current_user.listing %>
+          <li><a href="<%= listing_bookings_url(current_user.listing) %>">Your Listing</a></li>
+        <% else %>
+          <li><a href="<%= new_listing_url %>">List Your Space</a></li>       
+        <% end %>
+      </ul>
+    </nav>
 </header>
