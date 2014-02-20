@@ -13,6 +13,11 @@
   <%= auth_token %>
   <input type="hidden" name="_method" value="PUT">
   
+  <label>Title:
+    <input type="text" name="listing[title]" value="<%= @listing.title %>">
+  </label>
+  <br>
+  
   <label>Description:
     <br>
     <textarea name="listing[description]" rows="8" cols="40"><%= @listing.description %></textarea>

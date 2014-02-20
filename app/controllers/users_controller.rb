@@ -26,6 +26,7 @@ class UsersController < ApplicationController
     params[:user].delete("password") if params[:user][:password] == "******"
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
+      flash[:success] = "Profile successfully updated!"
       redirect_back_or_home
     else
       flash[:errors] = @user.errors.messages.values

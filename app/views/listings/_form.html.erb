@@ -1,8 +1,3 @@
-<label>Title:
-  <input type="text" name="listing[title]" value="<%= @listing.title %>">
-</label>
-<br>
-
 <label>Room Type:
   <% Listing::ROOM_TYPES.each do |type| %>
     <label><%= type[1] %>

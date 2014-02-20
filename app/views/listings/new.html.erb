@@ -4,6 +4,11 @@
 <form action="<%= listings_url %>" method="POST">
   <%= auth_token %>
   
+  <label>Title:
+    <input type="text" name="listing[title]" value="<%= @listing.title %>">
+  </label>
+  <br>
+  
   <%= render "form" %>
   
   <label>When is your space available?</label>
