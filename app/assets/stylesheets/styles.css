@@ -146,6 +146,55 @@ li.list {
   width: 80%;
 }
 
+form > label {
+  padding: 5px;
+}
+
+.btn {
+  font-size: 14px;
+  color: white;
+  margin-left: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  -webkit-appearance: none;
+  background: #009bf5;
+  border: 2px solid lightgray;
+  border-radius: 7px;
+  display: inline-block;
+  margin: 0;
+  cursor: pointer;
+  width: 80px;
+  height: 30px;
+}
+
+.search-results {
+  display: block;
+  width: 600px;
+}
+a.listing {
+  border: 2px solid lightgray;
+  width: 250px;
+  float: left;
+  margin: 5px;
+}
+
+div.med-photo {
+  width: 250px;
+  height: 150px;
+  overflow: hidden;
+}
+
+div.large-photo {
+  width: 800;
+  height: 800;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
 
 
 

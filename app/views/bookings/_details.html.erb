@@ -2,7 +2,7 @@
   
   <ul class="guest">
     <li><%= booking.guest.full_name %></li>
-    <li><%= image_tag booking.guest.profile_pic.url(:small) %></li>
+    <li><%= image_tag booking.guest.profile_pic.try(:url, :small) %></li>
   </ul>
   
   <ul class="details">

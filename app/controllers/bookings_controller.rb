@@ -17,15 +17,22 @@ class BookingsController < ApplicationController
   end
   
   def trips
-    sort_by_date!(@bookings = current_user.bookings.includes(:listing))
+    @bookings = current_user.bookings.where("end_date >= ?", Date.today)
+      .order("start_date ASC")
+      .includes(:listing)
   end
   
   def index
     @listing = Listing.find(params[:listing_id])
-    @pending_bookings = Booking.where("listing_id = ? AND status = 0 AND cancelled = false", @listing.id).includes(:guest).to_a
-    sort_by_date!(@pending_bookings)
-    @confirmed_bookings = Booking.where("listing_id = ? AND status = 1 AND cancelled = false", @listing.id).includes(:guest).to_a
-    sort_by_date!(@confirmed_bookings)
+    where_condition = <<-SQL
+      listing_id = ? AND status = ? AND cancelled = false AND end_date >= ?
+    SQL
+    @pending_bookings = Booking.where(where_condition, @listing.id, 0, Date.today)
+      .order("start_date ASC")
+      .includes(:guest).to_a
+    @confirmed_bookings = Booking.where(where_condition, 1, @listing.id, Date.today)
+      .order("start_date ASC")
+      .includes(:guest).to_a
   end
   
   def accept
@@ -51,12 +58,6 @@ class BookingsController < ApplicationController
     @booking.cancel!
     flash[:success] = "Booking has been cancelled!"
     redirect_to :back
-  end
-  
-  private
-  
-  def sort_by_date!(array)
-    array.sort!{|a, b| a.start_date <=> b.start_date}
   end
   
 end
