@@ -43,10 +43,10 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
     @options = params[:search] ? params[:search] : { "guest_num" => 1 }
     if @options["start_date"].blank?
-       @options["start_date"] = @options["end_date"] ? (DateTime.parse(@options["end_date"]) - 1.week).to_date : Date.today
+       @options["start_date"] = @options["end_date"].present? ? (@options["end_date"].to_date - 1.week) : Date.today
     end
     
-    @options["end_date"] = DateTime.parse(@options["start_date"]).to_date + 1.week if @options["end_date"].blank?
+    @options["end_date"] = @options["start_date"].to_date + 1.week if @options["end_date"].blank?
         
     @options.delete("city")
 
