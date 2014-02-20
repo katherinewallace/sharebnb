@@ -17,8 +17,15 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :fname, :lname, :gender, :bday, :email, :phone, :description, :password, :password_confirmation
+  attr_accessible :fname, :lname, :gender, :bday, :email, :phone, :description, :password, :password_confirmation, :profile_pic
   attr_reader :password, :password_confirmation
+  
+  has_one :listing, dependent: :destroy
+  has_many :bookings, foreign_key: :guest_id, dependent: :destroy
+  has_attached_file :profile_pic, styles: {
+        :big => "400x400#",
+        :small => "120x120#"
+      }
   
   before_validation :ensure_session_token
   
@@ -29,9 +36,9 @@ class User < ActiveRecord::Base
   validate :matching_passwords
   validates :email, presence: {message: "Email can't be blank"}
   validates :email, uniqueness: {message: "That email has already been taken"}
+  validates_attachment_content_type :profile_pic, :content_type => %w(image/jpeg image/jpg image/png)
   
-  has_one :listing, dependent: :destroy
-  has_many :bookings, foreign_key: :guest_id, dependent: :destroy
+ 
   
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)

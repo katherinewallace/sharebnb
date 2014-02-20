@@ -1,0 +1,38 @@
+<div class = "booking">
+  
+  <ul class="guest">
+    <li><%= booking.guest.full_name %></li>
+    <li><%= image_tag booking.guest.profile_pic.url(:small) %></li>
+  </ul>
+  
+  <ul class="details">
+    
+    <li><%= "#{booking.start_date.month}/#{booking.start_date.day}/#{booking.start_date.year}  -  #{booking.end_date.month}/#{booking.end_date.day}/#{booking.end_date.year}" %></li>
+    
+    <li> Guests: <%= booking.guest_num %></li>
+    
+    <li> Total<%= " Paid" if booking.status == 1 %>: $<%= booking.subtotal %></li>
+    
+    <% if booking.status ==0 && booking.overlapping_bookings.any? %>
+    
+      <li>This booking overlaps with another pending booking for your listing. Please note that you may only approve one of any overlapping bookings</li>
+      
+    <% end %>
+    
+  </ul>
+  
+  <ul class="buttons">
+    
+    <% if booking.status == 0 %>
+    
+      <li><a href="<%= accept_booking_url(booking) %>">Accept</a></li>
+      <li><a href="<%= decline_booking_url(booking) %>">Decline</a></li>
+      
+    <% else %>
+    
+      <li><a href="<%= cancel_booking_url(booking) %>">Cancel booking</a></li>
+      
+    <% end %>
+  </ul>
+  
+</div>

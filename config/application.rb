@@ -71,5 +71,7 @@ module Sharebnb
       request_specs: true
     end
     
+    
+    
   end
 end

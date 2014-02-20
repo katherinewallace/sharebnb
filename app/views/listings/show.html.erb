@@ -39,5 +39,6 @@
   </form>
   <article class="host">
     <p>Host: <%= @listing.user.full_name %></p>
+    <%= image_tag @listing.user.profile_pic(:big) %>
   </article>
 </section>

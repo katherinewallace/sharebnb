@@ -1,5 +1,5 @@
 Sharebnb::Application.routes.draw do
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
   resource :session, only: [:new, :create, :destroy]
   
   get "/users/:id/bookings", { as: :user_trips, controller: :bookings, action: :trips }
