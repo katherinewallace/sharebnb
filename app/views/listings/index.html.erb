@@ -1,3 +1,6 @@
+<section id="search-form">
+  <%= render "shared/search_form" %>
+</section>
 <section id="search-results">
   <% if @listings.empty? %>
     <p>Your search returned no results, please try different search parameters</p>
@@ -5,7 +8,7 @@
   <ul>
     <% @listings.each do |listing| %>
     <li>
-      <a href="<%= listing_url(listing)%>" data-id="<%= listing.id %>">
+      <a href="<%= listing_url(id: listing, search: params[:search])%>" data-id="<%= listing.id %>">
         <h3><%= listing.title %></h3>
         <ul>
           <li><%= listing.neighborhood %></li>

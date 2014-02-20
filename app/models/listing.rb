@@ -70,7 +70,7 @@ class Listing < ActiveRecord::Base
       results = results.where(where_condition, params[:end_date], params[:end_date])
     end
     
-    if(params[:guest_num].present?)
+    if(params[:guests].present?)
       results = results.where("guests >= ?", params[:guest_num])
     end
     

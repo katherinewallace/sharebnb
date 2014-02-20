@@ -34,13 +34,23 @@ class ListingsController < ApplicationController
   end
 
   def index
-    @listings = Listing.filter(params[:search])
+    @search = params[:search]
+    @listings = Listing.filter(@search)
     render :index
   end
 
   def show
     @listing = Listing.find(params[:id])
-    @booking = @listing.bookings.new({start_date: Date.today, end_date: (Date.today + 1.week)}) # add search params
+    @options = params[:search] ? params[:search] : { "guest_num" => 1 }
+    if @options["start_date"].blank?
+       @options["start_date"] = @options["end_date"] ? (DateTime.parse(@options["end_date"]) - 1.week).to_date : Date.today
+    end
+    
+    @options["end_date"] = DateTime.parse(@options["start_date"]).to_date + 1.week if @options["end_date"].blank?
+        
+    @options.delete("city")
+
+    @booking = @listing.bookings.new(@options)
     render :show
   end
 
