@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140220143230) do
+ActiveRecord::Schema.define(:version => 20140220184156) do
 
   create_table "bookings", :force => true do |t|
     t.integer  "listing_id",                    :null => false
@@ -57,6 +57,18 @@ ActiveRecord::Schema.define(:version => 20140220143230) do
   end
 
   add_index "listings", ["user_id"], :name => "index_listings_on_user_id"
+
+  create_table "photos", :force => true do |t|
+    t.integer  "listing_id",              :null => false
+    t.boolean  "primary"
+    t.string   "caption"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "photo_file_file_name"
+    t.string   "photo_file_content_type"
+    t.integer  "photo_file_file_size"
+    t.datetime "photo_file_updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "fname",                    :null => false

@@ -1,0 +1,20 @@
+<%= render "listings/listing_nav" %>
+
+<% if listing_owner?(@listing) %>
+<a href="<%= new_listing_photo_url(@listing) %>">Add more photos</a>
+<br>
+<% end %>
+
+<% @photos.each do |photo| %>
+  <%= image_tag photo.photo_file.url %>
+  <p><%= photo.caption %></p>
+  <% if listing_owner?(@listing) %>
+    <% if photo.primary %>
+      <%= "primary" %>
+    <% else %>
+      <a href="<%= primary_photo_url(photo) %>">make primary (will override previous)</a>
+    <% end %>
+    <%= button_to "delete photo", photo_url(photo), method: :delete %>
+  <% end %>
+  <hr>
+<% end %>

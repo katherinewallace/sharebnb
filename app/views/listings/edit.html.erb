@@ -4,8 +4,15 @@
 <h1>Edit Your Listing</h1>
 <%= render "shared/errors" %>
 
-<section><%= button_to "delete listing", listing_url(@listing), method: :delete %>
-  <a href="<%= listing_url(@listing) %>">Cancel</a>
+<section>
+  <ul>
+    <li><%= image_tag @listing.primary_photo_file.url(:medium) %></li>
+    <li><a href="<%= listing_photos_url(@listing) %>">Add/remove photos</a></li>
+    <li><%= button_to "delete listing", listing_url(@listing), method: :delete %></li>
+    <li><a href="<%= listing_url(@listing) %>">Cancel</a></li>
+  </ul>
+  
+  
 </section>
 
 <section class="edit-form">

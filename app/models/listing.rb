@@ -45,6 +45,7 @@ class Listing < ActiveRecord::Base
   belongs_to :user
   has_many :date_ranges, inverse_of: :listing, dependent: :destroy
   has_many :bookings, dependent: :destroy
+  has_many :photos, inverse_of: :listing, dependent: :destroy
   
   def self.filter(params)
     results = Listing
@@ -80,6 +81,11 @@ class Listing < ActiveRecord::Base
     
     results.all
     
+  end
+  
+  def primary_photo_file
+    primary = self.photos.where(primary: true).first
+    primary ? primary.photo_file : self.photos.first.photo_file
   end
   
 end

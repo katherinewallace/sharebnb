@@ -9,9 +9,10 @@
 #  end_date   :date             not null
 #  status     :integer          default(0)
 #  cancelled  :boolean          default(FALSE)
-#  subtotal   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  price      :integer
+#  guest_num  :integer          not null
 #
 
 class Booking < ActiveRecord::Base
