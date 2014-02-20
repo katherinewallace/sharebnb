@@ -29,7 +29,7 @@ ul {
 h1 {
   font-size: 30px;
   font-weight: bold;
-  margin: 0 0 40px 0;
+  margin: 20px;
 }
 
 h2 {
@@ -80,13 +80,12 @@ h3 > a:hover {
   color: #00ddff;
 }
 
-nav {
-  width: 60%;
+nav > ul.right {
   float: right;
 }
 
 nav > ul {
-  float: right;
+  float: left;
 }
 
 nav > ul > li {
@@ -106,7 +105,7 @@ li > a {
 }
 
 li > a:hover {
-  color: #00ddff;
+  color: #009bf5;
 }
 
 .drop-down {
@@ -170,6 +169,7 @@ form > label {
 .search-results {
   display: block;
   width: 600px;
+  margin: 20px;
 }
 a.listing {
   border: 2px solid lightgray;
@@ -179,19 +179,77 @@ a.listing {
 }
 
 div.med-photo {
+  text-align: center;
   width: 250px;
   height: 150px;
   overflow: hidden;
 }
 
 div.large-photo {
-  width: 800;
-  height: 800;
+  max-width: 550px;
+  max-height: 500px;
+}
+
+div.small-photo {
+  width: 40px;
+  height: 40px;
 }
 
 img {
   max-width: 100%;
   max-height: 100%;
+
+}
+
+.search {
+  margin: 20px 20px 20px 20px;
+}
+
+.content-bar {
+  margin: 10px;
+  float: left;
+ 
+}
+
+.float {
+  max-width: 300px;
+  float: left;
+}
+
+.divider {
+  border-left: 2px solid lightgray;
+}
+
+.top-divider {
+  border-top: 2px solid lightgray;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.interior-content{
+  margin: 10px;
+  border: 2px solid lightgray;
+  padding: 10px;
+}
+
+div.interior-content {
+  border: none;
+  padding: 0;
+}
+
+.input > label {
+  display: block;
+  font-weight: bold;
+  padding: 5px 0 5px 0;
+}
+
+.input > input {
+  padding: 0 5px 0 5px;
+}
+
+h3.center {
+  text-align: center;
+  margin: 10px;
 }
 
 

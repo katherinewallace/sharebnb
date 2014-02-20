@@ -1,49 +1,97 @@
 <%= render "listings/listing_nav" %>
-<section class="listing-info">
-  <div class="large-photo">
+
+<section class="content-bar">
+  
+  <div class="large-photo interior-content">
     <%= image_tag @listing.primary_photo_file.try(:url, :medium) %>
   </div>
-  <div class="listing-details">
-    <article>
+  
+  <section class="interior-content group">
+    
+    <article class="float">
       <h3>Description:</h3>
       <p><%= @listing.description %></p>
     </article>
-    <article>
-      <ul>
-        <li>Room type: <%= Listing::ROOM_TYPES[@listing.room_type] %></li>
-        <li>Accomodates: <%= @listing.guests %> guests</li>
-        <li>Bedrooms: <%= @listing.bedrooms %></li>
-        <li>Bathrooms: <%= @listing.bathrooms %></li>
-        <li>City: <%= @listing.city %></li>
-        <li>Neighborhood: <%= @listing.neighborhood %></li>
-      </ul>
-    </article>
-  </article>
+    
+      <table class="float divider">
+        
+        <tr>
+          <td>Room type:</td>
+          <td><%= Listing::ROOM_TYPES[@listing.room_type] %></td>
+        </tr>
+        
+        <tr>
+          <td>Accomodates:</td>
+          <td><%= @listing.guests %> guests</td>
+        </tr>
+        
+        <tr>
+          <td>Bedrooms:</td>
+          <td><%= @listing.bedrooms %></td>
+        </tr>
+
+        <tr>
+          <td>Bathrooms:</td>
+          <td><%= @listing.bathrooms %></td>
+        </tr>
+
+        <tr>
+          <td>City:</td>
+          <td><%= @listing.city %></td>
+        </tr>
+        
+        <tr>
+          <td>Neighborhood:</td>
+          <td><%= @listing.neighborhood %></td>
+        </tr>
+      </table>
+  </section>
+    
 </section>
 
-<section class="side-bar">
+<section class="content-bar">
+  
   <%= render "shared/errors" %>
-  <form class="new-booking-form" action="<%= listing_bookings_url(@listing) %>" method="POST">
+  
+  <form action="<%= listing_bookings_url(@listing) %>" method="POST" class="interior-content">
     <%= auth_token %>
+    
     <div>
       <h3>$<%= @listing.price %> per night</h3>
-      <label for="booking_start_date">Check in</label>
-      <input type="date" name="booking[start_date]" value="<%= @booking.start_date %>" id="booking_start_date">
-      <label for="booking_end_date">Check out</label>
-      <input type="date" name="booking[end_date]" value="<%= @booking.end_date %>" id="booking_end_date">
-      <label for="booking_guest_num">Guests</label>
-      <input type="number" min="1" max="20" name="booking[guest_num]" value="<%= @booking.guest_num %>" id="booking_guest_num">
+      <div class="input">
+        <label for="booking_start_date">Check in</label>
+        <input type="date" name="booking[start_date]" value="<%= @booking.start_date %>" id="booking_start_date">
+      </div>
+      
+      <div class="input">
+        <label for="booking_end_date">Check out</label>
+        <input type="date" name="booking[end_date]" value="<%= @booking.end_date %>" id="booking_end_date">
+      </div>
+     
+      <div class="input">
+        <label for="booking_guest_num">Guests</label>
+        <input type="number" min="1" max="20" name="booking[guest_num]" value="<%= @booking.guest_num %>" id="booking_guest_num">
+      </div>     
       
     </div>
-    <h3>Subtotal</h3>
-    <p>$<%= @booking.subtotal ||= 0 %></p>
     
-    <input type="submit" value="Book it!">
+    <div class="top-divider">
+      <h3>Subtotal</h3>
+    
+      <p>$<%= @booking.subtotal ||= 0 %></p>
+    
+      <input type="submit" value="Book it!" class="btn">
+    </div>
+    
   </form>
-  <article class="host">
-    <p>Host: <%= @listing.user.full_name %></p>
+  
+  <article class="interior-content">
+    
     <div class="med-photo">
       <%= image_tag @listing.user.profile_pic(:big) %>
     </div>
+    
+    <h3 class="center">Host: <%= @listing.user.full_name %></h3>
+    
   </article>
 </section>
