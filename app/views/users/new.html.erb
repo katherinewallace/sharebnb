@@ -10,6 +10,12 @@
 </section>
 
 <section>
+  <form action="<%= session_url %>" method="POST">
+      <%= auth_token %>
+      <input type="hidden" name="user[email]" value="demo@example.com">
+      <input type="hidden" name="user[password]" value="password">
+      <input type="submit" value="Sign in with Sample Acccount">
+    </form>
   <p>Already a member?</p>
   <a href="<%= new_session_url %>">Sign in</a>
 </section>

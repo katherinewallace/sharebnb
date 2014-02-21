@@ -16,7 +16,14 @@
   
 </form>
 </section>
+
 <section>
+  <form action="<%= session_url %>" method="POST">
+    <%= auth_token %>
+    <input type="hidden" name="user[email]" value="demo@example.com">
+    <input type="hidden" name="user[password]" value="password">
+    <input type="submit" value="Sign in with Sample Acccount">
+  </form>
   <p>Don't have an account yet?</p>
   <a href="<%= new_user_url %>">Sign up</a>
 </section>
