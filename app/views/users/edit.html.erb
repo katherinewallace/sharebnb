@@ -3,7 +3,7 @@
 
   <form enctype="multipart/form-data" action="<%= user_url(@user) %>" method="POST">
     <div class="photo">
-      <%= image_tag @user.profile_pic.url(:big) %>
+      <%= image_tag @user.profile_pic.try(:url, :medium) %>
     <input type="hidden" name="_method" value="PUT">
 
     <input type="file" name="user[profile_pic]" value="">

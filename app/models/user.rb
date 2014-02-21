@@ -28,10 +28,10 @@ class User < ActiveRecord::Base
   
   has_one :listing, dependent: :destroy
   has_many :bookings, foreign_key: :guest_id, dependent: :destroy
-  has_attached_file :profile_pic, dependent: :destroy # styles: {
- #        :big => "400x400#",
- #        :small => "120x120#"
- #        }, dependent: :destroy
+  has_attached_file :profile_pic, styles: {
+        :medium => "400x400>",
+        :small => "120x120#"
+        }, dependent: :destroy
   
   before_validation :ensure_session_token
   

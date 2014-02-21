@@ -6,7 +6,7 @@
 <% end %>
 
 <% @photos.each do |photo| %>
-  <%= image_tag photo.photo_file.url %>
+  <%= image_tag photo.photo_file.try(:url, :large) %>
   <p><%= photo.caption %></p>
   <% if listing_owner?(@listing) %>
     <% if photo.primary %>

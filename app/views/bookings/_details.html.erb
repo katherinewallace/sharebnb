@@ -1,6 +1,6 @@
   <div class="float">
     <div class="small-photo">
-      <%= image_tag booking.guest.profile_pic.try(:url) %>
+      <%= image_tag booking.guest.profile_pic.try(:url, :small) %>
     </div>
     <p><%= booking.guest.full_name %></p>
   </div>
