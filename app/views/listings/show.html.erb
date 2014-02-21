@@ -3,7 +3,7 @@
 <section class="content-bar">
   
   <div class="large-photo interior-content">
-    <%= image_tag @listing.primary_photo_file.try(:url, :medium) %>
+    <%= image_tag @listing.primary_photo_file.try(:url) %>
   </div>
   
   <section class="interior-content group">

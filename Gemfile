@@ -15,6 +15,7 @@ gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'paperclip', '~> 3.5.3'
 gem 'aws-sdk'
 gem 'figaro'
+gem 'faker'
 
 group :development do
   gem 'better_errors'
@@ -32,7 +33,6 @@ end
 group :test do
   gem 'shoulda-matchers'
   gem 'capybara'
-  gem 'faker'
   gem 'launchy'
 end
 
