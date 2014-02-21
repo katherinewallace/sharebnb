@@ -1,9 +1,11 @@
-<div class = "booking">
+<div class="interior-content group">
   
-  <ul class="guest">
-    <li><%= booking.guest.full_name %></li>
-    <li><%= image_tag booking.guest.profile_pic.try(:url, :small) %></li>
-  </ul>
+  <div class="float">
+    <div class="small-photo">
+      <%= image_tag booking.guest.profile_pic.try(:url, :small) %>
+    </div>
+    <p><%= booking.guest.full_name %></p>
+  </section>
   
   <ul class="details">
     

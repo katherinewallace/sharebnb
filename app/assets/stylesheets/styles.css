@@ -14,12 +14,13 @@ body {
 }
 
 a {
-  color: #333;
+  color: inherit;
   text-decoration: none;
 }
 
 a:hover {
   cursor: pointer;
+  color: #009bf5;
 }
 
 ul {
@@ -33,15 +34,14 @@ h1 {
 }
 
 h2 {
-  font-size: 25px;
+  font-size: 23px;
   font-weight: bold;
-  margin: 0 0 20px 0;
+  margin: 0 0 0 0;
 }
 
 h3 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
-  font-style: italic;
   margin: 0 0 0 0;
 }
 
@@ -64,19 +64,22 @@ h3 {
   width: 1100px;
 }
 
-.header-wrap > h3 {
+.header-wrap > h2 {
   float: left;
   width: 20%;
+  display: block;
+  padding: 20px 0 0 20px;
+  color: inherit;
 }
 
-h3 > a {
+.header-wrap > #logo > a {
   display: block;
-  padding: 20px 20px;
   color: #009bf5;
   font-weight: bold;
+  font-style: italic;
 }
 
-h3 > a:hover {
+#logo > a:hover {
   color: #00ddff;
 }
 
@@ -94,7 +97,7 @@ nav > ul > li {
 }
 
 nav > ul > li > a {
-  color: 576061;
+  color:#505859;   
   display: block; 
   padding:24px 20px 24px 20px;
 }
@@ -102,10 +105,6 @@ nav > ul > li > a {
 li > a {
   display: block;
   padding:10px 10px 10px 10px;
-}
-
-li > a:hover {
-  color: #009bf5;
 }
 
 .drop-down {
@@ -138,6 +137,16 @@ li.list {
   border-top: 2px solid lightgray;
 }
 
+/*Listing nav bar*/
+
+.listing-nav-bar > nav > ul > li {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+/*Home page*/
+
 .main-search {
   display: block;
   margin-top: 100px;
@@ -162,15 +171,19 @@ form > label {
   display: inline-block;
   margin: 0;
   cursor: pointer;
-  width: 80px;
+  width: 100px;
   height: 30px;
+  text-align: center;
 }
+
+/*Listings index*/
 
 .search-results {
   display: block;
   width: 600px;
   margin: 20px;
 }
+
 a.listing {
   border: 2px solid lightgray;
   width: 250px;
@@ -191,8 +204,8 @@ div.large-photo {
 }
 
 div.small-photo {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
 }
 
 img {
@@ -206,7 +219,7 @@ img {
 }
 
 .content-bar {
-  margin: 10px;
+  margin: 20px;
   float: left;
  
 }
@@ -250,6 +263,31 @@ div.interior-content {
 h3.center {
   text-align: center;
   margin: 10px;
+}
+
+div > input.delete {
+  display: block;
+  width: 100px; 
+}
+
+.delete {
+  background: #FF7373;
+  text-weight: lighter;
+}
+
+form.button_to {
+  width: 100px;
+  text-weight: lighter;
+}
+
+ul.buttons {
+  float: left;
+  width: 300px;
+}
+
+ul.buttons > li {
+  float: left;
+  height: 20px;
 }
 
 

@@ -1,18 +1,19 @@
 <h1>Manage Your Listing</h1>
 
-<header class="manage-header">
+<header class="header-wrap group">
   <h2><a href="<%= listing_url(@listing) %>"><%= @listing.title %></a></h2>
-  <ul class="buttons">
-    <li><a href="<%= edit_listing_url(@listing) %>">Edit Listing</a></li>
-    <li><%= button_to "delete listing", listing_url(@listing), method: :delete %></li>
+  <ul class="buttons group">
+    <li><a href="<%= edit_listing_url(@listing) %>" class= "btn delete">Edit Listing</a></li>
+    <li class="group"><%= button_to "delete listing", listing_url(@listing), method: :delete, class: "btn delete" %></li>
   </ul>
   
   <%= flash[:success] %>
   
 </header>
-<section class="bookings">
+
+<section class="content-bar group">
   
-  <article class="pending">
+  <article class="pending group">
     
     <h3>Pending Bookings</h3>
     
@@ -28,7 +29,7 @@
       
     <% end %>
   </article>
-  <article class="confirmed">
+  <article class="confirmed top-divider">
     
     <h3>Confirmed Bookings</h3>
     
