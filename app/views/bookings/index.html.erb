@@ -10,26 +10,28 @@
   <%= flash[:success] %>
   
 </header>
-
-<section class="content-bar group">
   
-  <article class="pending group">
+  <article class="content-bar interior-content group">
     
     <h3>Pending Bookings</h3>
     
+    <ul class="rep-content group">
+    
     <% unless @pending_bookings.any? %>
-      <p>You have no pending bookings</p>
+      <li>You have no pending bookings</li>
     <% else %>
     
       <% @pending_bookings.each do |booking| %>
-      
-        <%= render "details", booking: booking %>
-        
+        <li>
+          <%= render "details", booking: booking %>
+        </li>
       <% end %>
       
     <% end %>
+    </ul>
   </article>
-  <article class="confirmed top-divider">
+  
+  <article class="content-bar interior-content group">
     
     <h3>Confirmed Bookings</h3>
     

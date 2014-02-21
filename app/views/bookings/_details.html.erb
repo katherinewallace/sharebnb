@@ -1,13 +1,13 @@
-<div class="interior-content group">
-  
   <div class="float">
     <div class="small-photo">
       <%= image_tag booking.guest.profile_pic.try(:url, :small) %>
     </div>
     <p><%= booking.guest.full_name %></p>
-  </section>
+  </div>
   
-  <ul class="details">
+  <div class="details group float">
+    
+    <ul>
     
     <li><%= "#{booking.start_date.month}/#{booking.start_date.day}/#{booking.start_date.year}  -  #{booking.end_date.month}/#{booking.end_date.day}/#{booking.end_date.year}" %></li>
     
@@ -17,24 +17,27 @@
     
     <% if booking.status ==0 && booking.overlapping_bookings.any? %>
     
-      <li>This booking overlaps with another pending booking for your listing. Please note that you may only approve one of any overlapping bookings</li>
+      <li></li>
       
     <% end %>
     
   </ul>
-  
-  <ul class="buttons">
     
+  </div>
+  
+  <div class="buttons group">
+    <ul class="group">
     <% if booking.status == 0 %>
     
-      <li><a href="<%= accept_booking_url(booking) %>">Accept</a></li>
-      <li><a href="<%= decline_booking_url(booking) %>">Decline</a></li>
+      <li class="float"><a href="<%= accept_booking_url(booking) %>">Accept</a></li>
+      <li class="float"><a href="<%= decline_booking_url(booking) %>">Decline</a></li>
       
     <% else %>
     
       <li><a href="<%= cancel_booking_url(booking) %>">Cancel booking</a></li>
       
     <% end %>
-  </ul>
-  
-</div>
+   </ul>
+   <p>This booking overlaps with another pending booking for your listing. Please note that you may only approve one of any overlapping bookings</p>
+  </div>
+

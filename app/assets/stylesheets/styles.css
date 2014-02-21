@@ -290,6 +290,20 @@ ul.buttons > li {
   height: 20px;
 }
 
+ul.rep-content > li {
+  margin: 10px;
+  border-top: 2px solid lightgray;
+  padding: 10px;
+}
+
+ul.rep-content > li > .float {
+  margin: 10px;
+}
+
+article.content-bar {
+  width: 40%;
+}
+
 
 
 
