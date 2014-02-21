@@ -22,6 +22,6 @@ class Photo < ActiveRecord::Base
   belongs_to :listing, inverse_of: :photos
   
   def picture_from_url(url)
-      self.photo_file = open(url)
+      self.photo_file = url
   end
 end
