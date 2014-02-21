@@ -13,11 +13,11 @@
 class Photo < ActiveRecord::Base
   attr_accessible :primary, :caption, :photo_file
   
-  has_attached_file :photo_file, dependent: :destroy # , styles: {
-#         :big => "1600x1600>",
-#         :small => "80x80#",
-#         medium: "500x300#" 
-#       }
+  has_attached_file :photo_file, dependent: :destroy, styles: {
+        :big => "1600x1600>",
+        :small => "80x80#",
+        medium: "500x300#" 
+      }
       
   belongs_to :listing, inverse_of: :photos
   
