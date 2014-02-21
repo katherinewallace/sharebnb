@@ -88,7 +88,7 @@
   <article class="interior-content">
     
     <div class="med-photo">
-      <%= image_tag @listing.user.profile_pic(:big) %>
+      <%= image_tag @listing.user.profile_pic.try(:url) %>
     </div>
     
     <h3 class="center">Host: <%= @listing.user.full_name %></h3>
