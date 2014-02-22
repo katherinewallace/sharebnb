@@ -27,9 +27,9 @@ def generate_listing!(user_id)
     end_date: Date.today + random_num.weeks + 1.month
   })
   
-  # 3.times {listing.photos.create!({
-  #   caption: Faker::Company.catch_phrase
-  # })}
+  3.times {listing.photos.create!({
+    caption: Faker::Company.catch_phrase
+  })}
   
   listing.photos.each do |photo|
     begin
