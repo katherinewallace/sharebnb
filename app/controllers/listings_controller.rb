@@ -110,6 +110,7 @@ class ListingsController < ApplicationController
   end
 
   def calendar
-    @listing = Listing.includes(:date_ranges).find(params[:id])
+    @listing = Listing.includes(:date_ranges, :bookings).find(params[:id])
+    @ranges = @listing.available_ranges
   end
 end

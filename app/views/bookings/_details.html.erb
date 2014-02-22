@@ -15,12 +15,6 @@
     
     <li> Total<%= " Paid" if booking.status == 1 %>: $<%= booking.subtotal %></li>
     
-    <% if booking.status ==0 && booking.overlapping_bookings.any? %>
-    
-      <li></li>
-      
-    <% end %>
-    
   </ul>
     
   </div>
@@ -38,6 +32,12 @@
       
     <% end %>
    </ul>
-   <p>This booking overlaps with another pending booking for your listing. Please note that you may only approve one of any overlapping bookings</p>
+   
+   <% if booking.status ==0 && booking.overlapping_bookings.any? %>
+   
+        <p>This booking overlaps with another pending booking for your listing. Please note that you may only approve one of any overlapping bookings</p>
+        
+   <% end %>
+
   </div>
 

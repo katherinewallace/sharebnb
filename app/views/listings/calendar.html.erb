@@ -1,8 +1,12 @@
 <%= render "listing_nav" %>
-<h3>This apartment is currently available for the following dates:</h3>
+<% if @ranges.nil? %>
+  <p>This apartment is currently unavailable</p>
+<% else %>
+  <h3>This apartment is currently available for the following dates:</h3>
 
-<ul>
-  <% @listing.date_ranges.each do |range| %>
-  <li>From: <%= range.start_date %>  to: <%= range.end_date %></li>
-  <% end %>
-</ul>
+  <ul>
+    <% @ranges.each do |range| %>
+    <li>From: <%= range[0] %>  to: <%= range[1] %></li>
+    <% end %>
+  </ul>
+<% end %>

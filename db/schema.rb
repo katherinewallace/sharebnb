@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140220184156) do
+ActiveRecord::Schema.define(:version => 20140221224722) do
 
   create_table "bookings", :force => true do |t|
     t.integer  "listing_id",                    :null => false
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(:version => 20140220184156) do
   end
 
   add_index "listings", ["user_id"], :name => "index_listings_on_user_id"
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "noteworthy_id"
+    t.string   "noteworthy_type"
+    t.string   "title"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "photos", :force => true do |t|
     t.integer  "listing_id",              :null => false
