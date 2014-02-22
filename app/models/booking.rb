@@ -2,17 +2,18 @@
 #
 # Table name: bookings
 #
-#  id         :integer          not null, primary key
-#  listing_id :integer          not null
-#  guest_id   :integer          not null
-#  start_date :date             not null
-#  end_date   :date             not null
-#  status     :integer          default(0)
-#  cancelled  :boolean          default(FALSE)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  price      :integer
-#  guest_num  :integer          not null
+#  id            :integer          not null, primary key
+#  listing_id    :integer          not null
+#  guest_id      :integer          not null
+#  start_date    :date             not null
+#  end_date      :date             not null
+#  status        :integer          default(0)
+#  cancelled     :boolean          default(FALSE)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  price         :integer
+#  guest_num     :integer          not null
+#  date_range_id :integer          not null
 #
 
 class Booking < ActiveRecord::Base
@@ -35,6 +36,7 @@ class Booking < ActiveRecord::Base
   validate :accomodates_guests
   
   before_validation :assign_price, on: :create
+  before_validation :assign_date_range, on: :create
   
   belongs_to :listing
   belongs_to :guest, class_name: "User"
@@ -51,6 +53,15 @@ class Booking < ActiveRecord::Base
   
   def assign_price
     self.price = self.listing.price
+  end
+  
+  def assign_date_range
+    where_condition = <<-SQL
+     listing_id = ? 
+     AND (? BETWEEN start_date AND end_date) 
+     AND (? BETWEEN start_date AND end_date)
+    SQL
+    self.date_range_id = DateRange.where(where_condition, self.listing_id, self.start_date, self.end_date).pluck(:id).first
   end
   
   def cancel!
@@ -82,19 +93,9 @@ class Booking < ActiveRecord::Base
   end
   
   def availability
-    unless self.within_date_range? && !self.overlapping_approved_bookings?
+    unless self.date_range_id && !self.overlapping_approved_bookings?
       errors[:base] << "This space is not available for that set of dates"
     end
-  end
-  
-  def within_date_range?
-    where_condition = <<-SQL
-     listing_id = ? 
-     AND (? BETWEEN start_date AND end_date) 
-     AND (? BETWEEN start_date AND end_date)
-    SQL
-    ranges = DateRange.where(where_condition, self.listing_id, self.start_date, self.end_date)
-    ranges.any?
   end
   
   def overlapping_approved_bookings?
@@ -105,9 +106,9 @@ class Booking < ActiveRecord::Base
     where_condition = <<-SQL
       id != (CASE WHEN ? IS NULL THEN 0 ELSE ? END)
       AND listing_id = ?
-      AND ( ? BETWEEN start_date AND end_date OR ? BETWEEN start_date AND end_date )
+      AND ( (? >= start_date AND ? < end_date) OR (? > start_date AND ? <= end_date) )
     SQL
-    overlaps = Booking.where(where_condition, self.id, self.id, self.listing_id, self.start_date, self.end_date)
+    overlaps = Booking.where(where_condition, self.id, self.id, self.listing_id, self.start_date, self.start_date, self.end_date, self.end_date)
   end
   
 end

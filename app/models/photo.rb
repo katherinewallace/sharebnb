@@ -1,13 +1,17 @@
 # == Schema Information
 #
-# Table name: listing_photos
+# Table name: photos
 #
-#  id         :integer          not null, primary key
-#  listing_id :integer          not null
-#  primary    :boolean
-#  caption    :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                      :integer          not null, primary key
+#  listing_id              :integer          not null
+#  primary                 :boolean
+#  caption                 :string(255)
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  photo_file_file_name    :string(255)
+#  photo_file_content_type :string(255)
+#  photo_file_file_size    :integer
+#  photo_file_updated_at   :datetime
 #
 
 class Photo < ActiveRecord::Base

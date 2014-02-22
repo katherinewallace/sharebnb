@@ -44,5 +44,20 @@ class DateRange < ActiveRecord::Base
       end
     end
   end
+  
+  def preserve_bookings
+    if self.changed?
+      where_condition = <<-SQL
+      bookings.date_range_id = ? AND
+      bookings.cancelled = false AND
+      bookings.status != 2 AND 
+      (bookings.start_date < ? OR bookings.end_date > ?)
+      SQL
+      bookings = Booking.where(where_condition, self.id, self.start_date, self.end_date).count(:id)
+      if bookings > 0
+        errors[:base] << "Please cancel or decline the existing confirmed/pending bookings that fall outside of these dates before updating"
+      end
+    end
+  end
 
 end
