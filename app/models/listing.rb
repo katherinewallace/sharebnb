@@ -98,17 +98,14 @@ class Listing < ActiveRecord::Base
     avail_ranges = []
     date_ranges.each do |range|
       start = range.start_date
-      p "starting with #{start}"
       while i < bookings.length && bookings[i].end_date <= range.end_date
         unless start > range.end_date
-          p "range is #{range}"
           avail_ranges << [start, bookings[i].start_date]
         end
         start = bookings[i].end_date
         i += 1
       end
       avail_ranges << [start, range.end_date]
-      p avail_ranges
     end
     avail_ranges
     avail_ranges.reject { |range| range[0] >= range[1] }

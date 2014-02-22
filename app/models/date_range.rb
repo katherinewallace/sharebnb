@@ -15,6 +15,7 @@ class DateRange < ActiveRecord::Base
   validates :start_date, :end_date, :listing, presence: true
   validate :valid_range
   validate :no_overlap
+  validate :preserve_bookings, on: :update
   
   belongs_to :listing
   
