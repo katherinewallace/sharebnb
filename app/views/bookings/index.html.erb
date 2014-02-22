@@ -29,17 +29,21 @@
     </ul>
   </article>
   
-  <article class="content-bar 'interior-content group">
+  <article class="content-bar interior-content group">
     
     <h3>Confirmed Bookings</h3>
     
+    <ul class="rep-content group">
+    
     <% unless @confirmed_bookings.any? %>
-      <p>You have no confirmed bookings</p>
+    
+      <li>You have no confirmed bookings</li>
     <% else %>
+    
       <% @confirmed_bookings.each do |booking| %>
-      
+      <li class="group">
         <%= render "details", booking: booking %>
-        
+       </li> 
       <% end %>
       
     <% end %>
