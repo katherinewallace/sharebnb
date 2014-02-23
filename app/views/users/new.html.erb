@@ -1,20 +1,22 @@
 <%= render "shared/errors" %>
 <h1>Sign up</h1>
-<section>
+<section class="content-bar">
 <form action="<%= users_url %>" method="POST" class="user-form">
    <%= render "form" %>
-  
-  <input type="submit" value="Sign up" id="sign-up-btn">
-  
+   <div class="input">
+  <input type="submit" value="Sign up" class="btn">
+</div>
 </form>
 </section>
 
-<section>
+<section class="content-bar">
   <form action="<%= session_url %>" method="POST">
       <%= auth_token %>
       <input type="hidden" name="user[email]" value="demo@example.com">
       <input type="hidden" name="user[password]" value="password">
-      <input type="submit" value="Sign in with Sample Acccount">
+      <div class="input">
+        <input type="submit" value="Sign in with Sample Acccount" class="btn">
+      </div>
     </form>
   <p>Already a member?</p>
   <a href="<%= new_session_url %>">Sign in</a>

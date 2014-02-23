@@ -1,25 +1,10 @@
 /* Reset styles */
 
-html, body, header, h1, h2, nav, ul, li, a, footer, div, p {
+html, body, header, h1, h2, nav, ul, li, a, footer {
   margin: 0;
   padding: 0;
   font-family: inherit;
   vertical-align: baseline;
-}
-
-input[type="text"],
-button,
-textarea {
-  background: trasparent;
-  box-sizing: content-box;
-  margin: 0;
-  padding: 0;
-  outline: 0;
-  font-size: 100%;
-  font: inherit;
-  color: inherit;
-  border: 0;
-  display: inline-block;
 }
 
 body {
@@ -183,13 +168,11 @@ form > label {
   background: #009bf5;
   border: 2px solid lightgray;
   border-radius: 7px;
+  display: inline-block;
   margin: 0;
   cursor: pointer;
+  height: 30px;
   text-align: center;
-}
-
-.btn:hover{
-  color: inherit;
 }
 
 /*Listings index*/
@@ -222,12 +205,10 @@ div.large-photo {
 div.small-photo {
   width: 50px;
   height: 50px;
-  outline: 2px solid lightgray;
 }
 
 img {
-  max-width: 100%;
-  max-height: 100%;  
+  max-height: 100%;
 }
 
 .search {
@@ -281,24 +262,35 @@ h3.center {
   margin: 10px;
 }
 
+div > input.delete {
+  display: block;
+  width: 100px; 
+}
+
 .delete {
   background: #FF7373;
   text-weight: lighter;
 }
 
+form.button_to {
+  width: 100px;
+  text-weight: lighter;
+}
+
 ul.buttons {
   float: left;
+  width: 300px;
 }
 
 ul.buttons > li {
-  margin: 10px;
   float: left;
+  height: 20px;
 }
 
 ul.rep-content > li {
   margin: 10px;
   border-top: 2px solid lightgray;
-  padding: 10px 0;
+  padding: 10px;
 }
 
 ul.rep-content > li > .float {
@@ -306,19 +298,20 @@ ul.rep-content > li > .float {
 }
 
 article.content-bar {
-  min-width: 400px;
-  max-width: 500px;
+  width: 40%;
 }
 
-ul.listing-buttons {
-  float: right;
+header.success {
+  color: #0c6;
 }
 
-div.caption {
-  margin: 0 10px 10px 0;
+header.errors {
+  color: #FF7373;
 }
 
-
+.flash {
+  margin: 10px;
+}
 
 
 
