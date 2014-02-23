@@ -46,4 +46,11 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+  
+  def only_allow_one_listing
+    existing_listing = current_user.listing
+    if existing_listing
+      redirect_to listing_bookings_url(existing_listing)
+    end
+  end
 end

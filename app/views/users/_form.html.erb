@@ -1,21 +1,25 @@
 <%= auth_token %>
+<div class="input">
+  <label for="user_fname">First name</label>
+  <input type="text" name="user[fname]" value="<%= @user.fname %>" id="user_fname">
+</div>
 
-<label for="user_fname">First name</label>
-<input type="text" name="user[fname]" value="<%= @user.fname %>" id="user_fname">
-<br>
+<div class="input">
+  <label for="user_lname">Last name</label>
+  <input type="text" name="user[lname]" value="<%= @user.lname %>" id="user_lname">
+</div>
 
-<label for="user_lname">Last name</label>
-<input type="text" name="user[lname]" value="<%= @user.lname %>" id="user_lname">
-<br>
+<div class="input">
+  <label for="email">Email</label>
+  <input type="text" name="user[email]" value="<%= @user.email %>" id="user_email">
+</div>
 
-<label for="email">Email</label>
-<input type="text" name="user[email]" value="<%= @user.email %>" id="user_email">
-<br>
+<div class="input">
+  <label for="user_password">Password</label>
+  <input type="password" name="user[password]" value="<%= "******" if @user.persisted? %>" id="user_password">
+</div>
 
-<label for="user_password">Password</label>
-<input type="password" name="user[password]" value="<%= "******" if @user.persisted? %>" id="user_password">
-<br>
-
-<label for="user_confirmation">Confirm Password</label>
-<input type="password" name="user[password_confirmation]" value="<%= "******" if @user.persisted? %>" id="user_confirmation">        
-<br>
+<div class="input">
+  <label for="user_confirmation">Confirm Password</label>
+  <input type="password" name="user[password_confirmation]" value="<%= "******" if @user.persisted? %>" id="user_confirmation">        
+</div>

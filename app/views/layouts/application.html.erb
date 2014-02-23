@@ -11,11 +11,7 @@
 <%= session if Rails.env.development? %>
 <%= render "shared/main_nav"%>
 <header class="flash success">
-  <ul>
-    <li>
-      <%= flash[:success] %>
-    </li>
-  </ul>
+<%= flash[:success] %>
 </header>
 <%= yield %>
 
