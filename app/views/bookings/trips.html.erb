@@ -1,23 +1,30 @@
-<h1> Your Trips </h1>
-<% unless @bookings.present? %>
-  <p>You have no trips</p>
-  <a href="<%= root_url %>">Book a new trip</a>
+<h1>Your Trips</h1>
+<section class="content-bar">
+  <a href="<%= root_url %>" class="btn">Book a new trip</a>
+  <% unless @bookings.present? %>
+    <p>You have no trips</p>  
 <% else %>
-  <a href="<%= root_url %>">Book a new trip</a>
+  <ul class="rep-content">
   <% @bookings.each do |booking| %>
-    <ul>
-      <li><a href="<%= listing_url(booking.listing) %>"><%= booking.listing.title %></a></li>
-      <li><%= booking.listing.city %></li>
-      <li><%= "#{booking.start_date.month}/#{booking.start_date.day}  -  #{booking.end_date.month}/#{booking.end_date.day} " %></li>
+    <li class="group">
+      <h3><a href="<%= listing_url(booking.listing) %>"><%= booking.listing.title %></a></h3>
+      <div class="float">
+        <p><%= booking.listing.city %><p>
+        <p><%= "#{booking.start_date.month}/#{booking.start_date.day}  -  #{booking.end_date.month}/#{booking.end_date.day} " %></p>
+      </div>
+      <div class="float">
       <% if booking.cancelled %>    
-      <li>cancelled</li>
+        Status:<strong class="error"> cancelled</strong>
       <% else %>
-        <li><%= Booking::STATUS[booking.status] %></li>
-        <% unless booking.status == 2 %>
-          <li><a href="<%= cancel_booking_url(booking) %>">cancel booking</a></li>
+        Status: <strong><%= Booking::STATUS[booking.status] %></strong>
+      <% unless booking.status == 2 %>
+      <div class="input float">
+          <a href="<%= cancel_booking_url(booking) %>" class="btn delete">Cancel booking</a>
+        </div>
         <% end %>
       <% end %>
-    </ul>
+  </li>
   <% end %>
-  
+  </article>
 <% end %>
+</section>

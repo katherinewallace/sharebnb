@@ -334,11 +334,16 @@ div.caption {
 
 .input > input[type="submit"]{
   margin: 20px 20px 20px 0;
+  height: 30px;
 }
 
 .user-form {
   min-width: 300px;
   border-right: 2px solid lightgray;
+}
+
+a.btn{
+  height: 20px;
 }
 
 
