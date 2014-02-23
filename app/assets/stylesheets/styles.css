@@ -8,6 +8,7 @@ html, body, header, h1, h2, nav, ul, li, a, footer, div, p {
 }
 
 input[type="text"],
+input[type="password"],
 button,
 textarea {
   background: trasparent;
@@ -18,7 +19,7 @@ textarea {
   font-size: 100%;
   font: inherit;
   color: inherit;
-  border: 0;
+  height: 20px;
   display: inline-block;
 }
 
@@ -186,6 +187,7 @@ form > label {
   margin: 0;
   cursor: pointer;
   text-align: center;
+  height: 30px;
 }
 
 .btn:hover{
@@ -273,7 +275,7 @@ div.interior-content {
 }
 
 .input > input {
-  padding: 0 5px 0 5px;
+  padding: 0 10px 0 10px;
 }
 
 h3.center {
@@ -328,6 +330,15 @@ div.caption {
 
 .error {
   color: #FF7373;
+}
+
+.input > input[type="submit"]{
+  margin: 20px 20px 20px 0;
+}
+
+.user-form {
+  min-width: 300px;
+  border-right: 2px solid lightgray;
 }
 
 

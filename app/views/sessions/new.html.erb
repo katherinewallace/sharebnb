@@ -1,28 +1,34 @@
 <%= render "shared/errors" %>
 <h1>Sign in</h1>
-<section>
+<section class="content-bar">
 <form action="<%= session_url %>" method="POST" class="user-form">
   <%= auth_token %>
   
-  <label for="email">Email</label>
-  <input type="text" name="user[email]" value="<%= @user.email %>" id="user_email">
-  <br>
+  <div class="input">
+    <label for="email">Email</label>
+    <input type="text" name="user[email]" value="<%= @user.email %>" id="user_email">
+  </div>
   
-  <label for="user_password">Password</label>
-  <input type="password" name="user[password]" value="" id="user_password">
-  <br>
+  <div class="input">
+    <label for="user_password">Password</label>
+    <input type="password" name="user[password]" value="" id="user_password">
+  </div>
   
-  <input type="submit" value="Sign in" id="sign-in-btn">
+  <div class="input">
+    <input type="submit" value="Sign in" class="btn">
+  </div>
   
 </form>
 </section>
 
-<section>
+<section class="content-bar">
   <form action="<%= session_url %>" method="POST">
     <%= auth_token %>
     <input type="hidden" name="user[email]" value="demo@example.com">
     <input type="hidden" name="user[password]" value="password">
-    <input type="submit" value="Sign in with Sample Acccount">
+    <div class="input">
+      <input type="submit" value="Sign in with Sample Acccount" class="btn">
+    </div>
   </form>
   <p>Don't have an account yet?</p>
   <a href="<%= new_user_url %>">Sign up</a>
