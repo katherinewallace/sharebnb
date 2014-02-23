@@ -11,8 +11,13 @@
 #  updated_at      :datetime         not null
 #
 
-class Notifications < ActiveRecord::Base
+class Notification < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   attr_accessible :user_id, :noteworthy_id, :noteworthy_type, :title
   
   belongs_to :noteworthy, polymorphic: true
+  belongs_to :user
+  
+  validates :user_id, :noteworthy_id, :noteworthy_type, :title, presence: true
+  
 end

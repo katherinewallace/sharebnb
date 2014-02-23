@@ -20,14 +20,13 @@
 #  profile_pic_updated_at   :datetime
 #
 
-require "open-uri"
-
 class User < ActiveRecord::Base
   attr_accessible :fname, :lname, :gender, :bday, :email, :phone, :description, :password, :password_confirmation, :profile_pic
   attr_reader :password, :password_confirmation
   
   has_one :listing, dependent: :destroy
   has_many :bookings, foreign_key: :guest_id, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   has_attached_file :profile_pic, styles: {
         :medium => "400x400>",
         :small => "120x120#"

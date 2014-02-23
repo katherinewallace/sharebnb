@@ -9,6 +9,7 @@ class BookingsController < ApplicationController
     @booking.guest_id = current_user.id
     if @booking.save
       flash[:success] = "Your booking has been requested.  The host will review and accept or decline your booking request."
+      @listing.notifications.create!({user_id: @listing.user_id, title: "#{current_user.full_name} has requested to book your space from #{@booking.start_date} to #{@booking.end_date}"})
       redirect_to user_trips_url(current_user)
     else
       flash.now[:errors] = @booking.errors.messages.values

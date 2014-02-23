@@ -1,0 +1,11 @@
+<% @notifications.each do |notification| %>
+
+  <%= notification.title %>
+  <%= "New: #{notification.new}" %>
+  <% if notification.noteworthy_type == "Booking" %>
+      <a href="<%= user_trips_url(notification.user_id) %>">View my trips</a>
+  <% elsif notification.noteworthy_type == "Listing" %>
+    <a href="<%= listing_bookings_url(notification.noteworthy_id) %>">Manage my listing</a>
+  <% end %>
+  <br>
+<% end %>

@@ -46,6 +46,7 @@ class Listing < ActiveRecord::Base
   has_many :date_ranges, inverse_of: :listing, dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_many :photos, inverse_of: :listing, dependent: :destroy
+  has_many :notifications, as: :noteworthy
   
   def self.filter(params)
     results = Listing
