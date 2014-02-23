@@ -14,7 +14,7 @@ module ApplicationHelper
   def unread_badge
     @unread ||= Notification.unread(current_user)
     if @unread > 0
-      "<strong id=\"badge\">#{@unread}</strong>".html_safe
+      "<strong class=\"badge\">#{@unread}</strong>".html_safe
     else
       ""
     end

@@ -1,11 +1,19 @@
-<% @notifications.each do |notification| %>
+<section class="content-bar wide-list">
+  <h2>Your Notifications</h2>
+  <ul class="rep-content">
+  <% @notifications.each do |notification| %>
+    <li>
+      <% if notification.new %>
+        <div class="dot"><%= image_tag "unread.png" %></div>
+      <% end %>
+      <%= notification.title %>
 
-  <%= notification.title %>
-  <%= "New: #{notification.new}" %>
-  <% if notification.noteworthy_type == "Booking" %>
-      <a href="<%= user_trips_url(notification.user_id) %>">View my trips</a>
-  <% elsif notification.noteworthy_type == "Listing" %>
-    <a href="<%= listing_bookings_url(notification.noteworthy_id) %>">Manage my listing</a>
-  <% end %>
-  <br>
+      <% if notification.noteworthy_type == "Booking" %>
+        <a href="<%= user_trips_url(notification.user_id) %>" class="btn">View my trips</a>
+      <% elsif notification.noteworthy_type == "Listing" %>
+        <a href="<%= listing_bookings_url(notification.noteworthy_id) %>" class="btn">Manage my listing</a>
+      <% end %>
+    </li>
 <% end %>
+  </ul>
+</section>
