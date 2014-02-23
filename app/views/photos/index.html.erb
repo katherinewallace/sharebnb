@@ -1,20 +1,36 @@
 <%= render "listings/listing_nav" %>
 
+<section class="content-bar">
 <% if listing_owner?(@listing) %>
-<a href="<%= new_listing_photo_url(@listing) %>">Add more photos</a>
+<a href="<%= new_listing_photo_url(@listing) %>" class="btn">Add more photos</a>
 <br>
 <% end %>
 
+<ul class="rep-content">
 <% @photos.each do |photo| %>
-  <%= image_tag photo.photo_file.try(:url, :large) %>
+  <li>
+    <div class="large-photo">
+      <% if photo.primary && listing_owner?(@listing) %>
+      <div class="primary">primary</div>
+      <% end %>
+      <%= image_tag photo.photo_file.try(:url, :large) %>
+    </div>
   <p><%= photo.caption %></p>
-  <% if listing_owner?(@listing) %>
-    <% if photo.primary %>
-      <%= "primary" %>
-    <% else %>
-      <a href="<%= primary_photo_url(photo) %>">make primary (will override previous)</a>
-    <% end %>
-    <%= button_to "delete photo", photo_url(photo), method: :delete %>
+    
+    <% if listing_owner?(@listing) %>
+    <ul class="group">  
+      <li class="float">
+        <%= button_to "delete photo", photo_url(photo), method: :delete, class: "btn delete" %>
+      </li>
+      <% unless photo.primary %>
+      <li class="float">
+        <a href="<%= primary_photo_url(photo) %>" class="btn">make primary</a>
+      </li>(will override previous)
+      <% end %>
+  </ul>
   <% end %>
-  <hr>
+</li>
+
 <% end %>
+</ul>
+</section>

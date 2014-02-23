@@ -1,22 +1,27 @@
 <h1>Add Photos</h1>
 
-<ul>
-  <li><a href="<%= listing_photos_url(@listing) %>">Back to all photos</a></li>
-  <li><a href="<%= listing_url(@listing) %>">Back to listing view</a></li>
+<section class="content-bar">
+<ul class="group">
+  <li class="float"><a href="<%= listing_photos_url(@listing) %>">Back to all photos</a></li>
+  <li class="float"><a href="<%= listing_url(@listing) %>">Back to listing view</a></li>
 </ul>
 
-<form enctype="multipart/form-data" action="<%= listing_photos_url(@listing) %>" method="POST">
+<form enctype="multipart/form-data" action="<%= listing_photos_url(@listing) %>" method="POST" class="interior-content">
   <%= auth_token %>
-  
   <% @photos.each_with_index do |photo, index| %>
   
+  <div class="input">
     <input type="file" name="photo_attributes[<%= photo.object_id %>][photo_file]" value="<%= photo.photo_file.url %>">
-    <br>
+  </div>
+  
+  <div class="input">
     <label for="photo_caption_<%= index %>">Caption</label>
     <input type="text" name="photo_attributes[<%= photo.object_id %>][caption]" value="<%= photo.caption %>" id="photo_caption_<%= index %>">
+  </div>
     <hr>
     
   <% end %>
   
   <input type="submit" value="Upload all" id="submit-btn">
 </form>
+</section>

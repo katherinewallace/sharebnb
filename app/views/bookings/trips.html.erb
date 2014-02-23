@@ -1,10 +1,10 @@
 <h1>Your Trips</h1>
 <section class="content-bar">
   <a href="<%= root_url %>" class="btn">Book a new trip</a>
-  <% unless @bookings.present? %>
-    <p>You have no trips</p>  
-<% else %>
   <ul class="rep-content">
+    <% unless @bookings.present? %>
+      <li>You have no trips</li>  
+  <% else %>
   <% @bookings.each do |booking| %>
     <li class="group">
       <h3><a href="<%= listing_url(booking.listing) %>"><%= booking.listing.title %></a></h3>
