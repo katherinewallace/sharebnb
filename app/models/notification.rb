@@ -20,4 +20,8 @@ class Notification < ActiveRecord::Base
   
   validates :user_id, :noteworthy_id, :noteworthy_type, :title, presence: true
   
+  def self.unread(user_id)
+    Notification.where("user_id = ? AND new = true", user_id).count(:id)
+  end
+  
 end

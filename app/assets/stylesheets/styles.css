@@ -368,6 +368,13 @@ p {
   margin: 10px 0 10px 0;
 }
 
+#badge {
+  background: #009bf5;
+  padding: 3px 7px;
+  border-radius: 10px;
+  color: white;
+}
+
 
 
 

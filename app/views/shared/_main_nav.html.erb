@@ -12,6 +12,8 @@
             <li class="list"><%= button_to "Logout", session_url, method: "delete" %></li>
           </ul>
         </li>
+        <li><a href="<%= notifications_url %>">Notifications <%= unread_badge %></a>
+        </li>
         <% else %>
         <li><a href="<%= new_user_url %>">Sign up</a></li>
         <li><a href="<%= new_session_url %>">Sign in</a></li>
