@@ -1,36 +1,44 @@
 <%= render "shared/errors" %>
 
-  <form enctype="multipart/form-data" action="<%= user_url(@user) %>" method="POST">
-    <div class="photo">
+  <form enctype="multipart/form-data" action="<%= user_url(@user) %>" method="POST" class="content-bar">
+    <div class="med-photo" id="profile-pic">
       <%= image_tag @user.profile_pic.try(:url, :medium) %>
+    </div>
     <input type="hidden" name="_method" value="PUT">
-
+    
+    <div class="input">
     <input type="file" name="user[profile_pic]" value="">
     </div>
+    
+    <div class="input">
     <label for="user_description">Describe yourself</label>
-    <br>
     <textarea name="user[description]" rows="5" cols="30" id="user_description"><%= @user.description %></textarea>
-    <br>
+    </div>
     
     <%= render "form" %>
     
-    <label for="gender">gender</label>
-    <select name="user[gender]" id="gender">
-      <option value="">--</option>
-      <option value="male" <%= "selected" if @user.gender == "male" %>>male</option>
-      <option value="female" <%= "selected" if @user.gender == "female" %>>female</option>
-      <option value="other" <%= "selected" if @user.gender == "other" %>>other</option>
-    </select>
-    <br>
+    <div class="input">
+      <label for="gender">Gender</label>
+      <select name="user[gender]" id="gender">
+        <option value="">--</option>
+        <option value="male" <%= "selected" if @user.gender == "male" %>>male</option>
+        <option value="female" <%= "selected" if @user.gender == "female" %>>female</option>
+        <option value="other" <%= "selected" if @user.gender == "other" %>>other</option>
+      </select>
+    </div>
     
-    <label for="user_birthday">Birthday</label>
-    <input type="date" name="user[bday]" value="<%= @user.bday %>" id="user_birthday">
-    <br>
+    <div class="input">
+      <label for="user_birthday">Birthday</label>
+      <input type="date" name="user[bday]" value="<%= @user.bday %>" id="user_birthday">
+  </div>
     
-    <label for="user_phone_number">Phone number</label>
-    <input type="text" name="user[phone]" value="<%= @user.phone %>" id="user_phone_number">
-    <br>
+    <div class="input">
+      <label for="user_phone_number">Phone number</label>
+      <input type="text" name="user[phone]" value="<%= @user.phone %>" id="user_phone_number">
+    </div>
     
-    <input type="submit" value="Update" id="edit-user-btn">
+    <div class="input">
+      <input type="submit" value="Update" class="btn">
+    </div>
     
   </form>
