@@ -2,38 +2,36 @@
 
 <h1>Edit Your Listing</h1>
 <%= render "shared/errors" %>
-
-<section>
-  <ul>
-    <li><%= image_tag @listing.primary_photo_file.try(:url, :large) %></li>
-    <li><a href="<%= listing_photos_url(@listing) %>">Add/remove photos</a></li>
-    <li><%= button_to "delete listing", listing_url(@listing), method: :delete %></li>
-    <li><a href="<%= listing_url(@listing) %>">Cancel</a></li>
-  </ul>
-  
-  
+<section class="content-bar">
+  <div class="large-photo interior-content group">
+    <%= image_tag @listing.primary_photo_file.try(:url, :large) %>
+  </div>
+  <a href="<%= listing_photos_url(@listing) %>" class="btn">Add/remove photos</a>
+  <div class="interior-content">
+    <ul class="group">
+      <li class="float"><%= button_to "delete listing", listing_url(@listing), method: :delete, class: "btn delete" %>
+      <li class="float"><a href="<%= listing_url(@listing) %>">Cancel</a></li>
+  </div>
+ 
 </section>
 
-<section class="edit-form">
+<section class="content-bar">
 <form action="<%= listing_url(@listing) %>" method="POST">
   <%= auth_token %>
   <input type="hidden" name="_method" value="PUT">
   
-  <label>Title:
-    <input type="text" name="listing[title]" value="<%= @listing.title %>">
-  </label>
-  <br>
+  <div class="input">
+  <label for="listing_title">Title:</label>
+    <input type="text" name="listing[title]" value="<%= @listing.title %>" id="listing_title">
+  </div>
   
-  <label>Description:
-    <br>
-    <textarea name="listing[description]" rows="8" cols="40"><%= @listing.description %></textarea>
-  </label>
-  <br>
+  <div class="input">
+  <label for="listing_description">Description:</label>
+    <textarea name="listing[description]" rows="8" cols="40" id="listing_description"><%= @listing.description %></textarea>
+  </div>
   
-  <%= render "form" %>
-  
-  <label>Available Dates</label>
-  <br>
+  <h3>Available Dates</h3>
+
   <% @listing.date_ranges.each do |range| %>
   
   <label>Start date
@@ -49,6 +47,10 @@
   <% end %>
   <br>
   
-  <input type="submit" value="Submit" class= "btn">
+  <%= render "form" %>
+
+  <div class="input">
+    <input type="submit" value="Submit" class="btn">
+  </div>
 </form>
 </section>

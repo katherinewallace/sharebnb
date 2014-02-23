@@ -1,15 +1,22 @@
-<label>Room Type:
+<div class="input">
+  <label for="listing_price">Price</label>
+  <input type="text" name="listing[price]" value="<%= @listing.price %>">
+  $ per night
+</div>
+
+<div class="input">
+<label>Room Type:</label>
+</div>
   <% Listing::ROOM_TYPES.each do |type| %>
     <label><%= type[1] %>
       <input type="radio" name="listing[room_type]" value="<%= type[0] %>"
       <%= @listing.room_type == type[0] ? "checked" : "" %>>
     </label>
   <% end %>
-</label>
-<br>
 
-<label>Accomodates
-  <select name="listing[guests]">
+<div class="input">
+<label for="listing_guests">Accomodates</label>
+  <select name="listing[guests]" id="listing_guests">
     <% (1..20).each do |num| %>
       <option value="<%= num %>"
         <%= num == @listing.guests ? "selected" : "" %>>
@@ -17,11 +24,26 @@
       </option>
     <% end %>
   </select>
-  guest(s)</label>
-<br>
+  guest(s)
+  
+</div>
 
-<label>Bedrooms
-  <select name="listing[bedrooms]">
+<div class="input">
+  <label for="listing_bedrooms">Bedrooms</label>
+    <select name="listing[bedrooms]" id="listing_bedrooms">
+      <% (1..10).each do |num| %>
+        <option value="<%= num %>"
+          <%= num == @listing.bedrooms ? "selected" : "" %>>
+          <%= num %>
+        </option>
+      <% end %>
+    </select>
+  </label>
+</div>
+
+<div class="input">
+<label for="listing_bathrooms">Bathrooms</label>
+  <select name="listing[bathrooms]" id="listing_bathrooms">
     <% (1..10).each do |num| %>
       <option value="<%= num %>"
         <%= num == @listing.bedrooms ? "selected" : "" %>>
@@ -29,23 +51,11 @@
       </option>
     <% end %>
   </select>
-</label>
-<br>
+</div>
 
-<label>Bathrooms
-  <select name="listing[bathrooms]">
-    <% (1..10).each do |num| %>
-      <option value="<%= num %>"
-        <%= num == @listing.bedrooms ? "selected" : "" %>>
-        <%= num %>
-      </option>
-    <% end %>
-  </select>
-</label>
-<br>
-
-<label>City
-  <select name="listing[city]">
+<div class="input">
+  <label for="listing_city">City</label>
+  <select name="listing[city]" id="listing_city">
     <option value="New York"
       <%= @listing.city == "New York" ? "selected" : "" %>>
       New York
@@ -55,22 +65,20 @@
       Rome
     </option>
   </select>
-</label>
-<br>
+</div>
 
-<label>Neighborhood
-  <input type="text" name="listing[neighborhood]" value="<%= @listing.neighborhood %>">
-</label>
-<br>
-<label>Street Address
-  <input type="text" name="listing[address]" value="<%= @listing.address %>">
-</label>
-<br>
-<label>Zip Code
-  <input type="text" name="listing[zip]" value="<%= @listing.zip %>">
-</label>
-<br>
-<label>Price
-  <input type="text" name="listing[price]" value="<%= @listing.price %>">
-</label>$ per night
-<br>
+<div class="input">
+  <label for="listing_neighborhood">Neighborhood</label>
+  <input type="text" name="listing[neighborhood]" value="<%= @listing.neighborhood %>" id="listing_neighborhood">
+</div>
+
+<div class="input">
+  <label for="listing_address">Street Address</label>
+    <input type="text" name="listing[address]" value="<%= @listing.address %>" id="listing_address">
+
+</div>
+
+<div class="input">
+  <label for="listing_zip">Zip Code</label>
+  <input type="text" name="listing[zip]" value="<%= @listing.zip %>" id="listing_zip">
+</div>

@@ -1,23 +1,27 @@
 <h1>List Your Space</h1>
 <%= render "shared/errors" %>
 
+<section class="content-bar">
 <form action="<%= listings_url %>" method="POST">
   <%= auth_token %>
   
-  <label>Title:
-    <input type="text" name="listing[title]" value="<%= @listing.title %>">
-  </label>
-  <br>
+  <div class="input">
+  <label for="listing_title">Title:</label>
+    <input type="text" name="listing[title]" value="<%= @listing.title %>" id="listing_title">
+  </div>
   
   <%= render "form" %>
   
-  <label>When is your space available?</label>
-  <br>
+  <div class="input">
+    <label>When is your space available?</label>
+  </div>
+
   <% @listing.date_ranges.each do |range| %>
   <label>Start date
     <input type="date" name="date_range_attributes[<%= range.object_id %>][start_date]" 
     value="<%= range.start_date %>">
   </label>
+  
   <label>End date
     <input type="date" name="date_range_attributes[<%= range.object_id %>][end_date]" 
     value="<%= range.end_date %>">
@@ -27,5 +31,8 @@
   <% end %>
   <br>
   
-  <input type="submit" value="Submit" id="listing-create-btn">
+  <div class="input">
+  <input type="submit" value="Submit" class="btn">
+  </div>
 </form>
+</section>
