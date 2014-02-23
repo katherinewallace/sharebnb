@@ -2,6 +2,8 @@ class BookingsController < ApplicationController
   
   before_filter :require_signed_in
   before_filter :require_listing_owner, only: [:index]
+  before_filter :require_host, only: [:accept, :decline]
+  before_filter :require_host_or_guest, only: [:cancel] 
   
   def create
     @listing = Listing.find(params[:listing_id])
@@ -38,25 +40,28 @@ class BookingsController < ApplicationController
   
   def accept
     @booking = Booking.find(params[:id])
-    @listing = @booking.listing
     @booking.change_status_to(1)
     @booking.overlapping_bookings.each { |other_booking| other_booking.change_status_to(2) }
+    @booking.notifications.create!({user_id: @booking.guest_id, title: "#{current_user.full_name} has accepted your booking for #{@listing.title}"})
     flash[:success] = "Booking has been accepted!"
     redirect_to listing_bookings_url(@listing)
   end
   
   def decline
     @booking = Booking.find(params[:id])
-    @listing = @booking.listing
     @booking.change_status_to(2)
+    @booking.notifications.create!({user_id: @booking.guest_id, title: "#{current_user.full_name} has declined your booking for #{@listing.title}"})
     flash[:success] = "Booking has been declined!"
     redirect_to listing_bookings_url(@listing)
   end
   
   def cancel
-    @booking = Booking.find(params[:id])
-    @listing = @booking.listing
     @booking.cancel!
+    if current_user.id == @booking.guest_id
+      @booking.notifications.create!({user_id: @listing.user_id, title: "#{current_user.full_name} has cancelled their booking from #{@booking.start_date} to #{@booking.end_date}"})
+    elsif current_user.id == @listing.user_id
+      @listing.notifications.create!({user_id: @booking.guest_id, title: "#{current_user.full_name} has cancelled your booking for #{@listing.title}"})
+    end
     flash[:success] = "Booking has been cancelled!"
     redirect_to :back
   end

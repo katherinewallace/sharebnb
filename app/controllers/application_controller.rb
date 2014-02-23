@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
   
   def require_listing_owner
-    
+   
     @listing = params[:listing_id] ? Listing.find(params[:listing_id]) : Listing.find(params[:id])
     unless current_user && @listing.user_id == current_user.id
       begin
@@ -51,6 +51,23 @@ class ApplicationController < ActionController::Base
     existing_listing = current_user.listing
     if existing_listing
       redirect_to listing_bookings_url(existing_listing)
+    end
+  end
+  
+  def require_host
+    @booking = Booking.find(params[:id])
+    @listing = @booking.listing
+    unless current_user.id == @listing.user_id
+      redirect_to :back
+    end
+  end
+  
+  def require_host_or_guest
+    @booking = Booking.find(params[:id])
+    @listing = @booking.listing
+    unless current_user.id == @booking.guest_id || 
+      current_user.id == @listing.user_id
+      redirect_to :back
     end
   end
 end

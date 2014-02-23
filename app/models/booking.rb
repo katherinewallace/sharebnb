@@ -39,6 +39,7 @@ class Booking < ActiveRecord::Base
   before_validation :assign_date_range, on: :create
   
   belongs_to :listing
+  
   belongs_to :guest, class_name: "User"
   has_many :notifications, as: :noteworthy
   
@@ -100,13 +101,14 @@ class Booking < ActiveRecord::Base
   end
   
   def overlapping_approved_bookings?
-    overlapping_bookings.any? { |request| request.status == 1 && !request.cancelled }
+    overlapping_bookings.any? { |request| request.status == 1 }
   end
   
   def overlapping_bookings
     where_condition = <<-SQL
       id != (CASE WHEN ? IS NULL THEN 0 ELSE ? END)
       AND listing_id = ?
+      AND cancelled = false
       AND ( (? >= start_date AND ? < end_date) OR (? > start_date AND ? <= end_date) )
     SQL
     overlaps = Booking.where(where_condition, self.id, self.id, self.listing_id, self.start_date, self.start_date, self.end_date, self.end_date)
