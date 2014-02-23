@@ -318,6 +318,17 @@ div.caption {
   margin: 0 10px 10px 0;
 }
 
+.flash {
+  margin: 20px;
+}
+
+.success{
+  color: #0c6;
+}
+
+.error {
+  color: #FF7373;
+}
 
 
 

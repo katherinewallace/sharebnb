@@ -10,9 +10,9 @@
 <%= debug(params) if Rails.env.development? %>
 <%= session if Rails.env.development? %>
 <%= render "shared/main_nav"%>
-<p class="success">
+<header class="flash success">
 <%= flash[:success] %>
-</p>
+</header>
 <%= yield %>
 
 </body>

@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
   before_filter :require_signed_in, only: [:new, :create]
+  before_filter :only_allow_one_listing, only: [:new, :create]
   before_filter :require_listing_owner, only: [:edit, :update, :destroy]
 
   def new
