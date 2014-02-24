@@ -41,7 +41,8 @@ def generate_listing!(user_id)
       retry
     end
   end
-
+  
+  return listing
 end
 
 # generate users
@@ -76,6 +77,7 @@ demo_user.picture_from_url("http://www.tehcute.com/pics/201107/Red-panda.jpg")
 demo_user.save!
 generate_listing!(demo_user.id)
 demo_listing = demo_user.listing
+demo_listing.notifications.create!({user_id: demo_user.id, title: "Welcome to sharebnb"})
 
 # make some pending bookings
 

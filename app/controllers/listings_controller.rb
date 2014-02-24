@@ -42,6 +42,7 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.find(params[:id])
+    @photos = Photo.where(listing_id: params[:id]).order(:ord_num)
     @options = params[:search] ? params[:search] : { "guest_num" => 1 }
     if @options["start_date"].blank?
        @options["start_date"] = @options["end_date"].present? ? (@options["end_date"].to_date - 1.week) : Date.today

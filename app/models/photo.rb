@@ -12,6 +12,7 @@
 #  photo_file_content_type :string(255)
 #  photo_file_file_size    :integer
 #  photo_file_updated_at   :datetime
+#  ord_num                 :integer          default(50)
 #
 
 class Photo < ActiveRecord::Base
@@ -24,7 +25,7 @@ class Photo < ActiveRecord::Base
       }, dependent: :destroy 
       
   belongs_to :listing, inverse_of: :photos
-  
+
   def picture_from_url(url)
       self.photo_file = url
   end

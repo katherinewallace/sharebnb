@@ -220,6 +220,7 @@ div.large-photo {
   max-width: 550px;
   max-height: 500px;
   position: relative;
+  overflow: hidden;
 }
 
 div.small-photo {
@@ -392,8 +393,36 @@ section.wide-list {
   margin: 0 10px 0 10px;
 }
 
+/*Photo carrousel*/
 
+#carrousel {
+  position: relative;
+  display: block;
+  width: 550px;
+  height: 370px;
+}
 
+#carrousel > ul {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: block;
+  width: 1650px;
+}
+
+#carrousel > ul > li {
+  float: left;
+  width: 550px;
+  height: 370px;
+}
+
+#carrousel-nav > span {
+  cursor: pointer;
+}
+
+#carrousel-nav > span:hover {
+  color: #009bf5;
+}
 
 
 

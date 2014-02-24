@@ -2,8 +2,20 @@
 
 <section class="content-bar">
   
-  <div class="large-photo interior-content">
-    <%= image_tag @listing.primary_photo_file.try(:url, :large) %>
+  <div class="interior-content">
+    <div class="large-photo group" id="carrousel">
+      <ul>
+        <% @photos.each do |photo| %>
+          <li><%= image_tag photo.photo_file.try(:url, :large) %></li>
+        <% end %>
+      </ul>  
+    </div>
+    
+    <div id="carrousel-nav">
+      <span class="previous">Previous</span> &mdash;
+      <strong class="number">0 / 0</strong> &mdash;
+      <span class="next">Next</span>
+    </div>
   </div>
   
   <section class="interior-content group">
@@ -95,3 +107,11 @@
     
   </article>
 </section>
+
+<script type="application/javascript">
+
+  $(document).ready(function(){
+    console.log(Carrousel)
+    Carrousel.init();
+  });
+</script>

@@ -16,7 +16,15 @@ class PhotosController < ApplicationController
     if @listing.save
       redirect_to listing_photos_url(@listing)
     else
-      flash[:errors] = @listing.errors.messages.values
+      @photos = @listing.photos.order(:ord_num).to_a
+      flash[:errors] = []
+      @photos.each do |photo|
+        flash[:errors].concat(photo.errors.messages.values)
+      end
+      until @photos.length >= 3  do
+        @photos << (@listing.photos.build)
+      end
+      fail
       render :new
     end
   end
@@ -35,11 +43,13 @@ class PhotosController < ApplicationController
   def primary
     @photo = Photo.find(params[:id])
     @photo.primary = true
+    @photo.ord_num = 0
     @photo.save!
     @others = @photo.listing.photos.where("id !=?", @photo.id)
     @others.each do |other| 
       if other.primary
         other.primary = false
+        other.ord_num = 50
         other.save!
       end
     end

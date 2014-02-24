@@ -9,6 +9,7 @@
 #  title           :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  new             :boolean          default(TRUE)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
