@@ -9,7 +9,7 @@
           <ul class="drop-down">
             <li><a href="<%= user_trips_url(current_user) %>">Your Trips</a></li>
             <li><a href="<%= edit_user_url(current_user) %>">Edit Profile</a></li>
-            <li class="list"><%= button_to "Logout", session_url, method: "delete" %></li>
+            <li class="list"><%= button_to "Logout", session_url, method: "delete", class: "btn delete" %></li>
           </ul>
         </li>
         <li><a href="<%= notifications_url %>">Notifications <%= unread_badge %></a>

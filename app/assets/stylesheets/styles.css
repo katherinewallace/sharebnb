@@ -9,6 +9,7 @@ html, body, header, h1, h2, nav, ul, li, a, footer, div, p {
 
 input[type="text"],
 input[type="password"],
+input[type="submit"],
 button,
 textarea {
   background: trasparent;
@@ -19,8 +20,9 @@ textarea {
   font-size: 100%;
   font: inherit;
   color: inherit;
-  height: 20px;
   display: inline-block;
+  border: 0;
+  -webkit-appearance: none;
 }
 
 body {
@@ -118,11 +120,6 @@ nav > ul > li > a {
   padding:24px 20px 24px 20px;
 }
 
-li > a {
-  display: block;
-  padding:10px 10px 10px 10px;
-}
-
 .drop-down {
   display: none;
   position: absolute;
@@ -132,21 +129,13 @@ li > a {
   z-index: 1;
 }
 
+.drop-down > li {
+  display: block; 
+  padding:10px;
+}
+
 li:hover > .drop-down {
   display: block;
-}
-
-li > form > div > input {
-  -webkit-appearance: none;
-  border: none;
-  background: transparent;
-  display: block;
-  padding:10px 10px 10px 10px;
-  font-size: 16px;
-}
-
-li > form > div > input:hover {
-  color: #00ddff;
 }
 
 li.list {
@@ -174,24 +163,32 @@ form > label {
   padding: 5px;
 }
 
-.btn {
+a.btn, input.btn[type="submit"] {
+  display: inline-block;
+  box-sizing: content-box;
+  vertical-align: baseline;
   font-size: 14px;
   color: white;
-  margin-left: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  -webkit-appearance: none;
+  padding: 5px 10px;
   background: #009bf5;
   border: 2px solid lightgray;
   border-radius: 7px;
-  margin: 0;
   cursor: pointer;
   text-align: center;
-  height: 30px;
 }
 
-.btn:hover{
-  color: inherit;
+a.btn:hover, input.btn[type="submit"]:hover {
+  background: #00649F;
+  color: white;
+}
+
+a.delete, input.delete[type="submit"] {
+  background: #FF7373;
+  text-weight: lighter;
+}
+
+a.delete:hover, input.delete[type="submit"]:hover {
+  background: #A62525;
 }
 
 /*Listings index*/
@@ -274,21 +271,21 @@ div.interior-content {
 .input > label {
   display: block;
   font-weight: bold;
-  padding: 5px 0 5px 0;
+  margin: 10px 0;
 }
 
-.input > input {
+.input > input[type="text"], input[type="password"], textarea, input[type="submit"] {
   padding: 0 10px 0 10px;
+  border: 1px solid lightgray;
+}
+
+.input > input[type="submit"] {
+  margin-top: 20px;
 }
 
 h3.center {
   text-align: center;
   margin: 10px;
-}
-
-.delete {
-  background: #FF7373;
-  text-weight: lighter;
 }
 
 ul.buttons {
@@ -328,25 +325,16 @@ div.caption {
 }
 
 .success{
-  color: #0c6;
+  color: #009bf5;
 }
 
 .error {
   color: #FF7373;
 }
 
-.input > input[type="submit"]{
-  margin: 20px 20px 20px 0;
-  height: 30px;
-}
-
 .user-form {
   min-width: 300px;
   border-right: 2px solid lightgray;
-}
-
-a.btn{
-  height: 20px;
 }
 
 textarea {
@@ -388,8 +376,6 @@ section.wide-list {
 }
 
 .wide-list > ul > li > a{
-  display: inline-block;
-  height: 10px;
   margin: 0 10px 0 10px;
 }
 
