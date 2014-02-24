@@ -92,6 +92,10 @@ class Listing < ActiveRecord::Base
     end
   end
   
+  def active_bookings
+    Booking.where("listing_id = ? AND (status = 0 OR status = 1) AND cancelled= false", self.id).count
+  end
+  
   def available_ranges
     date_ranges = self.date_ranges.order("start_date ASC")
     bookings = self.bookings.where(cancelled: false).where(status: 1).order("start_date ASC")

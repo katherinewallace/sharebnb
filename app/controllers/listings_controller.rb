@@ -107,8 +107,14 @@ class ListingsController < ApplicationController
   end
 
   def destroy
-    @listing.destroy
-    redirect_to root_url # change to dashboard
+    if @listing.active_bookings > 0
+      flash[:errors] = [["Please cancel or decline all confirmed/pending bookings before deleting your listing"]]
+      redirect_to :back
+    else
+      @listing.destroy
+      redirect_to root_url # change to dashboard
+    end
+    
   end
 
   def calendar

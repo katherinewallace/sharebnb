@@ -1,12 +1,16 @@
 <%= render "listing_nav" %>
+<section class="content-bar">
 <% if @ranges.nil? %>
   <p>This apartment is currently unavailable</p>
 <% else %>
-  <h3>This apartment is currently available for the following dates:</h3>
 
+  <h3>This apartment is currently available for the following dates:</h3>
+  <p>
   <ul>
     <% @ranges.each do |range| %>
     <li>From: <%= range[0] %>  to: <%= range[1] %></li>
     <% end %>
   </ul>
+</p>
 <% end %>
+</section>
