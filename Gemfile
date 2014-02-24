@@ -16,6 +16,7 @@ gem 'paperclip', '~> 3.5.3'
 gem 'aws-sdk'
 gem 'figaro'
 gem 'faker'
+gem 'kaminari'
 
 group :development do
   gem 'better_errors'

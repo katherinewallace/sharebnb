@@ -16,7 +16,7 @@ def generate_listing!(user_id)
     zip: Faker::Address.zip,
     neighborhood: neighborhood,
     price: rand(30..300),
-    title: "#{Faker::Lorem.word} Apartment",
+    title: "#{Faker::Lorem.word.capitalize} Apartment",
     description: "Awesome apartment in #{neighborhood}. Accomodates #{guest_num} people",
     user_id: user_id
   })

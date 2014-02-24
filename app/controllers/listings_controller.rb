@@ -36,7 +36,7 @@ class ListingsController < ApplicationController
 
   def index
     @search = params[:search]
-    @listings = Listing.filter(@search)
+    @listings = Kaminari.paginate_array(Listing.filter(@search)).page(params[:page])
     render :index
   end
 

@@ -3,7 +3,7 @@
 <header class="header-wrap group">
   <h2><a href="<%= listing_url(@listing) %>"><%= @listing.title %></a></h2>
   <ul class="buttons group">
-    <li><a href="<%= edit_listing_url(@listing) %>" class= "btn delete">Edit Listing</a></li>
+    <li><a href="<%= edit_listing_url(@listing) %>" class= "btn">Edit Listing</a></li>
     <li class="group"><%= button_to "delete listing", listing_url(@listing), method: :delete, class: "btn delete" %></li>
   </ul>
   
