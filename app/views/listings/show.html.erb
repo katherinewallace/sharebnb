@@ -69,15 +69,15 @@
     <%= auth_token %>
     
     <div>
-      <h3>$<%= @listing.price %> per night</h3>
+      <h3>$<span id="listing-price"><%= @listing.price %></span> per night</h3>
       <div class="input">
         <label for="booking_start_date">Check in</label>
-        <input type="date" name="booking[start_date]" value="<%= @booking.start_date %>" id="booking_start_date">
+        <input type="date" name="booking[start_date]" value="<%= @booking.start_date %>" id="booking_start_date" class="start_date">
       </div>
       
       <div class="input">
         <label for="booking_end_date">Check out</label>
-        <input type="date" name="booking[end_date]" value="<%= @booking.end_date %>" id="booking_end_date">
+        <input type="date" name="booking[end_date]" value="<%= @booking.end_date %>" id="booking_end_date" class="end_date">
       </div>
      
       <div class="input">
@@ -90,7 +90,7 @@
     <div class="top-divider">
       <h3>Subtotal</h3>
     
-      <p>$<%= @booking.subtotal ||= 0 %></p>
+      <p>$<span id="subtotal"><%= @booking.subtotal ||= 0 %></span></p>
     
       <input type="submit" value="Book it!" class="btn">
     </div>
@@ -109,9 +109,7 @@
 </section>
 
 <script type="application/javascript">
-
   $(document).ready(function(){
-    console.log(Carrousel)
     Carrousel.init();
   });
 </script>

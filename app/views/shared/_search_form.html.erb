@@ -7,10 +7,10 @@
   </select>
   
   <label for="search_start_date">Check in</label>
-  <input type="date" name="search[start_date]" value="<%= @search["start_date"] %>" id="search_start_date">
+  <input type="date" name="search[start_date]" value="<%= @search["start_date"] %>" id="search_start_date" class="start_date">
   
   <label for="search_end_date">Check out</label>
-  <input type="date" name="search[end_date]" value="<%= @search["end_date"] %>" id="search_end_date">
+  <input type="date" name="search[end_date]" value="<%= @search["end_date"] %>" id="search_end_date" class="end_date">
   
   <label for="search_guests">Guests</label>
   <input type="number" name="search[guest_num]" value="<%= @search["guest_num"] ? @search["guest_num"] : 1 %>" id="search_guests" min=1 max=20>
