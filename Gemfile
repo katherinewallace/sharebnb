@@ -26,6 +26,7 @@ group :development do
   gem 'debugger'
   gem 'pry-rails'
   gem 'annotate'
+  gem 'letter_opener'
 end
 
 group :development, :test do

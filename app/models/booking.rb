@@ -41,6 +41,7 @@ class Booking < ActiveRecord::Base
   belongs_to :listing
   
   belongs_to :guest, class_name: "User"
+  has_one :host, through: :listing, source: :user
   has_many :notifications, as: :noteworthy
   
   def change_status_to(new_status)

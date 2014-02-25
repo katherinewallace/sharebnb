@@ -6,10 +6,10 @@
 #  user_id         :integer
 #  noteworthy_id   :integer
 #  noteworthy_type :string(255)
-#  title           :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  new             :boolean          default(TRUE)
+#  code            :integer          not null
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

@@ -17,6 +17,8 @@
 #  user_id      :integer          not null
 #  zip          :string(255)
 #  title        :string(255)      not null
+#  latitude     :float
+#  longitude    :float
 #
 
 class Listing < ActiveRecord::Base

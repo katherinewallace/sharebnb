@@ -11,7 +11,7 @@ class BookingsController < ApplicationController
     @booking.guest_id = current_user.id
     if @booking.save
       flash[:success] = "Your booking has been requested.  The host will review and accept or decline your booking request."
-      @listing.notifications.create!({user_id: @listing.user_id, title: "#{current_user.full_name} has requested to book your space from #{@booking.start_date} to #{@booking.end_date}"})
+      @booking.notifications.create!({user_id: @listing.user_id, code: 0})
       redirect_to user_trips_url(current_user)
     else
       flash[:errors] = @booking.errors.messages.values
@@ -42,7 +42,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.change_status_to(1)
     @booking.overlapping_bookings.each { |other_booking| other_booking.change_status_to(2) }
-    @booking.notifications.create!({user_id: @booking.guest_id, title: "#{current_user.full_name} has accepted your booking for #{@listing.title}"})
+    @booking.notifications.create!({user_id: @booking.guest_id, code: 3})
     flash[:success] = "Booking has been accepted!"
     redirect_to listing_bookings_url(@listing)
   end
@@ -50,7 +50,7 @@ class BookingsController < ApplicationController
   def decline
     @booking = Booking.find(params[:id])
     @booking.change_status_to(2)
-    @booking.notifications.create!({user_id: @booking.guest_id, title: "#{current_user.full_name} has declined your booking for #{@listing.title}"})
+    @booking.notifications.create!({user_id: @booking.guest_id, code: 2})
     flash[:success] = "Booking has been declined!"
     redirect_to listing_bookings_url(@listing)
   end
@@ -58,9 +58,13 @@ class BookingsController < ApplicationController
   def cancel
     @booking.cancel!
     if current_user.id == @booking.guest_id
-      @booking.notifications.create!({user_id: @listing.user_id, title: "#{current_user.full_name} has cancelled their booking from #{@booking.start_date} to #{@booking.end_date}"})
+      if @booking.status == 1
+        @booking.notifications.create!({user_id: @listing.user_id, code: 1})
+      elsif @booking.status == 0
+        @booking.notifications.create!({user_id: @listing.user_id, code: 6})
+      end
     elsif current_user.id == @listing.user_id
-      @listing.notifications.create!({user_id: @booking.guest_id, title: "#{current_user.full_name} has cancelled your booking for #{@listing.title}"})
+      @booking.notifications.create!({user_id: @booking.guest_id, code: 4})
     end
     flash[:success] = "Booking has been cancelled!"
     redirect_to :back

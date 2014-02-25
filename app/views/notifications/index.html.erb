@@ -6,13 +6,9 @@
       <% if notification.new %>
         <div class="dot"><%= image_tag "unread.png" %></div>
       <% end %>
-      <%= notification.title %>
+      <%= notification.message %>
 
-      <% if notification.noteworthy_type == "Booking" %>
-      <a href="<%= user_trips_url(notification.user_id) %>" class="btn">View my trips</a></li>
-      <% elsif notification.noteworthy_type == "Listing" %>
-      <a href="<%= listing_bookings_url(notification.noteworthy_id) %>" class="btn">Manage my listing</a></li>
-      <% end %>
+      <a href="<%= notification.url_message[1] %>" class="btn"><%= notification.url_message[0] %></a></li>
     </li>
 <% end %>
   </ul>

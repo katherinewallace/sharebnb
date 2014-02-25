@@ -78,7 +78,7 @@ demo_user.picture_from_url("http://www.tehcute.com/pics/201107/Red-panda.jpg")
 demo_user.save!
 generate_listing!(demo_user.id)
 demo_listing = demo_user.listing
-demo_listing.notifications.create!({user_id: demo_user.id, title: "Welcome to sharebnb"})
+demo_user.caused_notifications.create!({user_id: demo_user.id, code: 5})
 
 # make some pending bookings
 
@@ -100,8 +100,7 @@ end
 
 
 # generate listings belonging to users
-
-2.times do 
+5.times do 
   user_id = rand(1..11)
   generate_listing!(user_id)
 end
