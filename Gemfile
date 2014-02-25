@@ -17,6 +17,7 @@ gem 'aws-sdk'
 gem 'figaro'
 gem 'faker'
 gem 'kaminari'
+gem 'geocoder'
 
 group :development do
   gem 'better_errors'

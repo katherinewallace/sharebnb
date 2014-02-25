@@ -28,7 +28,8 @@ class Listing < ActiveRecord::Base
   }
   
   attr_accessible :room_type, :guests, :bedrooms, :bathrooms, :city, :neighborhood, 
-    :address, :zip, :price, :description, :user_id, :title
+    :address, :zip, :price, :description, :user_id, :title, :latitude, :longitude
+    
   validates :user_id, presence: true
   validates :title, presence: {message: "Title cannot be blank"}
   validates :room_type, presence: { message: "You must choose a room type" }
@@ -41,6 +42,9 @@ class Listing < ActiveRecord::Base
   validates :zip, format: { with: /^\d{5}(?:[-\s]\d{4})?$/, message: "You must enter a valid zipcode" }
   validates :price, numericality: { greater_than_or_equal_to: 0, 
     less_than_or_equal_to: 5000, message: "You must enter a price between $0 and $5000 a night" }
+  
+  geocoded_by :full_address
+  after_validation :geocode, if: :address_changed?
   
   belongs_to :user
   has_many :date_ranges, inverse_of: :listing, dependent: :destroy
@@ -114,6 +118,10 @@ class Listing < ActiveRecord::Base
     end
     avail_ranges
     avail_ranges.reject { |range| range[0] >= range[1] }
+  end
+  
+  def full_address
+    "#{address}, #{city}, #{zip}"
   end
   
 end

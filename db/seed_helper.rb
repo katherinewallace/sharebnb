@@ -55,3 +55,7 @@ APT_PHOTOS = [
 "http://www.trendecoration.com/wp-content/uploads/inspirational-cute-modern-kitchen-decorating.jpg",
 "http://www.interiordev.com/imagedir/living-room-for-small-space-apartment-interior-design.jpg",
 ]
+
+CITY_ADDRESSES = {"New York" => YAML.load_file(File.open(Rails.root.join("db", "new_york.yml")))}
+
+

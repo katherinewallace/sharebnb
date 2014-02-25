@@ -3,23 +3,25 @@ require_relative 'seed_helper'
 
 def generate_listing!(user_id)
   guest_num = rand(2..9)
-  city = CITIES.keys.sample
-  neighborhood = CITIES[city].sample
+  city = CITY_ADDRESSES.keys.sample
+  address_info = CITY_ADDRESSES[city]["businesses"].sample["location"]
   
-  listing = Listing.create!({
+  listing = Listing.new({
     room_type: rand(0..2),
     guests: guest_num,
     bedrooms: guest_num/2,
     bathrooms: (guest_num/2 - 1),
     city: city,
-    address: Faker::Address.street_address,
-    zip: Faker::Address.zip,
-    neighborhood: neighborhood,
+    address: address_info["address"].first,
+    zip: address_info["postal_code"],
+    neighborhood: address_info["neighborhoods"].first,
     price: rand(30..300),
     title: "#{Faker::Lorem.word.capitalize} Apartment",
-    description: "Awesome apartment in #{neighborhood}. Accomodates #{guest_num} people",
+    description: "Awesome apartment in #{address_info["neighborhoods"].first}. Accomodates #{guest_num} people",
     user_id: user_id
   })
+  p listing
+  listing.save!
   random_num = rand(0..12)
   
   listing.date_ranges.create!({ 
@@ -27,9 +29,9 @@ def generate_listing!(user_id)
     end_date: Date.today + random_num.weeks + 1.month
   })
   
-  3.times {listing.photos.create!({
-    caption: Faker::Company.catch_phrase
-  })}
+  # 3.times {listing.photos.create!({
+#     caption: Faker::Company.catch_phrase
+#   })}
   
   listing.photos.each do |photo|
     begin
