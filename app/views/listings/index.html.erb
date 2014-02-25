@@ -1,7 +1,12 @@
 <section class="search-form">
   <%= render "shared/search_form" %>
 </section>
-<section class="search-results group">
+
+<section class="wide-list group">
+<div class="map-container group">
+<div id='map'></div>
+</div>
+<section class="search-results">
   <% if @listings.empty? %>
     <p>Your search returned no results, please try different search parameters</p>
   <% else %>
@@ -24,3 +29,18 @@
   <%= paginate @listings %>
   <% end %>
 </section>
+</section>
+<script>
+
+$(document).ready(function(){
+  var geojson = <%= (render partial: 'listings/geolisting.json.jbuilder', locals: {listings: @listings }).html_safe %>
+  var center = geojson[0]["geometry"]["coordinates"]
+
+
+  L.mapbox.map('map', 'examples.map-9ijuk24y')
+    .setView([center[1], center[0]], 12)
+    .featureLayer.setGeoJSON(geojson);
+})
+  
+</script>
+

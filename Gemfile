@@ -18,6 +18,7 @@ gem 'figaro'
 gem 'faker'
 gem 'kaminari'
 gem 'geocoder'
+gem 'jbuilder'
 
 group :development do
   gem 'better_errors'

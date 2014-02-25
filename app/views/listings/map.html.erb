@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Load GeoJSON</title>
+
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.css' rel='stylesheet' />
+
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+
+
+<span id='map'></span>
+<script>
+
+var geojson = <%= (render partial: 'listings/geolisting.json.jbuilder', locals: {listings: @listings }).html_safe %>
+var center = geojson[0]["geometry"]["coordinates"]
+
+
+L.mapbox.map('map', 'examples.map-9ijuk24y')
+  .setView([center[1], center[0]], 12)
+  .featureLayer.setGeoJSON(geojson);
+  
+</script>
+
+
+</body>
+</html>

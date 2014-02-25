@@ -37,7 +37,9 @@ class ListingsController < ApplicationController
   def index
     @search = params[:search]
     @listings = Kaminari.paginate_array(Listing.filter(@search)).page(params[:page])
+    # @listings_json = render_to_string( template: 'geolisting.json.jbuilder', locals: { listings: @listings})
     render :index
+    # render :map, layout: false
   end
 
   def show

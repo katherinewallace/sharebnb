@@ -193,10 +193,20 @@ a.delete:hover, input.delete[type="submit"]:hover {
 
 /*Listings index*/
 
+#map { 
+  position: absolute;
+  width: 40%; 
+  height: 100%; }
+
+div.map-container{
+  float: left;
+  width: 40%;
+  padding: 5px 30px 20px 20px;
+}
+
 .search-results {
-  display: block;
-  width: 600px;
-  margin: 20px;
+  float: left;
+  width: 50%;
 }
 
 a.listing {
@@ -204,6 +214,7 @@ a.listing {
   width: 250px;
   float: left;
   margin: 5px;
+  padding: 5px;
 }
 
 div.med-photo {
@@ -226,12 +237,6 @@ div.small-photo {
   outline: 2px solid lightgray;
 }
 
-img {
-  max-width: 100%;
-  max-height: 100%;
-  z-index: -1;
-}
-
 .search {
   margin: 20px 20px 20px 20px;
 }
@@ -239,7 +244,6 @@ img {
 .content-bar {
   margin: 20px;
   float: left;
- 
 }
 
 .float {
@@ -409,7 +413,4 @@ section.wide-list {
 #carrousel-nav > span:hover {
   color: #009bf5;
 }
-
-
-
 
