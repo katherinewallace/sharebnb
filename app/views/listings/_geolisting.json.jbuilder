@@ -13,5 +13,6 @@ json.array!(geolistings) do |listing|
       json.description "$#{listing.price} per night"
       json.marker_color "#009bf5"
       json.marker_size "large"
+      json.marker_id listing.id
     end
 end

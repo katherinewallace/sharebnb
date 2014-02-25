@@ -101,7 +101,7 @@ end
 
 # generate listings belonging to users
 
-80.times do 
+2.times do 
   user_id = rand(1..11)
   generate_listing!(user_id)
 end

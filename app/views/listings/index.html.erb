@@ -40,10 +40,21 @@ var geojson = <%= (render partial: 'listings/geolisting.json.jbuilder', locals: 
 $(document).ready(function(){
 
 
-  var map = L.mapbox.map('map', 'examples.map-9ijuk24y').setView([38, -102.0], 9);
+  var map = L.mapbox.map('map', 'examples.map-9ijuk24y').setView([40.67, -73.94], 4);
   var featureLayer = map.featureLayer
   map.featureLayer.setGeoJSON(geojson);
-   map.fitBounds(featureLayer.getBounds());
+  map.fitBounds(featureLayer.getBounds());
+  
+  map.featureLayer.eachLayer(
+    function(marker){
+      var listingID = marker.feature.properties["marker-id"];
+      $("a[data-id=" + listingID + "]").hover(function(){
+        map.panTo(marker.getLatLng());
+        marker.openPopup()
+      })
+    }
+    
+  )
 
     // function resetColors() {
     //     for (var i = 0; i < geojson.length; i++) {
