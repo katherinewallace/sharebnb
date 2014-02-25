@@ -1,23 +1,3 @@
-CITIES = {
-  "New York" => 
-    [ "Upper East",
-    "Upper West",
-    "Midtown",
-    "Astoria",
-    "Jackson Heights",
-    "Park Slope",
-    "Harlem",
-    "Crown Heights"], 
-   
-  "Rome" => 
-    ["Trastevere",
-    "Campo de' Fiori",
-    "Piazza Navona",
-    "Vaticano",
-    "Testaccio",
-    "Prati",
-    "Via Veneto"]
-}
 
 USER_PHOTOS = [
   "http://2.bp.blogspot.com/-WeU2_SrjHOU/Tc3oC6jpFPI/AAAAAAAAAJQ/JancZyeKqLo/s1600/cute-animals4.jpg",
@@ -56,6 +36,6 @@ APT_PHOTOS = [
 "http://www.interiordev.com/imagedir/living-room-for-small-space-apartment-interior-design.jpg",
 ]
 
-CITY_ADDRESSES = {"New York" => YAML.load_file(File.open(Rails.root.join("db", "new_york.yml")))}
+CITY_ADDRESSES = {"New York" => YAML.load_file(File.open(Rails.root.join("db", "new_york.yml"))), "Philadelphia" => YAML.load_file(File.open(Rails.root.join("db", "philadelphia.yml")))}
 
 

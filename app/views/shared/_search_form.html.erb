@@ -1,9 +1,8 @@
 <form class="search" action="<%= listings_url %>" method="GET">
   <label for="search_city">City</label>
   <select name="search[city]" id="search_city">
-    <option value="">--</option>
     <option value="New York" <%= @search["city"] == "New York" ? "selected": ""%>>New York</option>
-    <option value="Rome" <%= @search["city"] == "Rome" ? "selected": ""%>>Rome</option>     
+    <option value="Philadelphia" <%= @search["city"] == "Philadelphia" ? "selected": ""%>>Philadelphia</option>     
   </select>
   
   <label for="search_start_date">Check in</label>

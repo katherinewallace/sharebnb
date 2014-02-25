@@ -20,7 +20,6 @@ def generate_listing!(user_id)
     description: "Awesome apartment in #{address_info["neighborhoods"].first}. Accomodates #{guest_num} people",
     user_id: user_id
   })
-  p listing
   listing.save!
   random_num = rand(0..12)
   

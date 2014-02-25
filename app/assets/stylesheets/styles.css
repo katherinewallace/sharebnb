@@ -237,6 +237,21 @@ div.small-photo {
   outline: 2px solid lightgray;
 }
 
+div.med-photo > img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+div.large-photo > img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+div.small-photo > img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .search {
   margin: 20px 20px 20px 20px;
 }
