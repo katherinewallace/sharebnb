@@ -196,7 +196,7 @@ a.delete:hover, input.delete[type="submit"]:hover {
 #map { 
   position: absolute;
   width: 40%; 
-  height: 70%; }
+  height: 80%; }
 
 div.map-container{
   float: left;
@@ -253,6 +253,11 @@ div.large-photo > ul > li > img {
 }
 
 div.small-photo > img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+div.dot > img {
   max-width: 100%;
   max-height: 100%;
 }
