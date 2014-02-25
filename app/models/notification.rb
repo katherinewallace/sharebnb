@@ -20,6 +20,18 @@ class Notification < ActiveRecord::Base
   belongs_to :user
   
   validates :user_id, :noteworthy_id, :noteworthy_type, :code, presence: true
+  
+  after_validation on: :create
+  
+  CODES = {
+    0 => "New booking request",
+    1 => "Booking cancelled",
+    2 => "Booking request declined",
+    3 => "Booking confirmed",
+    4 => "Booking cancelled",
+    5 => "Welcome",
+    6 => "Booking request cancelled"
+  }
 
   def self.unread(user_id)
     Notification.where("user_id = ? AND new = true", user_id).count(:id)
