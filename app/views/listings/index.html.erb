@@ -6,6 +6,7 @@
 <div class="map-container group">
 <div id='map'></div>
 </div>
+<%= paginate @listings %>
 <section class="search-results">
   <% if @listings.empty? %>
     <p>Your search returned no results, please try different search parameters</p>
@@ -26,20 +27,42 @@
     </li>
     <% end %>
   </ul>
-  <%= paginate @listings %>
   <% end %>
+  <%= paginate @listings %>
 </section>
+
 </section>
+
 <script>
 
+var geojson = <%= (render partial: 'listings/geolisting.json.jbuilder', locals: {listings: @listings }).html_safe %>
+
 $(document).ready(function(){
-  var geojson = <%= (render partial: 'listings/geolisting.json.jbuilder', locals: {listings: @listings }).html_safe %>
-  var center = geojson[0]["geometry"]["coordinates"]
 
 
-  L.mapbox.map('map', 'examples.map-9ijuk24y')
-    .setView([center[1], center[0]], 12)
-    .featureLayer.setGeoJSON(geojson);
+  var map = L.mapbox.map('map', 'examples.map-9ijuk24y').setView([38, -102.0], 9);
+  var featureLayer = map.featureLayer
+  map.featureLayer.setGeoJSON(geojson);
+   map.fitBounds(featureLayer.getBounds());
+
+    // function resetColors() {
+    //     for (var i = 0; i < geojson.length; i++) {
+    //         geojson[i].properties['marker-color'] = geojson[i].properties['old-color'] ||
+    //             geojson[i].properties['marker-color'];
+    //     }
+    //     map.featureLayer.setGeoJSON(geojson);
+    // }
+    // 
+    // map.featureLayer.on('click',function(e) {
+    //     resetColors();
+    //     e.layer.feature.properties['old-color'] = e.layer.feature.properties['marker-color'];
+    //     e.layer.feature.properties['marker-color'] = '#FF7373';
+    //     map.featureLayer.setGeoJSON(geojson);
+    // });
+    // 
+    // map.on('click', resetColors);
+
+
 })
   
 </script>

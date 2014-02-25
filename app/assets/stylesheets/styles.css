@@ -196,7 +196,7 @@ a.delete:hover, input.delete[type="submit"]:hover {
 #map { 
   position: absolute;
   width: 40%; 
-  height: 100%; }
+  height: 70%; }
 
 div.map-container{
   float: left;
