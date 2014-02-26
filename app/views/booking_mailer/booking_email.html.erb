@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style type="text/css" media="screen">
+    body {
+      color: #505859;
+      font-family: sans-serif;
+      font-size: 16;
+    }
+      
+      a {
+       color: #009bf5;
+       text-decoration: none;
+      }
+      
+      a:hover >  {
+        color: #00ddff;
+      }
+      
+      #logo {
+        color: #009bf5;
+        font-weight: bold;
+        font-style: italic;
+        font-size: 18;
+      }
+      
+      h1 {
+        font-size: 20;  
+        }
+        
+      .btn {
+          display: inline-block;
+          box-sizing: content-box;
+          vertical-align: baseline;
+          font-size: 14px;
+          color: white;
+          padding: 5px 10px;
+          background: #009bf5;
+          border: 2px solid lightgray;
+          border-radius: 7px;
+          cursor: pointer;
+          text-align: center;
+        }
+        
+      .btn:hover {
+          background: #00649F;
+        }
+        
+      a.delete{
+        background: #FF7373;
+      }
+      
+      a.delete:hover {
+        background: #A62525;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <a id="logo" href="<%= root_url %>">sharebnb</a>
+    <h1>Hi <%= @user.full_name %></h1>
+    <p>
+      <%= @full_message %>
+    </p>
+    <a href="<%= @url_msg[1] %>">
+      <%= @url_msg[0] %>
+    </a>
+    <% if @accept_url_msg %>
+      <a class="btn" href="<%= @accept_url_msg[1] %>"><%= @accept_url_msg[0] %></a>
+      <a class="btn delete" href="<%= @decline_url_msg[1] %>"><%= @decline_url_msg[0] %></a>
+    <% end %>
+  </body>
+</html>

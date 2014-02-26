@@ -39,6 +39,7 @@ class ApplicationController < ActionController::Base
    
     @listing = params[:listing_id] ? Listing.find(params[:listing_id]) : Listing.find(params[:id])
     unless current_user && @listing.user_id == current_user.id
+      flash[:errors] = [["Please make sure you are signed in with the correct account and then click the link to 'Your Listing'"]]
       begin
         redirect_to :back
       rescue ActionController::RedirectBackError
@@ -57,8 +58,13 @@ class ApplicationController < ActionController::Base
   def require_host
     @booking = Booking.find(params[:id])
     @listing = @booking.listing
-    unless current_user.id == @listing.user_id
-      redirect_to :back
+    unless current_user.id == @listing.user_id || params[:host] == @booking.owner_token
+      flash[:errors] = [["Please make sure you are signed in with the correct account and then click the link to 'Your Listing'"]]
+      begin 
+        redirect_to :back
+      rescue ActionController::RedirectBackError
+        redirect_to root_url
+      end
     end
   end
   
@@ -67,7 +73,11 @@ class ApplicationController < ActionController::Base
     @listing = @booking.listing
     unless current_user.id == @booking.guest_id || 
       current_user.id == @listing.user_id
-      redirect_to :back
+      begin 
+        redirect_to :back
+      rescue ActionController::RedirectBackError
+        redirect_to root_url
+      end
     end
   end
 end

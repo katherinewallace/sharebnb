@@ -21,7 +21,7 @@ class Notification < ActiveRecord::Base
   
   validates :user_id, :noteworthy_id, :noteworthy_type, :code, presence: true
   
-  after_validation on: :create
+  after_validation :send_email, on: :create
   
   CODES = {
     0 => "New booking request",
@@ -51,7 +51,7 @@ class Notification < ActiveRecord::Base
   
   def accept_url_msg
     if self.code == 0
-      ["Accept this booking", accept_booking_url(self.noteworthy)]
+      ["Accept this booking", "#{accept_booking_url(self.noteworthy)}/?host=#{self.noteworthy.owner_token}"]
     end
   end
   
@@ -82,6 +82,12 @@ class Notification < ActiveRecord::Base
       ""
     end
   end
-
+  
+  def send_email
+    if self.code <= 6 
+      msg = BookingMailer.booking_email(self)
+      msg.deliver!
+    end
+  end
   
 end

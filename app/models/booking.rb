@@ -37,6 +37,7 @@ class Booking < ActiveRecord::Base
   
   before_validation :assign_price, on: :create
   before_validation :assign_date_range, on: :create
+  after_validation :assign_owner_token, on: :create
   
   belongs_to :listing
   
@@ -47,6 +48,7 @@ class Booking < ActiveRecord::Base
   def change_status_to(new_status)
     if self.status == 0 && !self.cancelled
       self.status = new_status;
+      self.owner_token = nil
       self.save!
       return true
     else
@@ -65,6 +67,10 @@ class Booking < ActiveRecord::Base
      AND (? BETWEEN start_date AND end_date)
     SQL
     self.date_range_id = DateRange.where(where_condition, self.listing_id, self.start_date, self.end_date).pluck(:id).first
+  end
+  
+  def assign_owner_token
+    self.owner_token ||= SecureRandom::urlsafe_base64
   end
   
   def cancel!

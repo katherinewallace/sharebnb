@@ -303,13 +303,15 @@ div.interior-content {
   margin: 10px 0;
 }
 
-.input > input[type="text"], input[type="password"], textarea, input[type="submit"] {
-  padding: 0 10px 0 10px;
+.input > input[type="text"], input[type="password"], textarea, input[type="date"], input[type="number"], input[type="select"] {
+  padding: 5px 5px;
   border: 1px solid lightgray;
 }
 
 .input > input[type="submit"] {
   margin-top: 20px;
+  padding: 0px 10px;
+  border: 1px solid lightgray;
 }
 
 h3.center {

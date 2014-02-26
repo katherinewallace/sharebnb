@@ -40,18 +40,30 @@ class BookingsController < ApplicationController
   
   def accept
     @booking = Booking.find(params[:id])
-    @booking.change_status_to(1)
-    @booking.overlapping_bookings.each { |other_booking| other_booking.change_status_to(2) }
-    @booking.notifications.create!({user_id: @booking.guest_id, code: 3})
-    flash[:success] = "Booking has been accepted!"
+    if @booking.change_status_to(1)
+      @booking.notifications.create!({user_id: @booking.guest_id, code: 3})
+      flash[:success] = "Booking has been accepted!"
+    else
+      flash[:errors] = [["This action is no longer available.  Please review the current status of your bookings"]]
+    end
+    @booking.overlapping_bookings.each do |other_booking|
+      if other_booking.status == 0 && !other_booking.cancelled
+        other_booking.change_status_to(2)
+        other_booking.notifications.create!({user_id: other_booking.guest_id, code: 2})
+      end
+    end
+    
     redirect_to listing_bookings_url(@listing)
   end
   
   def decline
     @booking = Booking.find(params[:id])
-    @booking.change_status_to(2)
-    @booking.notifications.create!({user_id: @booking.guest_id, code: 2})
-    flash[:success] = "Booking has been declined!"
+    if @booking.change_status_to(2)  
+      @booking.notifications.create!({user_id: @booking.guest_id, code: 2})
+      flash[:success] = "Booking has been declined!"
+    else
+      flash[:errors] = [["This action is no longer available.  Please review the current status of your bookings"]]
+    end
     redirect_to listing_bookings_url(@listing)
   end
   
