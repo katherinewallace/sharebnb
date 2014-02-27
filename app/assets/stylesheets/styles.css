@@ -203,12 +203,14 @@ a.delete:hover, input.delete[type="submit"]:hover {
 #map { 
   position: absolute;
   width: 40%; 
-  height: 80%; }
+  height: 100%; }
 
 div.map-container{
   float: left;
   width: 40%;
   padding: 5px 30px 20px 20px;
+  clear: both;
+  height: 500px;
 }
 
 .search-results {
