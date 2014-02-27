@@ -11,6 +11,12 @@
     <li>From: <%= range[0] %>  to: <%= range[1] %></li>
     <% end %>
   </ul>
-</p>
+  </p>
 <% end %>
 </section>
+<div class="calendar" id="listing-calendar"></div>
+
+<script type="application/json" id="bootstrapped-ranges">
+<%= @ranges.to_json.html_safe %>
+</script>
+

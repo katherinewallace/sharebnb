@@ -11,6 +11,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'paperclip', '~> 3.5.3'
 gem 'aws-sdk'

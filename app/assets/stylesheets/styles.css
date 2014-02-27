@@ -489,3 +489,32 @@ footer > ul > li {
   width: 320px;
 }
 
+/*calendar*/
+
+.calendar {
+  margin: 20px;
+  display: block;
+  width: 1100px;
+  clear: both;
+}
+.calendar > .ui-datepicker {
+}
+
+.calendar > .ui-datepicker > .ui-datepicker-header {
+
+}
+
+.calendar > .ui-datepicker > .ui-datepicker-header > .ui-datepicker-title {
+  margin: auto;
+  font-align: center;
+}
+
+.ui-datepicker-calendar > tbody > tr > td.blue > a { 
+    background-color: #009bf5 !important;
+    background-image:none !important;
+}
+
+.ui-datepicker-calendar > tbody > tr > td > a { 
+    background-color: #FF7373 !important;
+    background-image: none !important;
+}
