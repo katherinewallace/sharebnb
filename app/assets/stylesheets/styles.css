@@ -363,6 +363,7 @@ div.caption {
 }
 
 .success{
+  top: 20px;
   position: absolute;
   color: #009bf5;
 }
