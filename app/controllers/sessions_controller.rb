@@ -6,7 +6,16 @@ class SessionsController < ApplicationController
   end
   
   def create
-    @user = User.find_by_credentials(params[:user][:email], params[:user][:password])
+    auth = request.env['omniauth.auth']
+    if auth
+      @user = User.find_by_uid(auth[:uid])
+      unless @user
+        @user = User.update_or_create_from_fb(auth)
+      end
+    else
+      @user = User.find_by_credentials(params[:user][:email], params[:user][:password])
+    end
+    
     if @user
       login(@user)
       flash[:success] = "Welcome #{@user.full_name}!"
@@ -16,6 +25,7 @@ class SessionsController < ApplicationController
       @user = User.new(email: params[:user][:email])
       render :new
     end
+    
   end
   
   def destroy

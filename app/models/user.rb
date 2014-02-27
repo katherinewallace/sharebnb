@@ -21,7 +21,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :fname, :lname, :gender, :bday, :email, :phone, :description, :password, :password_confirmation, :profile_pic
+  attr_accessible :fname, :lname, :gender, :bday, :email, :phone, :description, :password, :password_confirmation, :profile_pic, :uid
   attr_reader :password, :password_confirmation
   
   has_one :listing, dependent: :destroy
@@ -45,8 +45,33 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: {message: "That email has already been taken"}
   validates_attachment_content_type :profile_pic, :content_type => %w(image/jpeg image/jpg image/png)
   
+  def self.update_or_create_from_fb(auth)
+    user = User.find_by_email(auth[:info][:email])
+    if user
+      pic = user.profile_pic.exists? ? user.profile_pic : "http://graph.facebook.com/#{auth[:uid]}/picture?type=large"
+      gender = user.gender ? user.gender : auth[:extra][:raw_info][:gender]
+      user.update_attributes!(
+      uid: auth[:uid],
+      profile_pic: pic,
+      gender: gender
+      )
+    else
+      temp_password = SecureRandom::urlsafe_base64(8)
+      user = User.create!(
+      uid: auth[:uid],
+      fname: auth[:info][:first_name],
+      lname: auth[:info][:last_name],
+      password: temp_password,
+      password_confirmation: temp_password,
+      email: auth[:info][:email],
+      profile_pic: "http://graph.facebook.com/#{auth[:uid]}/picture?type=large",
+      gender: auth[:extra][:raw_info][:gender] )
+    end
+    user
+  end
+  
   def picture_from_url(url)
-      self.profile_pic = open(url)
+    self.profile_pic = open(url)
   end
   
   def is_password?(password)

@@ -1,12 +1,12 @@
 sharebnb
-Hi <%= @user.full_name %>
 
-  <%= @full_message %>
+Hi <%= @user.full_name %>,
 
+<%= @full_message %>
 
-  <%= @url_msg[0] %>
+Link to <%= @url_msg[0] %> : <%= @url_msg[1] %>
 
 <% if @accept_url_msg %>
-  <%= @accept_url_msg[1] %> <%= @accept_url_msg[0] %>
-  <%= @decline_url_msg[1] %>" <%= @decline_url_msg[0] %>
+Link to <%= @accept_url_msg[0] %> : <%= @accept_url_msg[1] %> 
+Link to <%= @decline_url_msg[0] %> : <%= @decline_url_msg[1] %>" 
 <% end %>

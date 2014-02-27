@@ -7,6 +7,8 @@ Sharebnb::Application.routes.draw do
   
   get "/users/:id/bookings", { as: :user_trips, controller: :bookings, action: :trips }
   
+  get "auth/facebook/callback" => "sessions#create"
+  
   resources :listings do
     resources :bookings, only: [:create, :index]
     resources :photos, only: [:new, :create, :index]
