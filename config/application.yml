@@ -5,3 +5,5 @@ production:
   AWS_BUCKET: sharebnb-production
 development:
   AWS_BUCKET: sharebnb-dev
+  SENDGRID_USERNAME: app22306718@heroku.com
+  SENDGRID_PASSWORD: btd3nl0f

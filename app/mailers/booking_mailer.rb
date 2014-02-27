@@ -1,5 +1,5 @@
 class BookingMailer < ActionMailer::Base
-  default from: "notifications@sharebnb.com"
+  default from: "notifications@example.com"
   
   def booking_email(notification)
     @user = notification.user
