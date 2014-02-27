@@ -24,13 +24,15 @@ var DateScripts = (function(){
     vars.$endDate.on("blur", calcSubtotal)
   }
   
-  var updateEndDate = function(){
-    var startString = vars.$startDate.val();
+  var updateEndDate = function(event){
+    console.log($(event.currentTarget).nextAll("input.end_date").first().val())
+    var startString = $(event.currentTarget).val();
    
     var startDate = new Date(startString);
     var endDate = new Date(startDate.getTime())
     endDate.setDate(startDate.getDate() + 7);
-    vars.$endDate.val(endDate.toISOString().replace(RegExp("T.*$"), ""));
+    $endDate = $(event.currentTarget).nextAll("input.end_date").first()
+    $endDate.val(endDate.toISOString().replace(RegExp("T.*$"), ""));
     calcSubtotal(startDate, endDate);
   }
   
