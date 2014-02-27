@@ -84,7 +84,7 @@ class Notification < ActiveRecord::Base
   end
   
   def send_email
-    if self.code <= 6 
+    unless self.code == 5 || self.code > 6
       msg = BookingMailer.booking_email(self)
       msg.deliver!
     end
