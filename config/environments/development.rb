@@ -38,8 +38,6 @@ Sharebnb::Application.configure do
   Rails.application.routes.default_url_options[:host] = 'localhost:3000'
   
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
-
-  config.action_mailer.delivery_method = :letter_opener
   
   config.paperclip_defaults = {
     storage: :s3,
