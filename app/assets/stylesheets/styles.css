@@ -153,10 +153,17 @@ li.list {
 /*Home page*/
 
 .main-search {
-  display: block;
-  margin-top: 100px;
+  position: absolute;
+  top: 100px;
   padding: 60px;
   width: 80%;
+  color: #fff;
+  text-shadow: 2px 1px black;
+}
+
+.main-search > form > input {
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 form > label {
@@ -356,6 +363,7 @@ div.caption {
 }
 
 .success{
+  position: absolute;
   color: #009bf5;
 }
 
@@ -439,5 +447,22 @@ section.wide-list {
 
 #carrousel-nav > span:hover {
   color: #009bf5;
+}
+
+section.content {
+  position: relative;
+}
+
+/*footer*/
+
+.footer {
+  padding: 20px;
+}
+
+footer > ul > li {
+  display: block;
+  float: left;
+  margin: 20px;
+  width: 320px;
 }
 
