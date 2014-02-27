@@ -1,0 +1,12 @@
+sharebnb
+Hi <%= @user.full_name %>
+
+  <%= @full_message %>
+
+
+  <%= @url_msg[0] %>
+
+<% if @accept_url_msg %>
+  <%= @accept_url_msg[1] %> <%= @accept_url_msg[0] %>
+  <%= @decline_url_msg[1] %>" <%= @decline_url_msg[0] %>
+<% end %>
