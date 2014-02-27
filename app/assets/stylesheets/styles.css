@@ -283,6 +283,13 @@ div.dot > img {
   float: left;
 }
 
+#description {
+  width: 250px;
+}
+
+td{
+  padding: 0px 10px;
+}
 .divider {
   border-left: 2px solid lightgray;
 }
