@@ -6,7 +6,7 @@ $(document).ready(function(){
     $(event.currentTarget).empty();
     $(status).addClass("error");
     $(status).html("cancelled");
-
+    $(".flash").html("Booking has been cancelled!")
   });
   
   $("#confirmed-booking-list").on("ajax:success", "a", function(event, data){
@@ -16,6 +16,7 @@ $(document).ready(function(){
     if(remaining.length === 0){
       $("#confirmed-booking-list").html("<li>You have no confirmed bookings</li>")
     }
+    $(".flash").html("Booking has been cancelled!");
   });
   
 })
