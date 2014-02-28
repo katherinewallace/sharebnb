@@ -5,14 +5,19 @@
     <% unless @bookings.present? %>
       <li>You have no trips</li>  
   <% else %>
+  
   <% @bookings.each do |booking| %>
     <li class="group">
+      
       <h3><a href="<%= listing_url(booking.listing) %>"><%= booking.listing.title %></a></h3>
+      
       <div class="float">
         <p><%= booking.listing.city %><p>
         <p><%= "#{booking.start_date.month}/#{booking.start_date.day}  -  #{booking.end_date.month}/#{booking.end_date.day} " %></p>
       </div>
+      
       <div class="float">
+        <p>
       <% if booking.cancelled %>    
         Status:<strong class="error"> cancelled</strong>
       <% else %>
@@ -21,7 +26,9 @@
       <div class="input float">
           <a href="<%= cancel_booking_url(booking) %>" data-remote="true" class="btn delete">Cancel booking</a>
         </div>
+      </p>
         <% end %>
+        
       <% end %>
   </li>
   <% end %>
