@@ -34,8 +34,9 @@ def generate_listing!(user_id)
   
   listing.photos.each do |photo|
     begin
-      photo.picture_from_url(APT_PHOTOS.sample)
-      puts APT_PHOTOS.sample
+      url = APT_PHOTOS.sample
+      photo.picture_from_url(url)
+      puts url
       photo.save!
     rescue
       puts "skipped photo #{photo.photo_file.url}"
@@ -100,7 +101,7 @@ end
 
 
 # generate listings belonging to users
-70.times do 
+60.times do 
   user_id = rand(1..11)
   generate_listing!(user_id)
 end

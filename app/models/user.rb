@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   end
   
   def picture_from_url(url)
-    self.profile_pic = open(url)
+    self.profile_pic = url
   end
   
   def is_password?(password)
