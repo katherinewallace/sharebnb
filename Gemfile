@@ -22,6 +22,8 @@ gem 'faker'
 gem 'kaminari'
 gem 'geocoder'
 gem 'jbuilder'
+gem 'backbone-on-rails'
+gem 'ejs'
 
 group :development do
   gem 'better_errors'
