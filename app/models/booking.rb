@@ -32,7 +32,7 @@ class Booking < ActiveRecord::Base
   validates :guest_num, presence: { message: "Please select the number of guests" }
   validate :valid_range
   validate :availability, on: :create
-  validate :valid_start_date
+  validate :valid_start_date, on: :create
   validate :accomodates_guests
   
   before_validation :assign_price, on: :create
@@ -116,6 +116,7 @@ class Booking < ActiveRecord::Base
       id != (CASE WHEN ? IS NULL THEN 0 ELSE ? END)
       AND listing_id = ?
       AND cancelled = false
+      AND status != 2
       AND ( (? >= start_date AND ? < end_date) OR (? > start_date AND ? <= end_date) )
     SQL
     overlaps = Booking.where(where_condition, self.id, self.id, self.listing_id, self.start_date, self.start_date, self.end_date, self.end_date)
