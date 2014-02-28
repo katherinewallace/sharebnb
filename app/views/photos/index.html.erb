@@ -8,7 +8,7 @@
 
 <ul class="rep-content">
 <% @photos.each do |photo| %>
-  <li>
+  <li class="photo-stuff">
     <div class="large-photo">
       <% if photo.primary && listing_owner?(@listing) %>
       <div class="primary">primary</div>
@@ -20,7 +20,7 @@
     <% if listing_owner?(@listing) %>
     <ul class="group">  
       <li class="float">
-        <%= button_to "delete photo", photo_url(photo), method: :delete, class: "btn delete" %>
+        <%= button_to "delete photo", photo_url(photo), method: :delete, class: "btn delete", remote: true %>
       </li>
       <% unless photo.primary %>
       <li class="float">

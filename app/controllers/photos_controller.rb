@@ -32,7 +32,11 @@ class PhotosController < ApplicationController
   def destroy
     @photo = Photo.find(params[:id])
     @photo.destroy
-    redirect_to listing_photos_url(@photo.listing)
+    if request.xhr?
+      head :ok 
+    else
+      redirect_to listing_photos_url(@photo.listing)
+    end
   end
   
   def index

@@ -19,4 +19,7 @@ $(document).ready(function(){
     $(".flash").html("Booking has been cancelled!");
   });
   
+  $(".button_to").on("ajax:success", function(event,data){
+    $(event.target).closest(".photo-stuff").remove()
+  });
 })
