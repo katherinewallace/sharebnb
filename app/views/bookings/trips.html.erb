@@ -1,7 +1,7 @@
 <h1>Your Trips</h1>
 <section class="content-bar">
   <a href="<%= root_url %>" class="btn">Book a new trip</a>
-  <ul class="rep-content">
+  <ul class="rep-content" id="booking-list">
     <% unless @bookings.present? %>
       <li>You have no trips</li>  
   <% else %>
@@ -16,10 +16,10 @@
       <% if booking.cancelled %>    
         Status:<strong class="error"> cancelled</strong>
       <% else %>
-        Status: <strong><%= Booking::STATUS[booking.status] %></strong>
+        Status: <strong class="status"><%= Booking::STATUS[booking.status] %></strong>
       <% unless booking.status == 2 %>
       <div class="input float">
-          <a href="<%= cancel_booking_url(booking) %>" class="btn delete">Cancel booking</a>
+          <a href="<%= cancel_booking_url(booking) %>" data-remote="true" class="btn delete">Cancel booking</a>
         </div>
         <% end %>
       <% end %>

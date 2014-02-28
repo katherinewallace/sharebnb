@@ -78,8 +78,12 @@ class BookingsController < ApplicationController
     elsif current_user.id == @listing.user_id
       @booking.notifications.create!({user_id: @booking.guest_id, code: 4})
     end
-    flash[:success] = "Booking has been cancelled!"
-    redirect_to :back
+    if request.xhr?
+      render json: @booking
+    else
+      flash[:success] = "Booking has been cancelled!"
+      redirect_to :back
+    end
   end
   
 end
