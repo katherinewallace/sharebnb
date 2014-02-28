@@ -231,6 +231,7 @@ a.listing {
   float: left;
   margin: 5px;
   padding: 5px;
+  background: #fff;
 }
 
 div.med-photo {
@@ -321,6 +322,7 @@ td{
   margin: 10px;
   border: 2px solid lightgray;
   padding: 10px;
+  background: white;
 }
 
 div.interior-content {
