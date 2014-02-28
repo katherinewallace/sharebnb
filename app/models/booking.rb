@@ -43,7 +43,7 @@ class Booking < ActiveRecord::Base
   
   belongs_to :guest, class_name: "User"
   has_one :host, through: :listing, source: :user
-  has_many :notifications, as: :noteworthy
+  has_many :notifications, as: :noteworthy, dependent: :destroy
   
   def change_status_to(new_status)
     if self.status == 0 && !self.cancelled
