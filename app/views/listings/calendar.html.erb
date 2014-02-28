@@ -8,7 +8,7 @@
   <p>
   <ul>
     <% @ranges.each do |range| %>
-    <li>From: <%= range[0] %>  to: <%= range[1] %></li>
+    <li>From: <span class="start-date"><%= range[0] %></span>  to: <span class="end-date"><%= range[1] %></span></li>
     <% end %>
   </ul>
   </p>
@@ -16,7 +16,7 @@
 </section>
 <div class="calendar" id="listing-calendar"></div>
 
-<script type="application/json" id="bootstrapped-ranges">
-<%= @ranges.to_json.html_safe %>
-</script>
+<!-- <script type="application/json" id="bootstrapped-ranges">
+  <%#= @ranges.to_json.html_safe %>
+</script> -->
 

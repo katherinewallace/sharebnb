@@ -6,24 +6,22 @@ $(document).ready(function(){
       this.className = className;
   };
   
- var ranges = $('#bootstrapped-ranges').html();
- if(ranges){
-   ranges = JSON.parse(ranges);
-    var events = {};
-    ranges.forEach(function(range){
-      startString = String(range[0]) + " 00:00:00"
-      endString = String(range[1] + " 00:00:00")
-      var startDate = new Date(startString)
-      var endDate = new Date(endString)
-      while (startDate < endDate){
-        events[startDate] = new Event("Available", "blue")
-      
-        var newDate = startDate.setDate(startDate.getDate() + 1);
-        startDate = new Date(newDate);
-      }
-    })
- }
- 
+ var starts = $('span.start-date');
+ var events = {};
+ starts.each(function(i, start){
+   
+   var endString = String($(start).next('span.end-date').html()) + " 00:00:00";
+   var startString = String($(start).html()) + " 00:00:00";
+   var startDate = new Date(startString);
+   var endDate = new Date(endString);
+   while (startDate <= endDate){
+     events[startDate] = new Event("Available", "blue")
+   
+     var newDate = startDate.setDate(startDate.getDate() + 1);
+     startDate = new Date(newDate);
+     console.log(events[startDate])
+   }
+ })
 
    $("#listing-calendar").datepicker({
       beforeShowDay: function(date) {

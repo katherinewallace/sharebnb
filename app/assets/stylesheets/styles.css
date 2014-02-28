@@ -48,7 +48,11 @@ ul {
 h1 {
   font-size: 30px;
   font-weight: bold;
-  margin: 20px;
+  margin: 30px;
+}
+
+.listing-nav-bar {
+  margin: 10px;
 }
 
 h2 {
@@ -84,15 +88,14 @@ h3 {
 
 .header-wrap > h2 {
   float: left;
-  width: 20%;
   display: block;
-  padding: 20px 0 0 20px;
   color: inherit;
 }
 
 .header-wrap > #logo > a {
   display: block;
   color: #009bf5;
+  padding: 20px 20px 0 30px;
   font-weight: bold;
   font-style: italic;
 }
@@ -276,7 +279,7 @@ div.dot > img {
 }
 
 .content-bar {
-  margin: 20px;
+  margin: 25px;
   float: left;
 }
 
