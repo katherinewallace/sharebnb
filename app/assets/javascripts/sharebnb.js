@@ -7,7 +7,3 @@ window.Sharebnb = {
     alert('Hello from Backbone!');
   }
 };
-
-$(document).ready(function(){
-  Sharebnb.initialize();
-});

@@ -122,4 +122,15 @@ class Booking < ActiveRecord::Base
     overlaps = Booking.where(where_condition, self.id, self.id, self.listing_id, self.start_date, self.start_date, self.end_date, self.end_date)
   end
   
+  def to_builder
+    Jbuilder.new do |booking|
+      booking.start_date = self.start_date
+      booking.end_date = self.end_date
+      booking.guest_num = self.guest_num
+      booking.status = self.status
+      booking.subtotal = self.subtotal
+      booking.guest_fname = self.guest.fname
+      booking.guest_lname = self.guest.lname
+     end
+  end
 end
