@@ -131,6 +131,7 @@ class Booking < ActiveRecord::Base
       booking.subtotal = self.subtotal
       booking.guest_fname = self.guest.fname
       booking.guest_lname = self.guest.lname
+      booking.guest_pic_url = self.guest.profile_pic.try(:url, :small)
      end
   end
 end

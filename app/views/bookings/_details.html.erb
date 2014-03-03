@@ -24,8 +24,8 @@
     <ul class="listing-buttons group">
     <% if booking.status == 0 %>
     
-      <li><a class="btn" href="<%= accept_booking_url(booking) %>">Accept</a></li>
-      <li><a class="btn delete" href="<%= decline_booking_url(booking) %>">Decline</a></li>
+      <li><a class="btn accept" data-id="<%= booking.id %>" href="<%= accept_booking_url(booking) %>">Accept</a></li>
+      <li><a class="btn delete" data-id="<%= booking.id %>" href="<%= decline_booking_url(booking) %>">Decline</a></li>
       
     <% else %>
     

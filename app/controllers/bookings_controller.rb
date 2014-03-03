@@ -33,12 +33,9 @@ class BookingsController < ApplicationController
     @pending_bookings = Booking.where(where_condition, @listing.id, 0, Date.today)
       .order("start_date ASC")
       .includes(:guest).to_a
-    @pending_json = @pending_bookings.map(&:to_builder)
-      fail
     @confirmed_bookings = Booking.where(where_condition, @listing.id, 1, Date.today)
       .order("start_date ASC")
       .includes(:guest).to_a
-      @confirmed_json = @confirmed_bookings.map(&:to_builder)
   end
   
   def accept

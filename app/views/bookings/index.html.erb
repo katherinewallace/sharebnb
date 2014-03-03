@@ -52,10 +52,16 @@
   </article>
 </section>
 
+<script type="application/json" id="bootstrapped-confirmed">
+  <%= (render partial: 'bookings/bookings_info.json.jbuilder', locals: {bookings: @confirmed_bookings} ).html_safe %>
+</script>
+
+<script type="application/json" id="bootstrapped-pending">
+  <%= (render partial: 'bookings/bookings_info.json.jbuilder', locals: {bookings: @pending_bookings} ).html_safe %>
+</script>
+
 <script>
-  $(document).ready(function(){
-    $pendingList = $("#pending-booking-list")
-    $confirmedList = $("#confirmed-booking-list")
+  $(document).ready(function(){   
     Sharebnb.initialize();
   });
 </script>
