@@ -1,14 +1,31 @@
 Sharebnb.Models.Booking = Backbone.Model.extend({
   urlRoot: "/bookings",
-  accept: function(opts){
-    var url = this.url() + "/accept"
-    options = {
-      url: url,
-      type: 'GET'
+  
+  accept: function(method, model, options){
+    
+    options = _(options).clone()
+
+
+    var error = options.error;
+    options.error = function(jqXHR, textStatus, errorThrown) {
+        alert('error');
+        if(error)
+            error(jqXHR, textStatus, errorThrown);
     };
-    
-    _.extend(options, opts);
-    
-    return (this.sync || Backbone.sync).call(this, null, this, options);
-  }
+
+
+    var success = options.success;
+    options.success = function(data, textStatus, jqXHR) {
+        model.parse(data);
+        if(success)
+            success(data, textStatus, jqXHR);
+    };
+
+    var params = {
+        type: 'GET',
+        url:   model.url() + "/accept" 
+    };
+    $.ajax(_.extend(params, options));
+    }
+  
 });

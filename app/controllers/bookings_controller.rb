@@ -86,4 +86,13 @@ class BookingsController < ApplicationController
     end
   end
   
+  def show
+    booking = Booking.find(params[:id])
+    if request.xhr?
+      render json: booking
+    else
+      render "public/404"
+    end
+  end
+  
 end
