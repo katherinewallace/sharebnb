@@ -31,6 +31,5 @@ describe Booking do
   
   describe "availability" do
     it "should not overlap with any approved bookings"
-    it "should be within a date range for its listing"
-  end
+                                                                                                                    end
 end

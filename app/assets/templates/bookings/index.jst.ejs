@@ -1,0 +1,47 @@
+<% if(bookings.length == 0) { %>
+  <li>You have no pending bookings</li>
+<% } else { %>
+
+<% bookings.forEach(function(booking){ %>
+  <li>
+  <div class="group">  
+    <div class="caption float">
+      <div class="small-photo">
+        <img src="<%= booking.escape("guest_pic_url") %>">
+      </div>
+      <p><%= booking.escape("guest_fname") %><br>
+        <%= booking.escape("guest_lname") %></p>
+    </div>
+  
+    <div class="details group float">
+    
+      <ul>
+    
+      <li><%= booking.escape("start_date") + " - " + booking.escape("end_date") %></li>
+    
+      <li> Guests: <%= booking.escape("guest_num") %></li>
+    
+      <li> Total<% if (booking.get("status == 1")){ %>
+        Paid
+      <% } %>
+        : $<%= booking.escape("subtotal") %></li>
+    
+    </ul>
+    
+    </div>
+    
+     <ul class="listing-buttons group">
+     <% if (booking.get("status") == 0) { %>
+   
+       <li><a class="btn accept" data-id="<%= booking.id %>" href="#">Accept</a></li>
+       <li><a class="btn delete" data-id="<%= booking.id %>" href="#">Decline</a></li>
+     
+     <% } else { %>
+   
+       <li><a class="btn delete cancel-btn" data-id="<%= booking.id %>" href="#">Cancel booking</a></li>
+     
+     <% } %>
+    </ul>
+  </li>
+<% }); %>
+<% } %>

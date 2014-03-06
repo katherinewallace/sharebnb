@@ -1,4 +1,4 @@
-json.array!(@pending_bookings+ @confirmed_bookings) do |booking| 
+json.array!(@pending_bookings + @confirmed_bookings) do |booking| 
   json.id booking.id
   json.listing_id booking.listing_id
   json.start_date booking.start_date

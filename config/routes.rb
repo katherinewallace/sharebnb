@@ -15,11 +15,13 @@ Sharebnb::Application.routes.draw do
   end
   
   resources :photos, only: :destroy
+  resources :bookings, only: :update
   
   get "/bookings/:id/accept", { as: :accept_booking, controller: :bookings, action: :accept }
   get "/bookings/:id/decline", { as: :decline_booking, controller: :bookings, action: :decline }
   get "/listings/:id/calendar", { as: :listing_calendar, controller: :listings, action: :calendar }
   get "/bookings/:id/cancel", { as: :cancel_booking, controller: :bookings, action: :cancel }
   get "/photos/:id/primary", { as: :primary_photo, controller: :photos, action: :primary }
+  
   root to: "static_pages#home"
 end

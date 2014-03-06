@@ -36,6 +36,11 @@ class BookingsController < ApplicationController
     @confirmed_bookings = Booking.where(where_condition, @listing.id, 1, Date.today)
       .order("start_date ASC")
       .includes(:guest).to_a
+    if request.xhr?
+      render "index.json.jbuilder"
+    else
+      render :index
+    end
   end
   
   def accept
@@ -92,6 +97,15 @@ class BookingsController < ApplicationController
       render json: booking
     else
       render "public/404"
+    end
+  end
+  
+  def update
+    if request.xhr?
+      booking = Booking.find(params[:id])
+      booking.cancelled = params[:cancelled]
+      booking.save!
+      render json: booking
     end
   end
   

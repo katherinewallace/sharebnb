@@ -29,7 +29,7 @@
       
     <% else %>
     
-      <li><a class="btn delete cancel-btn" href="<%= cancel_booking_url(booking) %>" data-remote="true">Cancel booking</a></li>
+      <li><a class="btn delete cancel-btn" data-id="<%= booking.id %>" href="<%= cancel_booking_url(booking) %>">Cancel booking</a></li>
       
     <% end %>
    </ul>

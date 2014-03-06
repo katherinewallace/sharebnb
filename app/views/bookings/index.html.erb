@@ -52,12 +52,8 @@
   </article>
 </section>
 
-<script type="application/json" id="bootstrapped-confirmed">
-  <%= (render partial: 'bookings/bookings_info.json.jbuilder', locals: {bookings: @confirmed_bookings} ).html_safe %>
-</script>
-
-<script type="application/json" id="bootstrapped-pending">
-  <%= (render partial: 'bookings/bookings_info.json.jbuilder', locals: {bookings: @pending_bookings} ).html_safe %>
+<script type="application/json" id="bootstrapped-bookings">
+  <%= (render partial: 'bookings/bookings_info.json.jbuilder').html_safe %>
 </script>
 
 <script>

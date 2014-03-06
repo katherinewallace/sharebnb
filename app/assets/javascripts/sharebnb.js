@@ -6,17 +6,15 @@ window.Sharebnb = {
   initialize: function(confirmedData) {
     $pendingList = $("#pending-booking-list")
     $confirmedList = $("#confirmed-booking-list")
-    confirmedData = JSON.parse($("#bootstrapped-confirmed").html())
-    pendingData = JSON.parse($("#bootstrapped-pending").html())
+    bookingData = JSON.parse($("#bootstrapped-bookings").html())
     var listing
-    if(pendingData.length > 0){
-      listing = pendingData[0].listing_id
+    if(bookingData.length > 0){
+      listing = bookingData[0].listing_id
     }
     
-    Sharebnb.confirmedBooks = new Sharebnb.Collections.Bookings(confirmedData, {listing: listing});
-    Sharebnb.pendingBooks = new Sharebnb.Collections.Bookings(pendingData, {listing: listing});
-    console.log(Sharebnb.confirmedBooks)
-    console.log(Sharebnb.pendingBooks)
-    new Sharebnb.Views.PendingBookingsIndex({collection: Sharebnb.pendingBooks, el: $pendingList})
+    Sharebnb.bookings = new Sharebnb.Collections.Bookings(bookingData, {listing: listing});
+
+    new Sharebnb.Views.BookingsIndex({collection: Sharebnb.bookings, el: $pendingList, status: 0});
+    new Sharebnb.Views.BookingsIndex({collection: Sharebnb.bookings, el: $confirmedList, status: 1});
   }
 };

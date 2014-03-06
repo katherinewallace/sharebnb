@@ -4,8 +4,12 @@ Sharebnb.Collections.Bookings = Backbone.Collection.extend({
     this.listing_id = options.listing
   },
   
-  url: "/listings/" + this.listing_id + "/bookings",
+  url: function(){
+    return "/listings/" + this.listing_id + "/bookings"
+  },
   
-  model: Sharebnb.Models.Booking
+  model: Sharebnb.Models.Booking,
+  
+  comparator: 'start_date'
 
 });
