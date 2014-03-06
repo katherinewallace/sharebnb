@@ -11,11 +11,24 @@ Sharebnb.Views.BookingsIndex = Backbone.View.extend({
   
   events: {
     "click a.accept": "accept",
+    "click a.decline": "decline",
     "click a.cancel-btn": "cancel"
   },
   
+  decline: function(event){
+    event.preventDefault();
+    var id = parseInt($(event.currentTarget).attr("data-id"));
+    var booking = this.collection.get(id);
+    
+    booking.decline(null, booking, {
+      success: function(){
+        Sharebnb.bookings.fetch();
+        $(Sharebnb.$flash).html("Booking has been declined!")
+      }
+    })
+  },
+  
   accept: function(event){
-    var that = this;
     event.preventDefault();
     var id = parseInt($(event.currentTarget).attr("data-id"));
     var booking = this.collection.get(id);
@@ -23,19 +36,21 @@ Sharebnb.Views.BookingsIndex = Backbone.View.extend({
     booking.accept(null, booking, {
       success: function(){
         Sharebnb.bookings.fetch();
+        $(Sharebnb.$flash).html("Booking has been accepted!")
     }})
   },
   
   cancel: function(event){
-    console.log("cancelling")
+    var that = this;
     event.preventDefault();
     var id = parseInt($(event.currentTarget).attr("data-id"));
-    console.log(id)
     var booking = this.collection.get(id);
-    booking.save({"cancelled": true}, {success: function(){
-      
-    }});
-    this.collection.remove(booking);
+    booking.cancel(null, booking, {
+      success: function(){
+        $(Sharebnb.$flash).html("Booking has been cancelled!")
+        that.collection.remove(booking);
+      }
+    });
   },
   
   render: function(){

@@ -103,9 +103,11 @@ class BookingsController < ApplicationController
   def update
     if request.xhr?
       booking = Booking.find(params[:id])
-      booking.cancelled = params[:cancelled]
-      booking.save!
-      render json: booking
+      unless params[:cancelled]
+        self.cancel
+      else
+        render json: booking
+      end
     end
   end
   

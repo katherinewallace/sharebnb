@@ -6,6 +6,7 @@ window.Sharebnb = {
   initialize: function(confirmedData) {
     $pendingList = $("#pending-booking-list")
     $confirmedList = $("#confirmed-booking-list")
+    Sharebnb.$flash = $(".flash")
     bookingData = JSON.parse($("#bootstrapped-bookings").html())
     var listing
     if(bookingData.length > 0){
