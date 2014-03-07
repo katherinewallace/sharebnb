@@ -1,6 +1,6 @@
 # sharebnb
 
-sharebnb is a sample apartment-share application built by [Katherine Wallace](http://www.linkedin.com/pub/katherine-wallace/82/41/45a/) based off [airbnb](http://www.airbnb.com)
+sharebnb is a sample apartment-share application built by [Katherine Wallace](http://www.linkedin.com/pub/katherine-wallace/82/41/45a/) based off [airbnb](http://www.airbnb.com).  The live version of the sample application is hosted on heroku: [sharebnb] (http://sharebnb.herokuapp.com)
 
 ## Technical Overview
 
