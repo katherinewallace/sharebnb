@@ -17,15 +17,15 @@ This web application is built in Ruby on Rails and Backbone.js and also features
 
 ## Functionality Overview
 
-### Search
+#### Search
 
 From the homepage or from the listings index a user can search for apartments by the date of check-in, the date of check-out, the city and the number of guests  All of these parameters are optional and can be used in any combination. Searches by date use custom SQL queries to return listings whose available date ranges contain the query range and for which the query range does ot overlap with a confirmed booking for that apartment.  Search results are paginated and displayed next to an interactive map that uses Mapbox's JavaScript API
 
-## Listing an Apartment
+#### Listing an Apartment
 
 A user can list their apartment and upload images. A nested form creates and updates a listing together with associated available date ranges. Custom validations ensure that a user cannot list the apartment as unavailble without first cancelling or declining existing booking requests for those dates. The apartment also has a calendar which computes avaible sub-ranges from the ranges specified in the listing and the status of existing bookings.
 
-## Bookings
+#### Bookings
 
 Bookings can only be made for dates where the apartment is listed as available and there are no overlapping confirmed bookings. The owner of a listing can review pending bookings and accept or decline them.  Accepting a booking automatically declines all overlapping pending bookings. Either the owner or the guest can cancel a booking. Cancelled bookings remain in the database for reference, but do not raise date conflicts.
 
