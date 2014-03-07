@@ -9,4 +9,5 @@ json.array!(@pending_bookings+ @confirmed_bookings) do |booking|
   json.guest_fname booking.guest.fname
   json.guest_lname booking.guest.lname
   json.guest_pic_url booking.guest.profile_pic.try(:url, :small)
+  json.overlaps booking.overlapping_bookings.any?
 end

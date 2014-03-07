@@ -29,7 +29,6 @@
     </ul>
     
     </div>
-    
      <ul class="listing-buttons group">
      <% if (booking.get("status") == 0) { %>
    
@@ -42,6 +41,19 @@
      
      <% } %>
     </ul>
+    </div>
+     
+   
+    <% if (booking.get("status") == 0 && booking.get("overlaps")){ %>
+      <div class="group">
+           <p>This booking overlaps with another pending booking for your listing. Please note that you may only approve one of any overlapping bookings</p>
+      </div>   
+    <% } %>
   </li>
 <% }); %>
+
+   
+   
 <% } %>
+
+ 
