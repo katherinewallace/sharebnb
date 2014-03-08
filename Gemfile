@@ -24,6 +24,7 @@ gem 'geocoder'
 gem 'jbuilder'
 gem 'backbone-on-rails'
 gem 'ejs'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'better_errors'
