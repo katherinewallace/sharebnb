@@ -333,6 +333,7 @@ td{
 
 div.interior-content {
   border: none;
+  background: transparent;
   padding: 0;
 }
 
