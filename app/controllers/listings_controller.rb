@@ -51,7 +51,6 @@ class ListingsController < ApplicationController
     @options["end_date"] = @options["start_date"].to_date + 1.week if @options["end_date"].blank?
         
     @options.delete("city")
-
     @booking = @listing.bookings.new(@options)
     render :show
   end

@@ -25,7 +25,7 @@ $(document).ready(function(){
 
    $("#listing-calendar").datepicker({
       beforeShowDay: function(date) {
-         var month = $(".calendar").datepicker('getDate').getMonth()
+         var month = date.getMonth()
           var event = events[date];
           if (event) {
               return [true, event.className, event.text];

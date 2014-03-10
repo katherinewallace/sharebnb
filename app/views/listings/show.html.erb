@@ -1,4 +1,5 @@
 <%= render "listings/listing_nav" %>
+  <%= render "shared/errors" %>
 
 <section class="content-bar">
   
@@ -60,10 +61,8 @@
   </section>
     
 </section>
-
-<section class="content-bar">
   
-  <%= render "shared/errors" %>
+<section class="content-bar">
   
   <form action="<%= listing_bookings_url(@listing) %>" method="POST" class="interior-content">
     <%= auth_token %>
@@ -72,12 +71,12 @@
       <h3>$<span id="listing-price"><%= @listing.price %></span> per night</h3>
       <div class="input">
         <label for="booking_start_date">Check in</label>
-        <input type="date" name="booking[start_date]" value="<%= @booking.start_date %>" id="booking_start_date" class="start_date">
+        <input type="text" name="booking[start_date]" value="<%= @booking.start_date %>" id="booking_start_date" class="start_date">
       </div>
       
       <div class="input">
         <label for="booking_end_date">Check out</label>
-        <input type="date" name="booking[end_date]" value="<%= @booking.end_date %>" id="booking_end_date" class="end_date">
+        <input type="text" name="booking[end_date]" value="<%= @booking.end_date %>" id="booking_end_date" class="end_date">
       </div>
      
       <div class="input">

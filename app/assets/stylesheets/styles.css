@@ -205,6 +205,12 @@ a.delete:hover, input.delete[type="submit"]:hover {
   background: #A62525;
 }
 
+form.search > input[type="text"] {
+  color: black;
+  padding: 5px;
+  font-size: 13px;
+}
+
 /*Listings index*/
 
 #map { 
@@ -510,17 +516,16 @@ footer > ul > li {
 
 /*calendar*/
 
+.ui-datepicker {
+  width: 250px;
+  height: 250px;
+}
+
 .calendar {
   margin: 20px;
   display: block;
   width: 1100px;
   clear: both;
-}
-.calendar > .ui-datepicker {
-}
-
-.calendar > .ui-datepicker > .ui-datepicker-header {
-
 }
 
 .calendar > .ui-datepicker > .ui-datepicker-header > .ui-datepicker-title {
@@ -528,12 +533,16 @@ footer > ul > li {
   font-align: center;
 }
 
-.ui-datepicker-calendar > tbody > tr > td.blue > a { 
+.calendar > .ui-datepicker > .ui-datepicker-calendar > tbody > tr > td.blue > a { 
     background-color: #009bf5 !important;
     background-image:none !important;
 }
 
-.ui-datepicker-calendar > tbody > tr > td > a { 
+.calendar > .ui-datepicker > .ui-datepicker-calendar > tbody > tr > td > a { 
     background-color: #FF7373 !important;
     background-image: none !important;
+}
+
+body > #ui-datepicker-div {
+  display: none;
 }

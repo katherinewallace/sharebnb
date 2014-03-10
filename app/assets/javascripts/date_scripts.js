@@ -45,5 +45,11 @@ var DateScripts = (function(){
 })();
 
 $(document).ready(function(){
-    DateScripts.init();
-  });
+  DateScripts.init();
+  $('.start_date').datepicker({
+      dateFormat: "yy-mm-dd"
+    });
+  $('.end_date').datepicker({
+      dateFormat: "yy-mm-dd"
+    });
+});
