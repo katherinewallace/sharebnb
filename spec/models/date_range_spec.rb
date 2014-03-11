@@ -13,6 +13,16 @@
 require 'spec_helper'
 
 describe DateRange do
-  it "should not overlap with another date range for the same listing"
-  it "should be a valid range"
+  subject(:range1) { DateRange.new(start_date: Date.today, end_date: Date.today + 1.week)}
+  let(:range2) { DateRange.new(start_date: Date.today + 3.days, end_date: Date.today + 2.weeks)}
+  
+  it "should not overlap with another date range for the same listing" do
+    range1.listing_id = 1
+    range2.listing_id = 1
+    expect(range1).to be_invalid
+  end
+  it "should be a valid range" do
+    range1.start_date = Date.today + 2.weeks
+    expect(range1).to be_invalid
+  end
 end

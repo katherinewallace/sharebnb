@@ -14,6 +14,7 @@
 #  price         :integer
 #  guest_num     :integer          not null
 #  date_range_id :integer          not null
+#  owner_token   :string(255)
 #
 
 FactoryGirl.define do

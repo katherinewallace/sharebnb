@@ -1,7 +1,3 @@
-# == Schema Information
-#
-# Table name: listings
-#
 #  id           :integer          not null, primary key
 #  room_type    :integer
 #  guests       :integer
@@ -19,15 +15,20 @@
 #  title        :string(255)      not null
 #  latitude     :float
 #  longitude    :float
-#
 
-require 'spec_helper'
-
-describe Listing do
-        
-  it { should belong_to(:user) }
-  it { should have_many(:bookings) }
-  it { should have_many(:photos) }
-  it { should have_many(:date_ranges)}
-  
-end 
+FactoryGirl.define do
+  guest_num = rand(2..9)
+  factory :listing do
+    room_type {rand(0..2)}
+    guests {guest_num}
+    bedrooms {guest_num/2}
+    bathrooms {(guest_num/2 - 1)}
+    city {["New York","Philadelphia"].sample}
+    address {Faker::Address.street_address}
+    zip {Faker::Address.zip_code}
+    neighborhood {Faker::Lorem.word}
+    price {rand(30..300)}
+    title "#{Faker::Lorem.word.capitalize} Apartment"
+    description "Awesome apartment. Accomodates #{guest_num} people"    
+  end
+end

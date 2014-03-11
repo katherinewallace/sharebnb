@@ -18,6 +18,7 @@
 #  profile_pic_content_type :string(255)
 #  profile_pic_file_size    :integer
 #  profile_pic_updated_at   :datetime
+#  uid                      :string(255)
 #
 
 class User < ActiveRecord::Base
