@@ -354,6 +354,12 @@ div.interior-content {
   border: 1px solid lightgray;
 }
 
+.dates > input[type="text"] {
+  margin-top: 20px;
+  padding: 5px 10px;
+  border: 1px solid lightgray;
+}
+
 h3.center {
   text-align: center;
   margin: 10px;

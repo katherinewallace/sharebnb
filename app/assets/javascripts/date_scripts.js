@@ -9,12 +9,12 @@ var DateScripts = (function(){
     }
   }
   
-  var updateEndDate = function(startString){
+  var updateEndDate = function(startString, target){
     var startDate = new Date(startString)
     var endDate = new Date(startDate.getTime())
       
     endDate.setDate(startDate.getDate() + 7);
-    $endDate = $(event.currentTarget).nextAll("input.end_date").first()
+    $endDate = $(target).siblings("input").first()
     if($endDate.length === 0){
       $endDate = $("input.end_date");
     }
@@ -34,8 +34,8 @@ $(document).ready(function(){
   $('.start_date').datepicker({
       dateFormat: "yy-mm-dd",
       onSelect: function(){
-        var startString = $('.start_date').datepicker("getDate");
-        DateScripts.updateEndDate(startString);
+        var startString = $(this).datepicker("getDate");
+        DateScripts.updateEndDate(startString, this);
       }
     });
   $('.end_date').datepicker({
