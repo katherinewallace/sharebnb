@@ -17,14 +17,15 @@
   </div>
 
   <% @listing.date_ranges.each do |range| %>
+  <div class="dates">
   <label for="<%= range.object_id %>_start_date">Start date</label>
-  <input type="date" name="date_range_attributes[<%= range.object_id %>][start_date]" 
+  <input type="text" name="date_range_attributes[<%= range.object_id %>][start_date]" 
     value="<%= range.start_date %>" class="start_date" id="<%= range.object_id %>_start_date">
   <label for="<%= range.object_id %>_end_date">End date</label>
-  <input type="date" name="date_range_attributes[<%= range.object_id %>][end_date]" 
+  <input type="text" name="date_range_attributes[<%= range.object_id %>][end_date]" 
     value="<%= range.end_date %>" class="end_date" id="<%= range.object_id %>_end_date">
   <input type="hidden" name="date_range_attributes[<%= range.object_id %>][id]" value="<%= range.id %>">
-  <br>
+  </div>
   
   <% end %>
   <br>
