@@ -19,7 +19,6 @@ $(document).ready(function(){
    
      var newDate = startDate.setDate(startDate.getDate() + 1);
      startDate = new Date(newDate);
-     console.log(events[startDate])
    }
  })
 
