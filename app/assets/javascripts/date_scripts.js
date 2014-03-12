@@ -48,4 +48,6 @@ $(document).ready(function(){
         DateScripts.calcSubtotal(startDate, endDate);
       }
     });
+    
+    $('.end_date').on("blur", DateScripts.calcSubtotal)
 });
