@@ -1,3 +1,5 @@
+require 'factory_girl_rails'
+
 describe "searching listings" do
   describe "by date" do
     it "should only return listings that are available for that date"
@@ -13,3 +15,6 @@ describe "making a listing" do
   it "should redirect to listing edit page"
 end
 
+describe "editing a listing" do
+  it "should not allow you to set an apartment as unavailable if there are existing pending or confirmed booking requests"
+end

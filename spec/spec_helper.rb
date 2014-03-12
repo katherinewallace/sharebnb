@@ -2,7 +2,9 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
+require 'factory_girl_rails'
+
+# require 'rspec/autorun'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -38,4 +40,11 @@ RSpec.configure do |config|
   
   config.include FactoryGirl::Syntax::Methods
   
+end
+
+def sign_in_as(email)
+  visit new_session_url
+  fill_in("Email").with(email)
+  fill_in("Password").with("password")
+  click_button("Sign in")
 end

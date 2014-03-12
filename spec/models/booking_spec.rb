@@ -23,6 +23,7 @@ describe Booking do
   subject(:book1) { Booking.new(start_date: Date.today, end_date: Date.today + 1.week, guest_num: 1) }
   let(:book2) { Booking.new(start_date: Date.today + 3.days, end_date: Date.today + 2.weeks)}
   let(:list1) {build(:listing)}  
+  let(:user1) {build(:user)}
   it { should belong_to(:guest) }
   it { should belong_to(:listing) }
   

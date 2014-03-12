@@ -29,6 +29,8 @@ FactoryGirl.define do
     neighborhood {Faker::Lorem.word}
     price {rand(30..300)}
     title "#{Faker::Lorem.word.capitalize} Apartment"
-    description "Awesome apartment. Accomodates #{guest_num} people"    
+    description "Awesome apartment. Accomodates #{guest_num} people"
+    
+    association :user, factory: :user
   end
 end
