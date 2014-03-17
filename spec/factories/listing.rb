@@ -17,20 +17,24 @@
 #  longitude    :float
 
 FactoryGirl.define do
-  guest_num = rand(2..9)
   factory :listing do
-    room_type {rand(0..2)}
-    guests {guest_num}
-    bedrooms {guest_num/2}
-    bathrooms {(guest_num/2 - 1)}
+    room_type { rand(0..2) }
+    guests { rand(1..9) }
+    bedrooms { rand(1..4) }
+    bathrooms { rand(1..4) }
     city {["New York","Philadelphia"].sample}
-    address {Faker::Address.street_address}
-    zip {Faker::Address.zip_code}
-    neighborhood {Faker::Lorem.word}
-    price {rand(30..300)}
-    title "#{Faker::Lorem.word.capitalize} Apartment"
-    description "Awesome apartment. Accomodates #{guest_num} people"
+    address { Faker::Address.street_address }
+    zip { Faker::Address.zip_code }
+    neighborhood { Faker::Lorem.word }
+    price { rand(30..300) }
+    title { "#{Faker::Lorem.word.capitalize} Apartment" }
+    description "Awesome apartment. Stay here!"
     
     association :user, factory: :user
-  end
+    
+    after(:create) do |listing|
+        listing.date_ranges << create(:date_range, listing_id: listing.id)
+      end
+    end
+
 end

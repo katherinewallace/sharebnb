@@ -24,10 +24,20 @@
 require 'spec_helper'
 
 describe Listing do
+  
+  let!(:listing1) { FactoryGirl.create(:listing) }
         
   it { should belong_to(:user) }
   it { should have_many(:bookings) }
   it { should have_many(:photos) }
   it { should have_many(:date_ranges)}
+  
+  it "should not allow you to set an apartment as unavailable if there are existing pending or confirmed booking requests" do
+    range = listing1.date_ranges.first
+    make_booking(1, listing1, range.start_date, range.start_date + 3.days)
+    range.start_date = range.end_date
+    range.end_date = range.start_date + 1.month
+    expect(range).to be_invalid
+  end
   
 end 

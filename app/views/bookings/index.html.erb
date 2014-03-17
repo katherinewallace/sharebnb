@@ -22,7 +22,7 @@
     <% else %>
     
       <% @pending_bookings.each do |booking| %>
-        <li>
+        <li class="booking">
           <%= render "details", booking: booking %>
         </li>
       <% end %>
@@ -43,7 +43,7 @@
     <% else %>
     
       <% @confirmed_bookings.each do |booking| %>
-      <li class="group">
+      <li class="group booking">
         <%= render "details", booking: booking %>
        </li> 
       <% end %>

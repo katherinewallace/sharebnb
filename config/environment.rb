@@ -16,7 +16,8 @@ if Rails.env.production?
   }
   ActionMailer::Base.delivery_method ||= :smtp
 elsif Rails.env.development?
-  # Remember the letter_opener gem? It won't send real emails; it
-  # just opens them in another tab.
   ActionMailer::Base.delivery_method = :letter_opener
+
+elsif Rails.env.test?
+  ActionMailer::Base.delivery_method = :test
 end

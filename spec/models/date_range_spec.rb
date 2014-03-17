@@ -25,4 +25,5 @@ describe DateRange do
     range1.start_date = Date.today + 2.weeks
     expect(range1).to be_invalid
   end
+  
 end

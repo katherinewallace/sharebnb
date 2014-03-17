@@ -1,8 +1,10 @@
-# This file is copied to spec/ when you run 'rails generate rspec:install'
+''# This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'factory_girl_rails'
+
+Capybara.default_host = 'localhost:3000'
 
 # require 'rspec/autorun'
 
@@ -25,7 +27,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
@@ -40,11 +42,29 @@ RSpec.configure do |config|
   
   config.include FactoryGirl::Syntax::Methods
   
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+  
 end
 
-def sign_in_as(email)
+def sign_in_with_email(email)
   visit new_session_url
-  fill_in("Email").with(email)
-  fill_in("Password").with("password")
-  click_button("Sign in")
+  fill_in "Email", with: email
+  fill_in "Password", with: "password"
+  click_button "Sign in"
+end
+
+def make_booking(guest_id, listing, start_date, end_date)
+  booking = listing.bookings.new({start_date: start_date, end_date: end_date, guest_num: 1})
+  booking.guest_id = guest_id
+  booking.save!
 end

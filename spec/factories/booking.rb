@@ -19,5 +19,11 @@
 
 FactoryGirl.define do
   factory :booking do
+    start_date Date.today + 2.day
+    end_date Date.today + 4.days
+    guest_num 1
+    listing_id 1
+    
+    association :listing, :guest, :notifications
   end
 end
