@@ -2,7 +2,7 @@
   <label for="search_city">City</label>
   <select name="search[city]" id="search_city">
     <option value="">--</option>
-    <option value="New York" <%= @search["city"] == "New York" ? "selected": ""%>>New York</option>
+    <option value="New York" <%= @search["city"] == "New York" || @search["city"].nil? ? "selected": ""%>>New York</option>
     <option value="Philadelphia" <%= @search["city"] == "Philadelphia" ? "selected": ""%>>Philadelphia</option>     
   </select>
   

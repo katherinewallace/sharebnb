@@ -8,7 +8,17 @@ USER_PHOTOS = [
 "http://wallacephoto.com/photography/blog/files/page32_blog_entry8_1.jpg",
 "http://www.pixelettephoto.com/core/img/gallery/fullsize/headshot01.jpg",
 "http://static.wixstatic.com/media/0438e9_bc7aeca624ba4ff485ce14c207b069e5.jpg_srz_745_506_85_22_0.50_1.20_0.00_jpg_srz",
-"http://static.wixstatic.com/media/0438e9_c7c5d5288fca931ecba27d61f6ee954c.jpg_srz_745_506_85_22_0.50_1.20_0.00_jpg_srz"  
+"http://static.wixstatic.com/media/0438e9_c7c5d5288fca931ecba27d61f6ee954c.jpg_srz_745_506_85_22_0.50_1.20_0.00_jpg_srz", 
+"http://www.jasoncoviello.com/actor/images/headshot.jpg",
+"http://3.bp.blogspot.com/-TwIDyrW583Y/UhPkQnui5iI/AAAAAAAALC4/Bqm3rSJB7YA/s1600/Open+Source+Headshot+Final.jpg",
+"http://www.thehopkinsonreport.com/wp-content/uploads/2012/06/Greek-Headshot.jpg",
+"http://www.arsnovaimages.com/wp-content/uploads/2013/06/Corporate-Headshot-21-682x1024.jpg",
+"http://www.mzphotography.com/images/headshots-2009/02-headshots.jpg",
+"http://naturalheadshot.com/pages-images/photos/1107FNS-Natural-Headshot-001.jpg",
+"http://www.pittsburghcreative.com/modeling/headshot%20images/pittsburgh_headshot_m01.jpg",
+"http://www.joyceandersonphoto.com/headshots/headshot/headshot2.jpg?nxg_versionuid=published",
+"http://naturalheadshot.com/pages-images/photos/1210FNS-Natural-Headshot-003.jpg",
+"http://www.akphoto.com/wp-content/gallery/stryker-medical/stryker-medial-professional-headshot-3.jpg"
 ]
 
 APT_PHOTOS = [

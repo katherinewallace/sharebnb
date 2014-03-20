@@ -49,7 +49,7 @@ end
 
 # generate users
 
-(1..11).each do |num|
+(1..20).each do |num|
   user = User.new({
     fname: Faker::Name.first_name,
     lname: Faker::Name.last_name,
@@ -101,7 +101,7 @@ end
 
 
 # generate listings belonging to users
-60.times do 
+200.times do 
   user_id = rand(1..11)
   generate_listing!(user_id)
 end
