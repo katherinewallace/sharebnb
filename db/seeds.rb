@@ -16,16 +16,16 @@ def generate_listing!(user_id)
     zip: address_info["postal_code"],
     neighborhood: address_info["neighborhoods"].first,
     price: rand(30..300),
-    title: "#{Faker::Lorem.word.capitalize} Apartment",
+    title: "#{Faker::Company.buzzwords.sample.capitalize} Apartment",
     description: "Awesome apartment in #{address_info["neighborhoods"].first}. Accomodates #{guest_num} people",
     user_id: user_id
   })
   listing.save!
-  random_num = rand(0..12)
+  random_num = rand(0..70)
   
   listing.date_ranges.create!({ 
     start_date: Date.today + random_num.weeks,
-    end_date: Date.today + random_num.weeks + 1.month
+    end_date: Date.today + random_num.weeks + 4.month
   })
   
   3.times {listing.photos.create!({
@@ -75,7 +75,7 @@ demo_user = User.new({
   phone: "222-333-4444"
 })
 
-demo_user.picture_from_url("http://www.tehcute.com/pics/201107/Red-panda.jpg")
+demo_user.picture_from_url("http://i1.wp.com/www.techrepublic.com/bundles/techrepubliccore/images/icons/standard/icon-user-default.png")
 demo_user.save!
 generate_listing!(demo_user.id)
 demo_listing = demo_user.listing

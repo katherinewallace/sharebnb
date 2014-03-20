@@ -1,17 +1,14 @@
 
 USER_PHOTOS = [
-  "http://2.bp.blogspot.com/-WeU2_SrjHOU/Tc3oC6jpFPI/AAAAAAAAAJQ/JancZyeKqLo/s1600/cute-animals4.jpg",
-  "http://fin6.com/wp-content/uploads/2014/01/202006c97d0ed4d5d6123353a0309c003.jpg",
-  "http://fc08.deviantart.net/fs70/f/2011/101/b/b/the_cutest_little_animal_ever_by_narcisse_noir-d3drdka.jpg",
-  "http://xaxor.com/images/more-cute-animals-part-4-/more-cute-animals-part-4-19.jpg",
-  "http://data2.whicdn.com/images/15448521/large.jpg",
-  "http://amazinganimalstories.com/wp-content/uploads/2013/10/e18dd5940d0d3a9da13fe9a6881fdf9b.jpg",
-  "http://shechive.files.wordpress.com/2010/12/cute-animals-14.jpg?w=500&h=400",
-  "http://cute-animals.info/wp-content/uploads/2013/06/seal2.jpg",
-  "http://www.aaanything.net/wp-content/uploads/2011/04/young_courage_wolf.jpg",
-  "https://i.chzbgr.com/maxW500/5305350144/h16AF8100/",
-  "http://media02.hongkiat.com/wildlife_wallpapers/lion.jpg",
-  "http://www.mnn.com/sites/default/files/styles/node-gallery-display/public/sloth_tree_2.jpg"
+  "http://www.pghpeople.com/pittsburgh_headshots/images/pittsburgh_headshot_f01.jpg", "http://www.forawesomepeople.com/wp-content/uploads/2013/03/not-so-corporate-headshot-photo-by-portraits-to-the-people_060.jpg",
+  "http://www.nancyjophoto.com/images/kaley.jpg", "http://markschuelerphoto.com/wp-content/uploads/2012/01/NMC-headshots_blog_1D3_7785.jpg",
+"http://1.bp.blogspot.com/_WZ0zS1Mtiy0/TU2iPvsoWRI/AAAAAAAAAIE/AhUOfIuUwIs/s1600/jan+31+2011+ellis+03.jpg",
+"http://www.ashwrightphotography.com/wp-content/gallery/best-headshots-nashville-1/best-headshot-uncropped-nashville-5.jpg",
+"http://johnnyolsen.com/wp-content/gallery/seattle-washington-kids-headshots/seattle-washington-actress-teenage-headshot.jpg",
+"http://wallacephoto.com/photography/blog/files/page32_blog_entry8_1.jpg",
+"http://www.pixelettephoto.com/core/img/gallery/fullsize/headshot01.jpg",
+"http://static.wixstatic.com/media/0438e9_bc7aeca624ba4ff485ce14c207b069e5.jpg_srz_745_506_85_22_0.50_1.20_0.00_jpg_srz",
+"http://static.wixstatic.com/media/0438e9_c7c5d5288fca931ecba27d61f6ee954c.jpg_srz_745_506_85_22_0.50_1.20_0.00_jpg_srz"  
 ]
 
 APT_PHOTOS = [
