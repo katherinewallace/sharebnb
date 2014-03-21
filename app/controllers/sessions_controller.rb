@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
   end
   
   def destroy
-    if current_user.email == "demo@example.com"
+    if current_user && current_user.email == "demo@example.com"
       update_demo
     end
     logout
