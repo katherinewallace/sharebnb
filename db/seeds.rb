@@ -92,8 +92,6 @@ demo_listing.date_ranges = [demo_date_range]
 (1..4).each do |num| 
   guest = User.all.sample
   booking = Booking.new({start_date: (Date.today + num.weeks), end_date: (Date.today + (2 * num).weeks), guest_num: 1})
-  puts booking.start_date
-  puts booking.end_date
   booking.guest_id = guest.id
   booking.listing_id = demo_listing.id
   booking.save!

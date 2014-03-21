@@ -29,6 +29,9 @@ class SessionsController < ApplicationController
   end
   
   def destroy
+    if current_user.email == "demo@example.com"
+      update_demo
+    end
     logout
     flash[:success] = "You have been logged out!"
     redirect_to root_url

@@ -309,6 +309,7 @@ li.float {
 
 #description {
   width: 250px;
+  padding-right: 10px;
 }
 
 td{
