@@ -18,12 +18,11 @@ USER_PHOTOS = [
 "http://www.pittsburghcreative.com/modeling/headshot%20images/pittsburgh_headshot_m01.jpg",
 "http://www.joyceandersonphoto.com/headshots/headshot/headshot2.jpg?nxg_versionuid=published",
 "http://naturalheadshot.com/pages-images/photos/1210FNS-Natural-Headshot-003.jpg",
-"http://www.akphoto.com/wp-content/gallery/stryker-medical/stryker-medial-professional-headshot-3.jpg"
+"http://www.akphoto.com/wp-content/gallery/stryker-medical/stryker-medial-professional-headshot-3.jpg",
 ]
 
 APT_PHOTOS = [
 "http://www.dolalak.com/wp-content/uploads/2011/09/luxurious-awesome-office-room-decorating-design-e1316776467687.jpg",
-"http://homesbyderby.com/wp-content/uploads/awesome-apartment-design.jpg",
 "http://www.iidudu.com/images/2013/11/interior-architecture-awesome-apartment-living-room-design-with-purple-sofas-on-the-wooden-floor-with-cool-city-view-fascinating-room-designes-for-you.jpg",
 "http://groovexi.com/wp-content/uploads/2013/12/livingroom-interior-luxury-modern-living-room-decorating-ideas-plus-smart-target-storage-shelves-for-apartments-with-awesome-black-fabric-sofas-white-cushions-and-beautiful-fur-rugs-designand-fashion.jpg",
 "http://homesdir.net/wp-content/uploads/2013/07/awesome-decorating-studio-apartment-looks-spacious-with-white-wall-color-studio-apartment.jpg",
@@ -41,6 +40,7 @@ APT_PHOTOS = [
 "http://www.vectormu.com/nnh-content/uploads/impressive/impressive-loft-style-apartment-design-ny.jpg",
 "http://www.trendecoration.com/wp-content/uploads/inspirational-cute-modern-kitchen-decorating.jpg",
 "http://www.interiordev.com/imagedir/living-room-for-small-space-apartment-interior-design.jpg",
+"http://www.resourcedir.com/images-uploads/2014/01/30/awesome-apartment-luxury-living-room-apartments-kensington-design-awesome-apartment-luxury-living-room-apartments-kensington-design-photos.jpg"
 ]
 
 CITY_ADDRESSES = {"New York" => YAML.load_file(File.open(Rails.root.join("db", "new_york.yml"))), "Philadelphia" => YAML.load_file(File.open(Rails.root.join("db", "philadelphia.yml")))}

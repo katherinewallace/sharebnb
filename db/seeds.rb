@@ -21,11 +21,16 @@ def generate_listing!(user_id)
     user_id: user_id
   })
   listing.save!
-  random_num = rand(0..70)
+  random_num = rand(4..20)
+  
+  listing.date_ranges.create!({
+    start_date: Date.today,
+    end_date: Date.today + (1.month - 1.day)
+    })
   
   listing.date_ranges.create!({ 
     start_date: Date.today + random_num.weeks,
-    end_date: Date.today + random_num.weeks + 4.month
+    end_date: Date.today + random_num.weeks + 6.month
   })
   
   3.times {listing.photos.create!({
