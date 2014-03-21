@@ -112,6 +112,10 @@ nav {
   float: right;
 }
 
+.listing-nav-bar > nav {
+  float: left;
+}
+
 nav > ul > li {
   position: relative;
   float: left;
