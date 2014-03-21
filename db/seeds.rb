@@ -1,5 +1,6 @@
 require 'faker'
 require_relative 'seed_helper'
+include Timeout
 
 def generate_listing!(user_id)
   guest_num = rand(2..9)
@@ -40,9 +41,11 @@ def generate_listing!(user_id)
   listing.photos.each do |photo|
     begin
       url = APT_PHOTOS.sample
-      photo.picture_from_url(url)
-      puts url
-      photo.save!
+      Timeout::timeout(15){
+        puts url
+        photo.picture_from_url(url)
+        photo.save!
+      }    
     rescue
       puts "skipped photo #{photo.photo_file.url}"
       retry
@@ -105,7 +108,7 @@ end
 
 # generate listings belonging to users
 200.times do 
-  user_id = rand(1..11)
+  user_id = rand(1..20)
   generate_listing!(user_id)
 end
 
