@@ -2,7 +2,7 @@
 
   <form enctype="multipart/form-data" action="<%= user_url(@user) %>" method="POST" class="content-bar">
     <div class="med-photo" id="profile-pic">
-      <%= image_tag @user.profile_pic.try(:url, :medium) %>
+      <%= image_tag @user.profile_pic.url(:medium) %>
     </div>
     <input type="hidden" name="_method" value="PUT">
     

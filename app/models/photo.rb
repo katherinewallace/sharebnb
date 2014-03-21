@@ -22,7 +22,9 @@ class Photo < ActiveRecord::Base
         :large => "1600x1600>",
         :small => "80x80#",
         medium: "500x300#" 
-      }, dependent: :destroy 
+      }, 
+      default_url: "/assets/missing.jpg",
+      dependent: :destroy 
       
   belongs_to :listing, inverse_of: :photos
 

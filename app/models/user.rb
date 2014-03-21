@@ -33,7 +33,9 @@ class User < ActiveRecord::Base
   has_attached_file :profile_pic, styles: {
         :medium => "400x400>",
         :small => "120x120#"
-        }, dependent: :destroy
+        }, 
+         default_url: "/assets/missing_user.png",
+        dependent: :destroy
   
   before_validation :ensure_session_token
   

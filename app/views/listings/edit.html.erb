@@ -4,11 +4,15 @@
 <%= render "shared/errors" %>
 <section class="content-bar">
   <div class="large-photo interior-content group">
-    <%= image_tag @listing.primary_photo_file.try(:url, :large) %>
-    <a href="<%= listing_photos_url(@listing) %>" class="btn">Add/remove photos</a>
+    
+      <%= image_tag @listing.primary_photo_file.url(:large) %>
+    
   </div>
   
   <div class="interior-content">
+    <ul class = "group">
+      <li class="float"><a href="<%= listing_photos_url(@listing) %>" class="btn">Add/remove photos</a></li>
+    </ul>
     <ul class="group">
       <li class="float"><%= button_to "delete listing", listing_url(@listing), method: :delete, class: "btn delete" %>
       <li class="float"><a href="<%= listing_url(@listing) %>">Cancel</a></li>

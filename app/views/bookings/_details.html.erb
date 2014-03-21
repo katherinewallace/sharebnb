@@ -1,7 +1,7 @@
 <div class="group">  
   <div class="caption float">
     <div class="small-photo">
-      <%= image_tag booking.guest.profile_pic.try(:url, :small) %>
+      <%= image_tag booking.guest.profile_pic.url(:small) %>
     </div>
     <p><%= booking.guest.fname %><br>
       <%= booking.guest.lname %></p>

@@ -6,8 +6,12 @@
   <div class="interior-content">
     <div class="large-photo group" id="carrousel">
       <ul>
+        <% if @photos.empty? %>
+          <%= image_tag "missing.gif" %>
+        <% else %>
         <% @photos.each do |photo| %>
-          <li><%= image_tag photo.photo_file.try(:url, :large) %></li>
+          <li><%= image_tag photo.photo_file.url(:large) %></li>
+        <% end %>
         <% end %>
       </ul>  
     </div>
@@ -99,7 +103,7 @@
   <article class="interior-content">
     
     <div class="med-photo">
-      <%= image_tag @listing.user.profile_pic.try(:url, :medium) %>
+      <%= image_tag @listing.user.profile_pic.url(:medium) %>
     </div>
     
     <h3 class="center">Host: <%= @listing.user.full_name %></h3>

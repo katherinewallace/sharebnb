@@ -16,7 +16,8 @@
     <li>
       <a href="<%= listing_url(id: listing, search: params[:search])%>" data-id="<%= listing.id %>" class="listing group">
         <div class="med-photo">
-          <%= image_tag listing.primary_photo_file.try(:url, :medium) %>
+
+          <%= image_tag listing.primary_photo_file.url(:medium) %>
         </div>
         <h3><%= listing.title %></h3>
         <ul>

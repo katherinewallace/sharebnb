@@ -13,7 +13,7 @@
       <% if photo.primary && listing_owner?(@listing) %>
       <div class="primary">primary</div>
       <% end %>
-      <%= image_tag photo.photo_file.try(:url, :large) %>
+      <%= image_tag photo.photo_file.url(:large) %>
     </div>
   <p><%= photo.caption %></p>
     

@@ -83,7 +83,7 @@ h3 {
 }
 
 .header-wrap {
-  width: 1100px;
+  padding-right: 60px;
 }
 
 .header-wrap > h2 {
@@ -108,11 +108,12 @@ h3 {
   color: #00ddff;
 }
 
-nav {
+#main {
   float: right;
 }
 
-.listing-nav-bar > nav {
+
+nav {
   float: left;
 }
 
@@ -234,6 +235,7 @@ div.map-container{
 a.listing {
   border: 2px solid lightgray;
   width: 250px;
+  height: 230px;
   float: left;
   margin: 5px;
   padding: 5px;
@@ -400,12 +402,16 @@ div.caption {
 
 .flash {
   margin: 30px;
+  display: block;
 }
 
 .success{
-  top: 20px;
-  position: absolute;
   color: #009bf5;
+}
+
+.absolute {
+  position: absolute;
+  z-index: 1;
 }
 
 .error {

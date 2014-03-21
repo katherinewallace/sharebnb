@@ -95,6 +95,8 @@ class Listing < ActiveRecord::Base
     if photos.any?
       primary = photos.find { |photo| photo.primary }
       primary ? primary.photo_file : photos.first.photo_file
+    else
+      photos.new.photo_file
     end
   end
   
