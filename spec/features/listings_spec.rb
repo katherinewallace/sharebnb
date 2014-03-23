@@ -21,6 +21,7 @@ describe "Listings" do
         listing1.save!
         listing2.save!
         visit root_url
+        select("--", from: "City")
         fill_in "Check in", with: (Date.today)
         fill_in "Check out", with: (Date.today + 4.days)
         click_on "Search"
@@ -55,6 +56,7 @@ describe "Listings" do
       end
       
       it "should only return listings that can accomodate the number of guests" do
+        select("--", from: "City")
         fill_in "Guests", with: "4"
         click_on "Search"
         listings.each do |listing|

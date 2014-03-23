@@ -107,7 +107,10 @@ end
 
 
 # generate listings belonging to users
-200.times do 
+
+n = (Rails.env.production? ? 200 : 30)
+
+n.times do 
   user_id = rand(1..20)
   generate_listing!(user_id)
 end

@@ -61,21 +61,30 @@ class Listing < ActiveRecord::Base
       results = results.joins(:date_ranges)
     end
     
-    where_condition = <<-SQL
+    start_where_condition = <<-SQL
       (? BETWEEN date_ranges.start_date AND date_ranges.end_date) AND
       listings.id NOT IN (
         SELECT listing_id
         FROM bookings
-        WHERE ? BETWEEN bookings.start_date AND bookings.end_date
+        WHERE bookings.status = 1 AND bookings.cancelled = false AND (? >= bookings.start_date) AND (? < bookings.end_date)
+        )
+    SQL
+    
+    end_where_condition = <<-SQL
+    (? BETWEEN date_ranges.start_date AND date_ranges.end_date) AND
+    listings.id NOT IN (
+      SELECT listing_id
+      FROM bookings
+      WHERE bookings.status = 1 AND bookings.cancelled = false AND (? > bookings.start_date) AND (? <= bookings.end_date)
       )
     SQL
     
     if(params[:start_date].present?)
-      results = results.where(where_condition, params[:start_date], params[:start_date])
+      results = results.where(start_where_condition, params[:start_date], params[:start_date], params[:start_date])
     end
     
     if(params[:end_date].present?)
-      results = results.where(where_condition, params[:end_date], params[:end_date])
+      results = results.where(end_where_condition, params[:end_date], params[:end_date], params[:end_date])
     end
     
     if(params[:guest_num].present?)
@@ -96,7 +105,7 @@ class Listing < ActiveRecord::Base
       primary = photos.find { |photo| photo.primary }
       primary ? primary.photo_file : photos.first.photo_file
     else
-      photos.new.photo_file
+      Photo.new.photo_file
     end
   end
   
