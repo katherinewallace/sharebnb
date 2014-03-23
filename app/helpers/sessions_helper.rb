@@ -13,10 +13,10 @@ module SessionsHelper
     demo_user.notifications.where("code != 5").destroy_all
     (0..2).each do |num| 
       guest = User.all.sample
-      booking = Booking.new({start_date: (start_date + num.weeks), end_date: (start_date + (1.5 * num).weeks + 1.day), guest_num: 1})
+      booking = Booking.new({start_date: (start_date + num.weeks), end_date: (start_date + num.weeks + 3.day), guest_num: 1})
       booking.guest_id = guest.id
       booking.listing_id = demo_listing.id
-      booking.save!
+      booking.save
     end
   end
   
