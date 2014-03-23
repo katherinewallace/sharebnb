@@ -11,9 +11,9 @@ module SessionsHelper
     start_date = demo_listing.date_ranges.pluck(:start_date).first
     demo_listing.bookings.where("status != 0").destroy_all
     demo_user.notifications.where("code != 5").destroy_all
-    (1..3).each do |num| 
+    (0..2).each do |num| 
       guest = User.all.sample
-      booking = Booking.new({start_date: (start_date + num.weeks), end_date: (start_date + (2 * num).weeks), guest_num: 1})
+      booking = Booking.new({start_date: (start_date + num.weeks), end_date: (start_date + (1.5 * num).weeks + 1.day), guest_num: 1})
       booking.guest_id = guest.id
       booking.listing_id = demo_listing.id
       booking.save!
